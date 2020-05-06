@@ -69,13 +69,17 @@ time_t Purificateur::GetTimestampEnd() const {
 }
 
 int Purificateur::calculateEfficiency() const {
-
+    return 1;
 }
 
 int* Purificateur::calculateAirQuality() const {
-
+    int a = 1;
+    int* b = &a;
+    return b;
 }
 
 int* Purificateur::calculatePurifiedZone() const {
-
+    int a = 1;
+    int* b = &a;
+    return b;
 }
