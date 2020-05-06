@@ -3,7 +3,7 @@
 #define PURIFICATEUR_H
 
 #include <ctime>
-
+#include <string>
 
 class Purificateur 
 {
@@ -13,6 +13,7 @@ public:
     Purificateur ( const Purificateur & unPurificateur );
     Purificateur();
     ~Purificateur ( );
+    Purificateur (float latitude, float longitude, string begin, string end);
 
     float GetLatitude() const;
     float GetLongitude() const;   
@@ -29,6 +30,8 @@ protected:
     float longitude;
     time_t timestampBegin;
     time_t timestampEnd;
+
+    time_t& processTimestampString(string time) const;
 
 };
 
