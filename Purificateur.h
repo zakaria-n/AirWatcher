@@ -20,9 +20,8 @@ public:
     time_t GetTimestampBegin() const;
     time_t GetTimestampEnd() const;
 
-    int calculateEfficiency(
-        float latitude, float longitude, float rayon, time_t timestampBegin, time_t timestampEnd) const;
-    int* calculateAirQuality(float latitude, float longitude, float rayon) const;
+    int calculateEfficiency(float rayon, time_t begin, time_t end) const;
+    int* calculateAirQuality(float rayon) const;
     int* calculatePurifiedZone() const;
 
 protected:
