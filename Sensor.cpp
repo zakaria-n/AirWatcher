@@ -1,3 +1,4 @@
+/******** author Zakaria *********/
 using namespace std;
 
 #include <cmath> 
@@ -25,11 +26,35 @@ int Sensor::getDistance(const Sensor other)
     return rad * c; 
 }
 
-list<Sensor> Sensor::getCluster(list<Sensor> data)
+float Sensor::getScore()
 {
-    
+    int i=0;
+    float s=0;
+    for (auto it=mesures.begin(); it!=mesures.end() && (i<4); it++, i++)
+    {
+        s+=it->getValue();
+    }
+    return s/4;
 }
 
+list<Sensor> Sensor::getCluster(list<Sensor> data)
+{
+    list<Sensor> cluster;
+    float N=getScore();
+    for (auto it=data.begin(); it!=data.end(); it++)
+    {
+        if(getDistance(*it)<=10 && abs(N-it->getScore())<10)
+        {
+            cluster.push_front(*it);
+        }
+    }
+    return cluster;
+}
+
+string Sensor::getId()
+{
+    return sensorID;
+}
 Sensor::Sensor ( const Sensor & unSensor )
 {
 #ifdef MAP
@@ -39,6 +64,7 @@ Sensor::Sensor ( const Sensor & unSensor )
     latitude=unSensor.latitude;
     longitude=unSensor.longitude;
     description=unSensor.description;
+    mesures=unSensor.mesures;
 } 
 
 
@@ -49,12 +75,13 @@ Sensor::Sensor()
 #endif
 } 
 
-Sensor::Sensor(string id , int lat , int longi , string desc)
+Sensor::Sensor(string id , int lat , int longi , string desc, list<Measure> mes)
 {
     sensorID=id;
     latitude=lat;
     longitude=longi;
     description=description;
+    mesures=mes;
 }
 
 Sensor::~Sensor ( )
