@@ -12,15 +12,15 @@ public:
 
     Purificateur ( const Purificateur & unPurificateur );
     Purificateur();
-    ~Purificateur ( );
     Purificateur (float latitude, float longitude, string begin, string end);
+    ~Purificateur ( );
 
     float GetLatitude() const;
     float GetLongitude() const;   
     time_t GetTimestampBegin() const;
     time_t GetTimestampEnd() const;
 
-    int calculateEfficiency(float rayon, time_t begin, time_t end) const;
+    int calculateEfficiency(float rayon) const;
     int calculateAirQuality(float rayon) const;
     float calculatePurifiedZone() const;
 
