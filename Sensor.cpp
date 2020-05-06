@@ -55,6 +55,17 @@ string Sensor::getId()
 {
     return sensorID;
 }
+
+double Sensor::getLatitude()
+{
+    return latitude;
+}
+
+double Sensor::getLongitude()
+{
+    return longitude;
+}
+
 Sensor::Sensor ( const Sensor & unSensor )
 {
 #ifdef MAP

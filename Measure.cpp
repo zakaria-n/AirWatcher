@@ -16,6 +16,20 @@ Sensor Measure::getSensor(list<Sensor> data)
     }
     return s;
 }
+
+
+void Measure::detectFraud(list<Sensor> sdata, list<Measure> mdata)
+{
+    Catalogue cat;
+    Sensor s=getSensor(sdata);
+    double avg=cat.getAverageQuality(s.getLatitude(), s.getLongitude(), 10);
+    if(abs(value-avg)>10)
+    {
+        isFake=true;
+    }
+}
+
+
 float Measure::getValue()
 {
     return value;

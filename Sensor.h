@@ -17,8 +17,10 @@ public:
     float getScore();
     // Méthode pour trouver les capteurs similaires
     list<Sensor> getCluster(list<Sensor> data);
-    // Getter de l'identifiant
+    // Getters
     string getId();
+    double getLatitude();
+    double getLongitude();
     // Constructeur de copie
     Sensor ( const Sensor & unSensor );
     // Constructeur par défaut
