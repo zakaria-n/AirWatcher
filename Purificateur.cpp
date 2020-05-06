@@ -9,7 +9,6 @@ Purificateur::Purificateur ( const Purificateur & unPurificateur )
 #endif
 } 
 
-
 Purificateur::Purificateur()
 {
 #ifdef MAP
@@ -23,3 +22,31 @@ Purificateur::~Purificateur ( )
     cout << "Appel au destructeur de <Purificateur>" << endl;
 #endif
 } 
+
+float Purificateur::GetLatitude() const {
+    return latitude;
+}
+
+float Purificateur::GetLongitude() const {
+    return longitude;
+}
+
+time_t Purificateur::GetTimestampBegin() const {
+    return timestampBegin;
+}
+
+time_t Purificateur::GetTimestampEnd() const {
+    return timestampEnd;
+}
+
+int Purificateur::calculateEfficiency() const {
+
+}
+
+int* Purificateur::calculateAirQuality() const {
+
+}
+
+int* Purificateur::calculatePurifiedZone() const {
+
+}
