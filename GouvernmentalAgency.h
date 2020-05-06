@@ -1,8 +1,9 @@
 #if ! defined ( GOUVERNMENT_ALAGENCY_H )
 #define GOUVERNMENTAL_AGENCY_H
 
+#include "Utilisateurs.h"
 
-class GouvernmentalAgency 
+class GouvernmentalAgency : public Utilisateurs
 {
 
 public:

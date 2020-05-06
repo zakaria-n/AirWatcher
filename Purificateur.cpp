@@ -7,6 +7,10 @@ Purificateur::Purificateur ( const Purificateur & unPurificateur )
 #ifdef MAP
    cout << "Appel au constructeur de copie de <Purificateur>" << endl;
 #endif
+    latitude = unPurificateur.latitude;
+    longitude = unPurificateur.longitude;
+    timestampBegin = unPurificateur.timestampBegin;
+    timestampEnd = unPurificateur.timestampEnd;
 } 
 
 Purificateur::Purificateur()
@@ -31,7 +35,6 @@ time_t& Purificateur::processTimestampString(string time) const {
     int year, month, day, hour, minute, second;
     const char *zStart = time.c_str();
     sscanf(zStart, "%d-%d-%d %d:%d:%d", &year, &month, &day, &hour, &minute, &second);
-    // e.g. 2019-02-01 12:00:00
     struct tm timeStruct;
     timeStruct.tm_year = year - 1900;
     timeStruct.tm_mon = month - 1;
@@ -68,19 +71,28 @@ time_t Purificateur::GetTimestampEnd() const {
     return timestampEnd;
 }
 
-int Purificateur::calculateEfficiency(
-    float latitude, float longitude, float rayon, time_t timestampBegin, time_t timestampEnd) const {
-    return 1;
+// difference in air quality before vs after cleaner added
+int Purificateur::calculateEfficiency(float rayon) const {
+    int before = 1; // = Catalogue.getAverageQuality(latitude, longitude, rayon, timestampBegin)
+    int after = 2; // = Catalogue.getAverageQuality(latitude, longitude, rayon, timestampEnd)
+    int result = after - before;
+    return result;
 }
 
-int* Purificateur::calculateAirQuality(float latitude, float longitude, float rayon) const {
-    int a = 1;
-    int* b = &a;
-    return b;
+// appeler la méthode getAverageQuality de 'Catalogue'
+int Purificateur::calculateAirQuality(float rayon) const {
+    int quality = 1; // = Catalogue.getAverageQuality(latitude, longitude, rayon)
+    return quality;
 }
 
-int* Purificateur::calculatePurifiedZone() const {
-    int a = 1;
-    int* b = &a;
-    return b;
+// area that has improved after cleaner added
+float Purificateur::calculatePurifiedZone() const {
+    int minimalChange = 0.5;
+    float currentRayon = 1;
+    int efficiency = 5; // = Catalogue.calculateEfficiency(currentRayon)
+    while ( efficiency > minimalChange) {
+        currentRayon+=0.5;
+        efficiency = 0.1; // = Catalogue.calculateEfficiency(currentRayon)
+    }
+    return currentRayon;
 }
