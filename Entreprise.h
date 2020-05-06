@@ -1,8 +1,9 @@
 #if ! defined ( ENTREPRISE_H )
 #define ENTREPRISE_H
 
+#include "Utilisateurs.h"
 
-class Entreprise 
+class Entreprise : public Utilisateurs
 {
 
 public:
