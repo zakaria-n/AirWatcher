@@ -74,18 +74,21 @@ time_t Purificateur::GetTimestampEnd() const {
 
 // difference in air quality before vs after cleaner added
 int Purificateur::calculateEfficiency(float rayon, time_t begin, time_t end) const {
-    return 1;
+    int before = 1; // =Catalogue.getAverageQuality(latitude, longitude, rayon, begin)
+    int after = 2; // =Catalogue.getAverageQuality(latitude, longitude, rayon, end)
+    int result = after - before;
+    return result;
 }
 
 // appeler la méthode getAverageQuality de 'Catalogue'
-int* Purificateur::calculateAirQuality(float rayon) const {
-    // int* results = Catalogue.getAverageQuality(latitude, longitude, rayon)
-    int a = 1;
-    return &a;
+int Purificateur::calculateAirQuality(float rayon) const {
+    int quality = 1; // = Catalogue.getAverageQuality(latitude, longitude, rayon)
+    return quality;
 }
 
 // area that has improved after cleaner added
-int* Purificateur::calculatePurifiedZone() const {
-    int a = 1;
-    return &a;
+float Purificateur::calculatePurifiedZone() const {
+    int rayon = 10.0; // call calculate efficiency with different radii until result < certain-value
+    // radius is then that value
+    return rayon;
 }

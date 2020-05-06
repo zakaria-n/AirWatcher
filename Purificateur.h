@@ -21,8 +21,8 @@ public:
     time_t GetTimestampEnd() const;
 
     int calculateEfficiency(float rayon, time_t begin, time_t end) const;
-    int* calculateAirQuality(float rayon) const;
-    int* calculatePurifiedZone() const;
+    int calculateAirQuality(float rayon) const;
+    float calculatePurifiedZone() const;
 
 protected:
 
