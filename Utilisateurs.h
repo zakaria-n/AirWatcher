@@ -12,6 +12,8 @@ public:
 
     Utilisateurs();
 
+    Utilisateurs(string id, string password);
+
 protected:
 
 };
