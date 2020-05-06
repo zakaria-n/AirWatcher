@@ -1,8 +1,9 @@
 #if ! defined ( INDIVIDUAL_H )
 #define INDIVIDUAL_H
 
+#include "Utilisateurs.h"
 
-class Individual 
+class Individual : public Utilisateurs
 {
 
 public:
