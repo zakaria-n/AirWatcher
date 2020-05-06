@@ -68,11 +68,12 @@ time_t Purificateur::GetTimestampEnd() const {
     return timestampEnd;
 }
 
-int Purificateur::calculateEfficiency() const {
+int Purificateur::calculateEfficiency(
+    float latitude, float longitude, float rayon, time_t timestampBegin, time_t timestampEnd) const {
     return 1;
 }
 
-int* Purificateur::calculateAirQuality() const {
+int* Purificateur::calculateAirQuality(float latitude, float longitude, float rayon) const {
     int a = 1;
     int* b = &a;
     return b;
