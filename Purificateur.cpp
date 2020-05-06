@@ -7,6 +7,10 @@ Purificateur::Purificateur ( const Purificateur & unPurificateur )
 #ifdef MAP
    cout << "Appel au constructeur de copie de <Purificateur>" << endl;
 #endif
+    latitude = unPurificateur.latitude;
+    longitude = unPurificateur.longitude;
+    timestampBegin = unPurificateur.timestampBegin;
+    timestampEnd = unPurificateur.timestampEnd;
 } 
 
 Purificateur::Purificateur()
