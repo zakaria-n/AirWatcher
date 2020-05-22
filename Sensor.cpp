@@ -1,8 +1,11 @@
 /******** author Zakaria *********/
+#include <iostream>
+
 using namespace std;
 
 #include <cmath> 
 #include "Sensor.h"
+#include "Measure.h"
 
 int Sensor::getDistance(const Sensor other)
 {
@@ -30,9 +33,13 @@ float Sensor::getScore()
 {
     int i=0;
     float s=0;
-    for (auto it=mesures.begin(); it!=mesures.end() && (i<4); it++, i++)
+    list<Measure*>::iterator iter;
+
+    iter = mesures.begin();
+    for (iter = mesures.begin(); iter!=mesures.end() && (i<4); iter++, i++)
     {
-        s+=it->getValue();
+        Measure* temp = (*iter);
+        s+=temp->getValue();
     }
     return s/4;
 }
@@ -86,12 +93,12 @@ Sensor::Sensor()
 #endif
 } 
 
-Sensor::Sensor(string id , int lat , int longi , string desc, list<Measure> mes)
+Sensor::Sensor(string id , int lat , int longi , string desc, list<Measure*> mes)
 {
     sensorID=id;
     latitude=lat;
     longitude=longi;
-    description=description;
+    description=desc;
     mesures=mes;
 }
 

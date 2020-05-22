@@ -4,7 +4,7 @@
 
 #include <list>
 
-#include "Sensor.h"
+#include "Measure.h"
 
 class Catalogue 
 {

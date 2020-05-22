@@ -5,7 +5,7 @@ CFLAGS = -ansi -pedantic -Wall -Werror -std=c++11 -DMAP -g
 
 LIBS += -lpthread
 
-PROGS = main.o Catalogue.o Entreprise.o GouvernmentalAgency.o Sensor.o Individual.o Measure.o Purificateur.o Utilisateurs.o
+PROGS = main.o Measure.o Utilisateurs.o Entreprise.o GouvernmentalAgency.o Individual.o Sensor.o Purificateur.o Catalogue.o
 
 Final : $(PROGS)
 	$(CPP) -o $@ $^

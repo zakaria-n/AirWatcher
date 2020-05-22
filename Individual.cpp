@@ -1,3 +1,5 @@
+#include <iostream>
+
 using namespace std;
 
 #include "Individual.h"
@@ -17,9 +19,3 @@ Individual::Individual()
 #endif
 } 
 
-Individual::~Individual ( )
-{
-#ifdef MAP
-    cout << "Appel au destructeur de <Individual>" << endl;
-#endif
-} 

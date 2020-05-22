@@ -13,7 +13,7 @@ public:
     Purificateur ( const Purificateur & unPurificateur );
     Purificateur();
     Purificateur (float latitude, float longitude, string begin, string end);
-    ~Purificateur ( );
+    virtual ~Purificateur ( );
 
     float GetLatitude() const;
     float GetLongitude() const;   
@@ -31,7 +31,7 @@ protected:
     time_t timestampBegin;
     time_t timestampEnd;
 
-    time_t& processTimestampString(string time) const;
+    time_t processTimestampString(string time) const;
 
 };
 

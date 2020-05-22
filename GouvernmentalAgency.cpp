@@ -1,3 +1,5 @@
+#include <iostream>
+
 using namespace std;
 
 #include "GouvernmentalAgency.h"
@@ -14,12 +16,5 @@ GouvernmentalAgency::GouvernmentalAgency()
 {
 #ifdef MAP
     cout << "Appel au constructeur de <GouvernmentalAgency>" << endl;
-#endif
-} 
-
-GouvernmentalAgency::~GouvernmentalAgency ( )
-{
-#ifdef MAP
-    cout << "Appel au destructeur de <GouvernmentalAgency>" << endl;
 #endif
 } 

@@ -1,3 +1,5 @@
+#include <iostream>
+
 using namespace std;
 
 #include "Purificateur.h"
@@ -31,7 +33,7 @@ Purificateur::Purificateur(float latitudeInput, float longitudeInput, string beg
     timestampEnd = processTimestampString(end);   
 }
 
-time_t& Purificateur::processTimestampString(string time) const {
+time_t Purificateur::processTimestampString(string time) const {
     int year, month, day, hour, minute, second;
     const char *zStart = time.c_str();
     sscanf(zStart, "%d-%d-%d %d:%d:%d", &year, &month, &day, &hour, &minute, &second);
@@ -87,9 +89,9 @@ int Purificateur::calculateAirQuality(float rayon) const {
 
 // area that has improved after cleaner added
 float Purificateur::calculatePurifiedZone() const {
-    int minimalChange = 0.5;
+    float minimalChange = 0.5;
     float currentRayon = 1;
-    int efficiency = 5; // = Catalogue.calculateEfficiency(currentRayon)
+    float efficiency = 5; // = Catalogue.calculateEfficiency(currentRayon)
     while ( efficiency > minimalChange) {
         currentRayon+=0.5;
         efficiency = 0.1; // = Catalogue.calculateEfficiency(currentRayon)

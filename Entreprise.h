@@ -13,7 +13,6 @@ public:
     Entreprise ( const Entreprise & unEntreprise );
     Entreprise();
     Entreprise (string id, string password, Purificateur cleaner);
-    ~Entreprise ( );
 
     Purificateur getCleaner();
     string getType();

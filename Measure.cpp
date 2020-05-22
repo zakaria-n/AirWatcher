@@ -1,4 +1,7 @@
 /******** author Zakaria *********/
+#include <iostream>
+#include <cmath>
+
 using namespace std;
 
 #include "Measure.h"

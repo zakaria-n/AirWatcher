@@ -4,14 +4,14 @@
 
 using namespace std;
 
-#include "Catalogue.h"
+#include "Measure.h"
+#include "Utilisateurs.h"
 #include "Entreprise.h"
 #include "GouvernmentalAgency.h"
-#include "Sensor.h"
 #include "Individual.h"
-#include "Measure.h"
+#include "Sensor.h"
 #include "Purificateur.h"
-#include "Utilisateurs.h"
+#include "Catalogue.h"
 
 int main() {
 

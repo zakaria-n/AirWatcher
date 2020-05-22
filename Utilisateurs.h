@@ -14,6 +14,8 @@ public:
 
     Utilisateurs(string id, string password);
 
+    virtual ~Utilisateurs();
+
 protected:
 
 };

@@ -4,9 +4,10 @@
 
 #include <string>
 #include <list>
-#include "Measure.h"
 
 using namespace std;
+
+class Measure;
 
 class Sensor 
 {
@@ -28,7 +29,7 @@ public:
     // Constructeur par défaut
     Sensor();
     // Constructeur
-    Sensor(string id , int lat , int longi , string desc, list<Measure> mes);
+    Sensor(string id , int lat , int longi , string desc, list<Measure*> mes);
     // Destructeur
     virtual ~Sensor();
 
@@ -38,7 +39,7 @@ protected:
     double latitude;
     double longitude;
     string description;
-    list<Measure> mesures;
+    list<Measure*> mesures;
 
 
 };
