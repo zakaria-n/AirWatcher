@@ -1,4 +1,4 @@
-#if ! defined ( GOUVERNMENT_ALAGENCY_H )
+#if ! defined ( GOUVERNMENTAL_AGENCY_H )
 #define GOUVERNMENTAL_AGENCY_H
 
 #include "Utilisateurs.h"

@@ -1,9 +1,11 @@
 /******** author Zakaria *********/
 #if ! defined ( SENSOR_H )
 #define SENSOR_H
+
 #include <string>
 #include <list>
 #include "Measure.h"
+
 using namespace std;
 
 class Sensor 

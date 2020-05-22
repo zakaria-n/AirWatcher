@@ -2,6 +2,9 @@
 #if ! defined ( CATALOGUE_H )
 #define CATALOGUE_H
 
+#include <list>
+
+#include "Sensor.h"
 
 class Catalogue 
 {
