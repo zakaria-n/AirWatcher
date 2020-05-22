@@ -19,6 +19,13 @@ Utilisateurs::Utilisateurs()
 #endif
 } 
 
+Utilisateurs::Utilisateurs(string id, string password)
+{
+#ifdef MAP
+    cout << "Appel au constructeur de <Utilisateurs>" << endl;
+#endif
+} 
+
 Utilisateurs::~Utilisateurs ( )
 {
 #ifdef MAP
