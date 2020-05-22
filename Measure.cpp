@@ -44,17 +44,17 @@ Measure::Measure ( const Measure & unMeasure )
    cout << "Appel au constructeur de copie de <Measure>" << endl;
 #endif
     timestamp=unMeasure.timestamp;
-    measureType=unMeasure.measureType;
+    attributeId=unMeasure.attributeId;
     sensorID=unMeasure.sensorID;
     value=unMeasure.value;
     isFake=unMeasure.isFake;
 } 
 
-Measure::Measure( string ts, string sID, string type, float val, bool isF)
+Measure::Measure( string ts, string sID, string attID, float val, bool isF)
 {
     timestamp=ts;
     sensorID=sID;
-    measureType=type;
+    attributeId=attID;
     value=val;
     isFake=isF;
 }

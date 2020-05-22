@@ -11,6 +11,7 @@ using namespace std;
 #include "Individual.h"
 #include "Sensor.h"
 #include "Purificateur.h"
+#include "SimpleInterface.h"
 #include "Catalogue.h"
 
 int main() {

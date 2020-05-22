@@ -12,7 +12,11 @@ public:
 
     Individual();
 
+    Individual(int numMeasure, int numValidatedMeasures);
+
 protected:
+    int totalMeasures;
+    int validatedMeasures;
 
 };
 

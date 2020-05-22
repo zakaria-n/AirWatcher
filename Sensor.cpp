@@ -1,11 +1,10 @@
 /******** author Zakaria *********/
 #include <iostream>
-
-using namespace std;
-
 #include <cmath> 
 #include "Sensor.h"
 #include "Measure.h"
+
+using namespace std;
 
 int Sensor::getDistance(const Sensor other)
 {

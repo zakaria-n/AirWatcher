@@ -91,10 +91,10 @@ int Purificateur::calculateAirQuality(float rayon) const {
 float Purificateur::calculatePurifiedZone() const {
     float minimalChange = 0.5;
     float currentRayon = 1;
-    float efficiency = 5; // = Catalogue.calculateEfficiency(currentRayon)
+    float efficiency = 5; // = calculateEfficiency(currentRayon)
     while ( efficiency > minimalChange) {
         currentRayon+=0.5;
-        efficiency = 0.1; // = Catalogue.calculateEfficiency(currentRayon)
+        efficiency = 0.1; // = calculateEfficiency(currentRayon)
     }
     return currentRayon;
 }

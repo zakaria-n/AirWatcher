@@ -2,6 +2,9 @@
 #if ! defined ( UTILISATEURS_H )
 #define UTILISATEURS_H
 
+#include <string>
+
+using namespace std;
 
 class Utilisateurs 
 {

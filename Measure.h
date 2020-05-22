@@ -15,10 +15,10 @@ class Measure
 
 public:
     Sensor getSensor(list<Sensor> data);
-    void detectFraud(list<Sensor> sdata, list<Measure> mdata);
     float getValue();
+    void detectFraud(list<Sensor> sdata, list<Measure> mdata);
     Measure ( const Measure & unMeasures );
-    Measure( string ts, string sID, string type, float val, bool isF);
+    Measure( string ts, string sID, string attID, float val, bool isF);
     Measure();
     virtual ~Measure();
 
@@ -26,7 +26,7 @@ protected:
 
     string timestamp;
     string sensorID;
-    string measureType; // 'SensorType' in the class diagram currently, which attribute is being measured
+    string attributeId;
     float value;
     bool isFake;
 

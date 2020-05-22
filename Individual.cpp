@@ -19,3 +19,12 @@ Individual::Individual()
 #endif
 } 
 
+Individual::Individual(int numMeasures, int numValidatedMeasures)
+{
+#ifdef MAP
+    cout << "Appel au constructeur de <Individual>" << endl;
+#endif
+    totalMeasures = numMeasures;
+    validatedMeasures = numValidatedMeasures;
+} 
+
