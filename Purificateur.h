@@ -24,6 +24,8 @@ public:
     int calculateAirQuality(float rayon) const;
     float calculatePurifiedZone() const;
 
+    bool operator==(Purificateur const&) const;
+
 protected:
 
     float latitude;

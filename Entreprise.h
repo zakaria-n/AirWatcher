@@ -1,9 +1,11 @@
 #if ! defined ( ENTREPRISE_H )
 #define ENTREPRISE_H
 
+#include <string>
+#include <vector>
+
 #include "Utilisateurs.h"
 #include "Purificateur.h"
-#include <string>
 
 class Entreprise : public Utilisateurs
 {
@@ -12,13 +14,16 @@ public:
 
     Entreprise ( const Entreprise & unEntreprise );
     Entreprise();
-    Entreprise (string id, string password, Purificateur cleaner);
+    Entreprise (string id, string password, vector<Purificateur> cleaners);
 
-    Purificateur getCleaner();
+    vector<Purificateur> getCleaners();
     string getType();
 
+    bool ajouterPurificateur(Purificateur cleaner);
+    Purificateur supprimerPurificateur(Purificateur cleaner);
+
 protected:
-    Purificateur cleaner;
+    vector<Purificateur> cleaners;
     string type;
 
 };

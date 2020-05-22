@@ -9,7 +9,7 @@ Entreprise::Entreprise ( const Entreprise & unEntreprise ) : Utilisateurs(unEntr
 #ifdef MAP
    cout << "Appel au constructeur de copie de <Entreprise>" << endl;
 #endif
-    cleaner = unEntreprise.cleaner;
+    cleaners = unEntreprise.cleaners;
     type = unEntreprise.type;
 } 
 
@@ -20,26 +20,36 @@ Entreprise::Entreprise()
 #endif
 } 
 
-Entreprise::Entreprise(string id, string password, Purificateur cleanerInput) : Utilisateurs(id, password)
+Entreprise::Entreprise(string id, string password, vector<Purificateur> cleanerInput) : Utilisateurs(id, password)
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Entreprise>" << endl;
 #endif
-    cleaner = cleanerInput;
+    cleaners = cleanerInput;
     type = "Entreprise";
 } 
 
-Entreprise::~Entreprise ( )
-{
-#ifdef MAP
-    cout << "Appel au destructeur de <Entreprise>" << endl;
-#endif
-} 
-
-Purificateur Entreprise::getCleaner() {
-    return cleaner;
+vector<Purificateur> Entreprise::getCleaners() {
+    return cleaners;
 }
 
 string Entreprise::getType() {
     return type;
+}
+
+bool Entreprise::ajouterPurificateur(Purificateur cleaner) {
+    bool success = false;
+    cleaners.push_back(cleaner);
+    return success;
+}
+
+Purificateur Entreprise::supprimerPurificateur(Purificateur cleaner) {
+    Purificateur deleted;
+    for(auto it=cleaners.begin(); it!= cleaners.end(); it++) {
+        if (*it == cleaner) {
+            deleted = *it;
+            cleaners.erase(it);
+        }
+    }
+    return deleted;
 }

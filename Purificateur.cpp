@@ -98,3 +98,9 @@ float Purificateur::calculatePurifiedZone() const {
     }
     return currentRayon;
 }
+
+bool Purificateur::operator==(Purificateur const& a) const {
+    bool place = ((latitude==a.GetLatitude()) && (longitude==a.GetLongitude()));
+    bool time = ((timestampBegin==a.GetTimestampBegin()) && (timestampEnd==a.GetTimestampEnd()));
+    return (place && time);    
+}
