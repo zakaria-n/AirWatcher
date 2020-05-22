@@ -19,11 +19,13 @@ Utilisateurs::Utilisateurs()
 #endif
 } 
 
-Utilisateurs::Utilisateurs(string id, string password)
+Utilisateurs::Utilisateurs(string idInput, string passwordInput)
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Utilisateurs>" << endl;
 #endif
+    id = idInput;
+    password = passwordInput;
 } 
 
 Utilisateurs::~Utilisateurs ( )
@@ -32,3 +34,11 @@ Utilisateurs::~Utilisateurs ( )
     cout << "Appel au destructeur de <Utilisateurs>" << endl;
 #endif
 } 
+
+string Utilisateurs::getId() {
+    return id;
+}
+
+string Utilisateurs::getPassword() {
+    return password;
+}

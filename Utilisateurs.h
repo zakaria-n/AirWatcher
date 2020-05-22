@@ -16,7 +16,12 @@ public:
 
     virtual ~Utilisateurs();
 
+    string getId();
+    string getPassword();
+
 protected:
+    string id;
+    string password;
 
 };
 
