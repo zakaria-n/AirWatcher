@@ -22,12 +22,12 @@ Purificateur::Purificateur()
 #endif
 } 
 
-Purificateur::Purificateur(string id, float latitudeInput, float longitudeInput, string begin, string end)
+Purificateur::Purificateur(string idInput, float latitudeInput, float longitudeInput, string begin, string end)
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Purificateur>" << endl;
 #endif
-    id = id;
+    id = idInput;
     latitude = latitudeInput;
     longitude = longitudeInput;
     timestampBegin = processTimestampString(begin);

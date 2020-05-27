@@ -2,6 +2,7 @@
 #include <iostream>
 #include <list>
 #include <sstream>
+#include <vector>
 
 using namespace std;
 
@@ -32,9 +33,9 @@ Catalogue::~Catalogue ( )
 #endif
 }
 
-string* readLine (string line)
+vector<string> readLine (string line)
 {
-  string res [4];
+  vector<string> res;
   string token;
   istringstream iss(line);
   getline(iss, res[0], ';');
@@ -45,9 +46,9 @@ string* readLine (string line)
   return res;
 }
 
-string* readCleanerLine (string line)
+vector<string> readCleanerLine (string line)
 {
-  string res [5];
+  vector<string> res;
   string ignore;
   string token;
   istringstream iss(line);
@@ -71,7 +72,7 @@ void Catalogue::setMeasures (string fileName)
  string line;
  while (getline(lect, line))
  {
-   string* maMeasure = readLine(line);
+   vector<string> maMeasure = readLine(line);
    Measure newM = Measure (maMeasure[0],maMeasure[1],maMeasure[2],stof(maMeasure[3]),true);
    measureList.push_back(newM);
  }
@@ -86,7 +87,7 @@ void Catalogue::setSensors(string fileName)
   string line;
   while (getline(lect, line))
   {
-    string* monSensor = readLine(line);
+    vector<string> monSensor = readLine(line);
     list<Measure*> measures; // need to do smth w this
     Sensor newS = Sensor(monSensor[0],stoi(monSensor[1]),stoi(monSensor[2]),monSensor[3], measures);
     sensorList.push_back(newS);
@@ -101,7 +102,7 @@ void Catalogue::setCleaners(string fileName)
   string line;
   while (getline(lect, line))
   {
-    string* monCleaner = readCleanerLine(line);
+    vector<string> monCleaner = readCleanerLine(line);
     Purificateur newCleaner = Purificateur(monCleaner[0],stof(monCleaner[1]),stof(monCleaner[2]),monCleaner[3], monCleaner[4]);
     cleanerList.push_back(newCleaner);
   }

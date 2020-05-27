@@ -34,7 +34,7 @@ protected:
 
   list<Measure> measureList;
   list<Sensor> sensorList;
-  list<Cleaner> cleanerList;
+  list<Purificateur> cleanerList;
   int nbMeasure;
   int nbSensor;
 
