@@ -59,6 +59,23 @@ list<Purificateur> Catalogue::getCleanerList() {
   return cleanerList;
 }
 
+void Catalogue::addCleaner(Purificateur cleaner) {
+  cleanerList.push_back(cleaner);
+}
+
+Purificateur Catalogue::removeCleaner(string cleanerId) {
+  Purificateur removed;
+    for (auto it=cleanerList.begin(); it!=cleanerList.end(); it++)
+    {
+      if(it->GetId()==cleanerId) {
+        removed = *it;
+        cleanerList.remove(*it);
+        break;
+      }
+    }
+  return removed;    
+}
+
 vector<string> readLine (string line)
 {
   vector<string> res;

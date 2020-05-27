@@ -58,6 +58,10 @@ Purificateur::~Purificateur ( )
 #endif
 } 
 
+string Purificateur::GetId() const {
+    return id;
+}
+
 float Purificateur::GetLatitude() const {
     return latitude;
 }

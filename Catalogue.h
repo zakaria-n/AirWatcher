@@ -14,6 +14,8 @@ public:
     list<Sensor> parseSensors();
     list<Measure> parseMeasures();
     int identifySimilarities(list <Sensor> mySensorList);
+    void addCleaner(Purificateur cleaner);
+    Purificateur removeCleaner(string cleanerId);
 
 // constructeur - déstructeur
     Catalogue();
@@ -25,6 +27,9 @@ public:
     list<Measure> getMeasureList();
     list<Purificateur> getCleanerList();
 
+
+protected:
+
 //setter
     void setMeasures(string fileName);
     void setSensors (string fileName);
@@ -32,14 +37,12 @@ public:
     list<Measure> setIndividualMeasures(string fileName);
    // void setMeasureTypes(string fileName);
 
-protected:
-
-  list<Measure> measureList;
-  list<Sensor> sensorList;
-  list<Purificateur> cleanerList;
-  int nbMeasure;
-  int nbSensor;
-  int nbCleaner;
+    list<Measure> measureList;
+    list<Sensor> sensorList;
+    list<Purificateur> cleanerList;
+    int nbMeasure;
+    int nbSensor;
+    int nbCleaner;
 
 };
 
