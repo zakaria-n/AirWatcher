@@ -4,20 +4,37 @@
 
 #include <list>
 
-#include "Measure.h"
-
-class Catalogue 
+class Catalogue
 {
 
 public:
     double getAverageQuality(double lat, double long, double radius);
     list<Sensor> parseSensors();
     list<Measure> parseMeasures();
-    Catalogue ( const Catalogue & unCatalogue );
+    int identifySimilarities(list <Sensor> mySensorList);
+
+// constructeur - déstructeur
     Catalogue();
-    virtual ~Catalogue();
+    Catalogue ( const Catalogue & unCatalogue );
+    virtual ~Catalogue ();
+//getter
+    list <Sensor> getSensorList();
+    list <Measure> getMeasureList();
+
+//setter
+    list<Measure> setMeasures(string fileName);
+    list<Sensor> setSensors (string fileName);
+    list<Measure> setIndividualMeasures(string fileName);
+    int setMeasureTypes(string fileName);
 
 protected:
+
+  list <Measure> measureList;
+  list <Sensor> sensorList;
+  list <Cleaner> cleanerList;
+  int nbMeasure;
+  int nbSensor;
+
 
 };
 
