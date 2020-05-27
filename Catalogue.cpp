@@ -7,6 +7,7 @@
 using namespace std;
 
 #include "Catalogue.h"
+#include "Area.h"
 
 // constructeur, destructeur
 
@@ -126,3 +127,9 @@ void Catalogue::setCleaners(string fileName)
   return 0;
 
 }*/
+
+vector<float> Catalogue::getAverageQuality
+(float latitude, float longitude, float radius, time_t begin, time_t end) {
+  Area curr = Area(latitudeInput,longitudeInput,radius);
+  curr.getAverageQuality(timestampBegin, timestampEnd);
+}
