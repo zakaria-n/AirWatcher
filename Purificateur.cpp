@@ -58,6 +58,10 @@ Purificateur::~Purificateur ( )
 #endif
 } 
 
+string Purificateur::GetId() const {
+    return id;
+}
+
 float Purificateur::GetLatitude() const {
     return latitude;
 }
@@ -84,18 +88,18 @@ int Purificateur::calculateEfficiency(float rayon) const {
 
 // appeler la méthode getAverageQuality de 'Catalogue'
 int Purificateur::calculateAirQuality(float rayon) const {
-    int quality = 1; // = Catalogue.getAverageQuality(latitude, longitude, rayon)
+    int quality = 1.0; // = Catalogue.getAverageQuality(latitude, longitude, rayon)
     return quality;
 }
 
 // area that has improved after cleaner added
 float Purificateur::calculatePurifiedZone() const {
-    float minimalChange = 0.5;
-    float currentRayon = 1;
-    float efficiency = 5; // = calculateEfficiency(currentRayon)
+    int minimalChange = 1;
+    float currentRayon = 1.0;
+    int efficiency = 3; // = calculateEfficiency(currentRayon)
     while ( efficiency > minimalChange) {
         currentRayon+=0.5;
-        efficiency = 0.1; // = calculateEfficiency(currentRayon)
+        efficiency = 1; // = calculateEfficiency(currentRayon)
     }
     return currentRayon;
 }

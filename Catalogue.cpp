@@ -7,6 +7,7 @@
 using namespace std;
 
 #include "Catalogue.h"
+#include "Area.h"
 
 // constructeur, destructeur
 
@@ -24,6 +25,20 @@ Catalogue::Catalogue()
 #endif
   nbMeasure = 0;
   nbSensor = 0;
+  nbCleaner = 0;
+}
+
+Catalogue::Catalogue(string measureFile, string sensorFile, string cleanerFile)
+{
+#ifdef MAP
+  cout << "Appel au constructeur de <Catalogue>" << endl;
+#endif
+  setMeasures(measureFile);
+  setSensors(sensorFile);
+  setCleaners(cleanerFile);
+  nbMeasure = measureList.size();;
+  nbSensor = sensorList.size();
+  nbCleaner = cleanerList.size();
 }
 
 Catalogue::~Catalogue ( )
@@ -33,15 +48,53 @@ Catalogue::~Catalogue ( )
 #endif
 }
 
+list<Sensor> Catalogue::getSensorList() {
+  return sensorList;
+}
+list<Measure> Catalogue::getMeasureList() {
+  return measureList;
+}
+
+list<Purificateur> Catalogue::getCleanerList() {
+  return cleanerList;
+}
+
+void Catalogue::addCleaner(Purificateur cleaner) {
+  cleanerList.push_back(cleaner);
+}
+
+Purificateur Catalogue::removeCleaner(string cleanerId) {
+  Purificateur removed;
+    for (auto it=cleanerList.begin(); it!=cleanerList.end(); it++)
+    {
+      if(it->GetId()==cleanerId) {
+        removed = *it;
+        cleanerList.remove(*it);
+        break;
+      }
+    }
+  return removed;    
+}
+
 vector<string> readLine (string line)
 {
   vector<string> res;
-  string token;
   istringstream iss(line);
-  getline(iss, res[0], ';');
-  getline(iss, res[1], ';');
-  getline(iss, res[2], ';');
-  getline(iss, res[3], ';');
+
+  string one;
+  string two;
+  string three;
+  string four;
+
+  getline(iss, one, ';');
+  getline(iss, two, ';');
+  getline(iss, three, ';');
+  getline(iss, four, ';');
+
+  res.push_back(one);
+  res.push_back(two);
+  res.push_back(three);
+  res.push_back(four);
 
   return res;
 }
@@ -50,14 +103,26 @@ vector<string> readCleanerLine (string line)
 {
   vector<string> res;
   string ignore;
-  string token;
   istringstream iss(line);
-  getline(iss, res[0], ';');
-  getline(iss, res[1], ';');
-  getline(iss, res[2], ';');
+
+  string one;
+  string two;
+  string three;
+  string four;
+  string five;
+
+  getline(iss, one, ';');
+  getline(iss, two, ';');
+  getline(iss, three, ';');
   getline(iss, ignore, ';');
-  getline(iss, res[3], ';');
-  getline(iss, res[4], ';');
+  getline(iss, four, ';');
+  getline(iss, five, ';');
+
+  res.push_back(one);
+  res.push_back(two);
+  res.push_back(three);
+  res.push_back(four);
+  res.push_back(five);
 
   return res;
 }
@@ -88,9 +153,9 @@ void Catalogue::setSensors(string fileName)
   while (getline(lect, line))
   {
     vector<string> monSensor = readLine(line);
-    list<Measure*> measures; // need to do smth w this
-    Sensor newS = Sensor(monSensor[0],stoi(monSensor[1]),stoi(monSensor[2]),monSensor[3], measures);
-    sensorList.push_back(newS);
+    list<Measure> measures; // need to do smth w this
+    Sensor newSensor = Sensor(monSensor[0],stoi(monSensor[1]),stoi(monSensor[2]),monSensor[3], measures);
+    sensorList.push_back(newSensor);
   }
   lect.close();
 }
@@ -126,3 +191,11 @@ void Catalogue::setCleaners(string fileName)
   return 0;
 
 }*/
+
+vector<float> Catalogue::getAverageQuality
+(float latitude, float longitude, float radius, time_t begin, time_t end) {
+ // Area curr = Area(latitude,longitude,radius);
+  //vector<float> averages = curr.getAverageQuality(begin, end);
+  vector<float> temp;
+  return temp;
+}

@@ -2,7 +2,6 @@
 #include <iostream>
 #include <cmath> 
 #include "Sensor.h"
-#include "Measure.h"
 
 using namespace std;
 

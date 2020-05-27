@@ -12,6 +12,8 @@ public:
 
     Individual();
 
+    Individual(string id, string password);
+
     Individual(int numMeasure, int numValidatedMeasures);
 
 protected:

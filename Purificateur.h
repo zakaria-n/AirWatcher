@@ -5,6 +5,8 @@
 #include <ctime>
 #include <string>
 
+using namespace std;
+
 class Purificateur 
 {
 
@@ -15,6 +17,7 @@ public:
     Purificateur (string id, float latitude, float longitude, string begin, string end);
     virtual ~Purificateur ( );
 
+    string GetId() const;
     float GetLatitude() const;
     float GetLongitude() const;   
     time_t GetTimestampBegin() const;
