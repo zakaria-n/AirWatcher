@@ -2,7 +2,7 @@
 #if ! defined ( CATALOGUE_H )
 #define CATALOGUE_H
 
-#include <list>
+#include <vector>
 #include "Sensor.h"
 #include "Purificateur.h"
 
@@ -17,6 +17,7 @@ public:
 
 // constructeur - déstructeur
     Catalogue();
+    Catalogue(string measureFile, string sensorFile, string cleanerFile);
     Catalogue ( const Catalogue & unCatalogue );
     virtual ~Catalogue ();
 //getter
@@ -37,6 +38,7 @@ protected:
   list<Purificateur> cleanerList;
   int nbMeasure;
   int nbSensor;
+  int nbCleaner;
 
 };
 

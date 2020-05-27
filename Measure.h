@@ -3,7 +3,6 @@
 #define MEASURE_H
 
 #include <string>
-#include <list>
 
 
 using namespace std;

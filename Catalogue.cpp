@@ -25,6 +25,20 @@ Catalogue::Catalogue()
 #endif
   nbMeasure = 0;
   nbSensor = 0;
+  nbCleaner = 0;
+}
+
+Catalogue::Catalogue(string measureFile, string sensorFile, string cleanerFile)
+{
+#ifdef MAP
+  cout << "Appel au constructeur de <Catalogue>" << endl;
+#endif
+  setMeasures(measureFile);
+  setSensors(sensorFile);
+  setCleaners(cleanerFile);
+  nbMeasure = measureList.size();;
+  nbSensor = sensorList.size();
+  nbCleaner = cleanerList.size();
 }
 
 Catalogue::~Catalogue ( )
@@ -89,9 +103,9 @@ void Catalogue::setSensors(string fileName)
   while (getline(lect, line))
   {
     vector<string> monSensor = readLine(line);
-    list<Measure*> measures; // need to do smth w this
-    Sensor newS = Sensor(monSensor[0],stoi(monSensor[1]),stoi(monSensor[2]),monSensor[3], measures);
-    sensorList.push_back(newS);
+    list<Measure> measures; // need to do smth w this
+    Sensor newSensor = Sensor(monSensor[0],stoi(monSensor[1]),stoi(monSensor[2]),monSensor[3], measures);
+    sensorList.push_back(newSensor);
   }
   lect.close();
 }
@@ -130,6 +144,8 @@ void Catalogue::setCleaners(string fileName)
 
 vector<float> Catalogue::getAverageQuality
 (float latitude, float longitude, float radius, time_t begin, time_t end) {
-  Area curr = Area(latitude,longitude,radius);
-  vector<float> averages = curr.getAverageQuality(begin, end);
+ // Area curr = Area(latitude,longitude,radius);
+  //vector<float> averages = curr.getAverageQuality(begin, end);
+  vector<float> temp;
+  return temp;
 }

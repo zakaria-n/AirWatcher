@@ -16,4 +16,6 @@ using namespace std;
 
 int main() {
 
+    Catalogue cat = Catalogue();
+
 }
