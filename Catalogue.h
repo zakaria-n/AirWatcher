@@ -3,6 +3,7 @@
 #define CATALOGUE_H
 
 #include <list>
+#include "Measure.h"
 
 class Catalogue
 {
@@ -18,8 +19,8 @@ public:
     Catalogue ( const Catalogue & unCatalogue );
     virtual ~Catalogue ();
 //getter
-    list <Sensor> getSensorList();
-    list <Measure> getMeasureList();
+    list<Sensor> getSensorList();
+    list<Measure> getMeasureList();
 
 //setter
     list<Measure> setMeasures(string fileName);
@@ -29,9 +30,9 @@ public:
 
 protected:
 
-  list <Measure> measureList;
-  list <Sensor> sensorList;
-  list <Cleaner> cleanerList;
+  list<Measure> measureList;
+  list<Sensor> sensorList;
+  list<Cleaner> cleanerList;
   int nbMeasure;
   int nbSensor;
 

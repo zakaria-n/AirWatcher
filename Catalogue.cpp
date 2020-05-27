@@ -1,8 +1,10 @@
+#include <fstream>
+#include <iostream>
+#include <list>
+
 using namespace std;
 
 #include "Catalogue.h"
-#include <fstream>
-#include <list>
 
 // constructeur, destructeur
 
