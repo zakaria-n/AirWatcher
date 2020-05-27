@@ -48,15 +48,36 @@ Catalogue::~Catalogue ( )
 #endif
 }
 
+list<Sensor> Catalogue::getSensorList() {
+  return sensorList;
+}
+list<Measure> Catalogue::getMeasureList() {
+  return measureList;
+}
+
+list<Purificateur> Catalogue::getCleanerList() {
+  return cleanerList;
+}
+
 vector<string> readLine (string line)
 {
   vector<string> res;
-  string token;
   istringstream iss(line);
-  getline(iss, res[0], ';');
-  getline(iss, res[1], ';');
-  getline(iss, res[2], ';');
-  getline(iss, res[3], ';');
+
+  string one;
+  string two;
+  string three;
+  string four;
+
+  getline(iss, one, ';');
+  getline(iss, two, ';');
+  getline(iss, three, ';');
+  getline(iss, four, ';');
+
+  res.push_back(one);
+  res.push_back(two);
+  res.push_back(three);
+  res.push_back(four);
 
   return res;
 }
@@ -65,14 +86,26 @@ vector<string> readCleanerLine (string line)
 {
   vector<string> res;
   string ignore;
-  string token;
   istringstream iss(line);
-  getline(iss, res[0], ';');
-  getline(iss, res[1], ';');
-  getline(iss, res[2], ';');
+
+  string one;
+  string two;
+  string three;
+  string four;
+  string five;
+
+  getline(iss, one, ';');
+  getline(iss, two, ';');
+  getline(iss, three, ';');
   getline(iss, ignore, ';');
-  getline(iss, res[3], ';');
-  getline(iss, res[4], ';');
+  getline(iss, four, ';');
+  getline(iss, five, ';');
+
+  res.push_back(one);
+  res.push_back(two);
+  res.push_back(three);
+  res.push_back(four);
+  res.push_back(five);
 
   return res;
 }

@@ -15,7 +15,13 @@ using namespace std;
 #include "Catalogue.h"
 
 int main() {
-
-    Catalogue cat = Catalogue();
+    string measureFile = "dataset/measurements.csv";
+    string sensorFile = "dataset/sensors.csv";
+    string cleanerFile = "dataset/cleaners.csv";
+    Catalogue cat = Catalogue(measureFile, sensorFile, cleanerFile);
+    list<Measure> measures = cat.getMeasureList();
+    for (list<Measure>::iterator it = measures.begin(); it != measures.end(); ++it){
+        cout << it->getValue();
+    }
 
 }

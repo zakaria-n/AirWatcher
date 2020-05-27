@@ -23,6 +23,7 @@ public:
 //getter
     list<Sensor> getSensorList();
     list<Measure> getMeasureList();
+    list<Purificateur> getCleanerList();
 
 //setter
     void setMeasures(string fileName);
