@@ -4,18 +4,28 @@
 
 #include <string>
 #include <list>
+#include <iostream>
 
-#include "Sensor.h"
 #include "Catalogue.h"
 
 using namespace std;
 
+typedef struct{
+    string id;
+    string unit;
+    string description;
+} MeasureType; 
+
 class Measure
 {
+    friend class Sensor;
 
 public:
-    Sensor getSensor(list<Sensor> data);
+    string getSensor();
     float getValue();
+    int getDay();
+    int getMonth();
+    int getYear();
     void detectFraud(list<Sensor> sdata, list<Measure> mdata);
     Measure ( const Measure & unMeasures );
     Measure( string ts, string sID, string attID, float val, bool isF);
@@ -29,6 +39,9 @@ protected:
     string attributeId;
     float value;
     bool isFake;
+    MeasureType type;
+    
+     
 
 };
 

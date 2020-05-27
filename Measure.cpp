@@ -7,21 +7,13 @@ using namespace std;
 #include "Measure.h"
 
 
-Sensor Measure::getSensor(list<Sensor> data)
+string Measure::getSensor()
 {
-    Sensor s=Sensor();
-    for(auto it=data.begin(); it!=data.end(); it++)
-    {
-        if(sensorID==it->getId())
-        {
-            s=*it;
-        }
-    }
-    return s;
+    return sensorID;
 }
 
 
-void Measure::detectFraud(list<Sensor> sdata, list<Measure> mdata)
+/*void Measure::detectFraud(list<Sensor> sdata, list<Measure> mdata)
 {
     Catalogue cat;
     Sensor s=getSensor(sdata);
@@ -30,12 +22,31 @@ void Measure::detectFraud(list<Sensor> sdata, list<Measure> mdata)
     {
         isFake=true;
     }
-}
+}*/
 
 
 float Measure::getValue()
 {
     return value;
+}
+
+int Measure::getDay ()
+{
+	int pos =  timestamp.find_first_of("T");
+	return stoi(timestamp.substr(pos-3,2));
+}
+
+int Measure::getMonth ()
+{
+	int pos =  timestamp.find_first_of("T");
+	return stoi(timestamp.substr(pos-5,2));
+}
+
+
+int Measure::getYear ()
+{
+	int pos =  timestamp.find_first_of("T");
+	return stoi(timestamp.substr(pos-10,4));
 }
 
 Measure::Measure ( const Measure & unMeasure )
