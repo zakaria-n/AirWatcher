@@ -9,10 +9,11 @@ using namespace std;
 #include "Entreprise.h"
 #include "GouvernmentalAgency.h"
 #include "Individual.h"
+#include "Area.h"
+#include "Catalogue.h"
 #include "Sensor.h"
 #include "Purificateur.h"
 #include "SimpleInterface.h"
-#include "Catalogue.h"
 
 int main() {
     string measureFile = "dataset/measurements.csv";

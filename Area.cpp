@@ -49,3 +49,35 @@ float Area::avgQualityOverPeriod (string t1, string t2){
     }
     return (quality/nbSensor);
 }
+
+Area::Area ( const Area & unArea )
+{
+#ifdef MAP
+   cout << "Appel au constructeur de copie de <Area>" << endl;
+#endif
+}
+
+Area::Area()
+{
+#ifdef MAP
+  cout << "Appel au constructeur de <Area>" << endl;
+#endif
+}
+
+Area::Area(float lat, float lon, float rayon, list <Sensor> sensorsInput)
+{
+#ifdef MAP
+  cout << "Appel au constructeur de <Area>" << endl;
+#endif
+  latitude = lat;
+  longitude = lon;
+  radius = rayon;
+  sensors = sensorsInput;
+}
+
+Area::~Area ( )
+{
+#ifdef MAP
+  cout << "Appel au destructeur de <Area>" << endl;
+#endif
+}

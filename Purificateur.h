@@ -7,6 +7,8 @@
 
 using namespace std;
 
+class Catalogue;
+
 class Purificateur 
 {
 
@@ -23,9 +25,9 @@ public:
     time_t GetTimestampBegin() const;
     time_t GetTimestampEnd() const;
 
-    int calculateEfficiency(float rayon) const;
-    int calculateAirQuality(float rayon) const;
-    float calculatePurifiedZone() const;
+    int calculateEfficiency(Catalogue *cat, float rayon) const;
+    int calculateAirQuality(Catalogue* cat, float rayon) const;
+    float calculatePurifiedZone(Catalogue* cat) const;
 
     bool operator==(Purificateur const&) const;
 

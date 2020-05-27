@@ -22,7 +22,7 @@ public:
 
     Area ();
 
-    Area (float lat, float lon, int , list <Sensor> sensors);
+    Area (float lat, float lon, float radius, list <Sensor> sensors);
 
     virtual ~Area ();
 

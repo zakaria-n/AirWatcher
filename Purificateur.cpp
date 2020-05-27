@@ -3,6 +3,7 @@
 using namespace std;
 
 #include "Purificateur.h"
+#include "Catalogue.h"
 
 Purificateur::Purificateur ( const Purificateur & unPurificateur )
 {
@@ -79,27 +80,27 @@ time_t Purificateur::GetTimestampEnd() const {
 }
 
 // difference in air quality before vs after cleaner added
-int Purificateur::calculateEfficiency(float rayon) const {
-    int before = 1; // = Catalogue.getAverageQuality(latitude, longitude, rayon, timestampBegin)
-    int after = 2; // = Catalogue.getAverageQuality(latitude, longitude, rayon, timestampEnd)
+int Purificateur::calculateEfficiency(Catalogue* cat, float rayon) const {
+    int before = cat->getAverageQuality(latitude, longitude, rayon, "begin", "default-end"); // timestampBegin
+    int after = cat->getAverageQuality(latitude, longitude, rayon, "begin", "default-end"); // timestampEnd
     int result = after - before;
     return result;
 }
 
 // appeler la méthode getAverageQuality de 'Catalogue'
-int Purificateur::calculateAirQuality(float rayon) const {
-    int quality = 1.0; // = Catalogue.getAverageQuality(latitude, longitude, rayon)
+int Purificateur::calculateAirQuality(Catalogue* cat, float rayon) const {
+    int quality = cat->getAverageQuality(latitude, longitude, rayon, "timestampBegin", "timestampEnd");
     return quality;
 }
 
 // area that has improved after cleaner added
-float Purificateur::calculatePurifiedZone() const {
+float Purificateur::calculatePurifiedZone(Catalogue* cat) const {
     int minimalChange = 1;
     float currentRayon = 1.0;
-    int efficiency = 3; // = calculateEfficiency(currentRayon)
+    int efficiency = calculateEfficiency(cat, currentRayon);
     while ( efficiency > minimalChange) {
         currentRayon+=0.5;
-        efficiency = 1; // = calculateEfficiency(currentRayon)
+        efficiency = calculateEfficiency(cat, currentRayon);
     }
     return currentRayon;
 }

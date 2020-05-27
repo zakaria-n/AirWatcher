@@ -192,10 +192,9 @@ void Catalogue::setCleaners(string fileName)
 
 }*/
 
-vector<float> Catalogue::getAverageQuality
-(float latitude, float longitude, float radius, time_t begin, time_t end) {
- // Area curr = Area(latitude,longitude,radius);
-  //vector<float> averages = curr.getAverageQuality(begin, end);
-  vector<float> temp;
-  return temp;
+float Catalogue::getAverageQuality
+(float latitude, float longitude, float radius, string begin, string end) {
+  Area curr = Area(latitude,longitude, radius, sensorList); 
+  float average = curr.avgQualityOverPeriod(begin, end);
+  return average;
 }

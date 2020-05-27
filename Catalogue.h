@@ -10,7 +10,7 @@ class Catalogue
 {
 
 public:
-    vector<float> getAverageQuality(float latitude, float longitude, float radius, time_t begin, time_t end);
+    float getAverageQuality(float latitude, float longitude, float radius, string begin, string end);
     list<Sensor> parseSensors();
     list<Measure> parseMeasures();
     int identifySimilarities(list <Sensor> mySensorList);
