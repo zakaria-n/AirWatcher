@@ -34,6 +34,7 @@ public:
     string getId();
     double getLatitude();
     double getLongitude();
+    Sensor& operator = ( const Sensor & sens );
     // Constructeur de copie
     Sensor ( const Sensor & unSensor );
     // Constructeur par défaut
