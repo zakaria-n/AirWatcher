@@ -1,6 +1,7 @@
 #include <fstream>
 #include <iostream>
 #include <list>
+#include <sstream>
 
 using namespace std;
 
@@ -31,76 +32,53 @@ Catalogue::~Catalogue ( )
 #endif
 }
 
-string* readMeasureLine (ifstream lect)
+string* readLine (string line)
 {
-
   string res [4];
-
-  lect.getline(res[1];100; ';');
-  lect.getline(res[2];100; ';');
-  lect.getline(res[3];100; ';');
-  lect.getline(res[4];100; ';');
-
-  return res;
-}
-
-string* readSensorLine (ifstream lect)
-{
-
-  string res [4];
-
-  lect.getline(res[1];100; ';');
-  lect.getline(res[2];100; ';');
-  lect.getline(res[3];100; ';');
-  lect.getline(res[4];100; ';');
+  string token;
+  istringstream iss(line);
+  getline(iss, res[1], ';');
+  getline(iss, res[2], ';');
+  getline(iss, res[3], ';');
+  getline(iss, res[4], ';');
 
   return res;
 }
 
 // setMeasures
 
-int setMeasures (string  &fileName)
+void Catalogue::setMeasures (string fileName)
 {
+
  ifstream lect;
-
- string timeStamp;
- string sensorId;
- string sensorType;
- string sensorValue;
-
  lect.open(fileName.c_str());
- while (!lect.eof())
+ string line;
+ while (getline(lect, line))
  {
-   maMeasure = readMeasureLine(lect);
-   Measure newM = new Measure (maMeasure[0],maMeasure[1],maMeasure[2],maMeasure[3],True);
+   string* maMeasure = readLine(line);
+   Measure newM = Measure (maMeasure[0],maMeasure[1],maMeasure[2],stof(maMeasure[3]),true);
    measureList.push_back(newM);
  }
 
  lect.close();
- return 0;
 }
 
-int setSensors(string &fileName)
+void Catalogue::setSensors(string fileName)
 {
   ifstream lect;
-
-  string sensorID;
-  string latitude;
-  string longitude;
-  string description;
-
   lect.open(fileName.c_str());
-  while (!lect.eof())
+  string line;
+  while (getline(lect, line))
   {
-    monSensor = readSensorLine(lect);
-    Sensor newS = new Sensor (monSensor[0],monSensor[1],monSensor[2],monSensor[3]);
+    string* monSensor = readLine(line);
+    list<Measure*> measures; // need to do smth w this
+    Sensor newS = Sensor(monSensor[0],stoi(monSensor[1]),stoi(monSensor[2]),monSensor[3], measures);
     sensorList.push_back(newS);
   }
   lect.close();
-  return 0;
 }
 
-int setMeasureTypes(string fileName)
+/*void Catalogue::setMeasureTypes(string fileName)
 {
   ifstream lect;
 
@@ -116,4 +94,4 @@ int setMeasureTypes(string fileName)
 
   return 0;
 
-}
+}*/

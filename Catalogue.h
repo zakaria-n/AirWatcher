@@ -23,10 +23,10 @@ public:
     list<Measure> getMeasureList();
 
 //setter
-    list<Measure> setMeasures(string fileName);
-    list<Sensor> setSensors (string fileName);
+    void setMeasures(string fileName);
+    void setSensors (string fileName);
     list<Measure> setIndividualMeasures(string fileName);
-    int setMeasureTypes(string fileName);
+   // void setMeasureTypes(string fileName);
 
 protected:
 
