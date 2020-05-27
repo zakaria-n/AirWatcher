@@ -4,6 +4,7 @@
 
 #include <list>
 #include "Measure.h"
+#include "Purificateur.h"
 
 class Catalogue
 {
@@ -25,6 +26,7 @@ public:
 //setter
     void setMeasures(string fileName);
     void setSensors (string fileName);
+    void setCleaners (string fileName);
     list<Measure> setIndividualMeasures(string fileName);
    // void setMeasureTypes(string fileName);
 

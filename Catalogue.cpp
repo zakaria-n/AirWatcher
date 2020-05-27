@@ -37,8 +37,24 @@ string* readLine (string line)
   string res [4];
   string token;
   istringstream iss(line);
+  getline(iss, res[0], ';');
   getline(iss, res[1], ';');
   getline(iss, res[2], ';');
+  getline(iss, res[3], ';');
+
+  return res;
+}
+
+string* readCleanerLine (string line)
+{
+  string res [5];
+  string ignore;
+  string token;
+  istringstream iss(line);
+  getline(iss, res[0], ';');
+  getline(iss, res[1], ';');
+  getline(iss, res[2], ';');
+  getline(iss, ignore, ';');
   getline(iss, res[3], ';');
   getline(iss, res[4], ';');
 
@@ -74,6 +90,20 @@ void Catalogue::setSensors(string fileName)
     list<Measure*> measures; // need to do smth w this
     Sensor newS = Sensor(monSensor[0],stoi(monSensor[1]),stoi(monSensor[2]),monSensor[3], measures);
     sensorList.push_back(newS);
+  }
+  lect.close();
+}
+
+void Catalogue::setCleaners(string fileName)
+{
+  ifstream lect;
+  lect.open(fileName.c_str());
+  string line;
+  while (getline(lect, line))
+  {
+    string* monCleaner = readCleanerLine(line);
+    Purificateur newCleaner = Purificateur(monCleaner[0],stof(monCleaner[1]),stof(monCleaner[2]),monCleaner[3], monCleaner[4]);
+    cleanerList.push_back(newCleaner);
   }
   lect.close();
 }
