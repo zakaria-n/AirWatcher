@@ -2,7 +2,6 @@
 #include <iostream>
 #include <cmath> 
 #include "Sensor.h"
-#include "Measure.h"
 
 using namespace std;
 
@@ -32,13 +31,13 @@ float Sensor::getScore()
 {
     int i=0;
     float s=0;
-    list<Measure*>::iterator iter;
+    list<Measure>::iterator iter;
 
     iter = mesures.begin();
     for (iter = mesures.begin(); iter!=mesures.end() && (i<4); iter++, i++)
     {
-        Measure* temp = (*iter);
-        s+=temp->getValue();
+        Measure temp = (*iter);
+        s+=temp.getValue();
     }
     return s/4;
 }
@@ -92,7 +91,7 @@ Sensor::Sensor()
 #endif
 } 
 
-Sensor::Sensor(string id , int lat , int longi , string desc, list<Measure*> mes)
+Sensor::Sensor(string id , int lat , int longi , string desc, list<Measure> mes)
 {
     sensorID=id;
     latitude=lat;

@@ -7,21 +7,8 @@ using namespace std;
 #include "Measure.h"
 
 
-Sensor Measure::getSensor(list<Sensor> data)
-{
-    Sensor s=Sensor();
-    for(auto it=data.begin(); it!=data.end(); it++)
-    {
-        if(sensorID==it->getId())
-        {
-            s=*it;
-        }
-    }
-    return s;
-}
 
-
-void Measure::detectFraud(list<Sensor> sdata, list<Measure> mdata)
+/*void Measure::detectFraud(list<Sensor> sdata, list<Measure> mdata)
 {
     Catalogue cat;
     Sensor s=getSensor(sdata);
@@ -30,7 +17,7 @@ void Measure::detectFraud(list<Sensor> sdata, list<Measure> mdata)
     {
         isFake=true;
     }
-}
+}*/
 
 
 float Measure::getValue()

@@ -3,7 +3,7 @@
 #define CATALOGUE_H
 
 #include <list>
-#include "Measure.h"
+#include "Sensor.h"
 #include "Purificateur.h"
 
 class Catalogue
@@ -37,7 +37,6 @@ protected:
   list<Purificateur> cleanerList;
   int nbMeasure;
   int nbSensor;
-
 
 };
 

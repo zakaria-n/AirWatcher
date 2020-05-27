@@ -5,6 +5,8 @@
 #include <ctime>
 #include <string>
 
+using namespace std;
+
 class Purificateur 
 {
 
