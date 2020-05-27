@@ -83,7 +83,7 @@ int Sensor::airQuality(list<Measure> data)
 	float SO2avg = averages[2];
 	float PM10avg = averages[3];
 
-	int O3index, NO2index, SO2index, PM10index;
+	int O3index = 0, NO2index = 0, SO2index = 0, PM10index = 0;
 
 	if (O3avg >= 0.0 && O3avg <= 104)
     { 
