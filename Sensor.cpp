@@ -100,44 +100,44 @@ int Sensor::airQuality(list<Measure> data)
 
     if (NO2avg >= 0.0 && NO2avg <= 159.0)
     { 
-        NO2avg = 4;   
+        NO2index = 4;   
     }
     if (NO2avg >= 160.0 && NO2avg <= 299.0)
     { 
-        NO2avg = 7;    
+        NO2index = 7;    
     }
     if (NO2avg >= 300.0)
     { 
-        NO2avg = 10;    
+        NO2index = 10;    
     }
 
     if (SO2avg >= 0.0 && SO2avg <= 109.0)
     { 
-        SO2avg = 4;   
+        SO2index = 4;   
     }
     if (SO2avg >= 110.0 && SO2avg <= 199.0)
     { 
-        SO2avg = 7;   
+        SO2index = 7;   
     }
     if (SO2avg >= 200.0)
     { 
-        SO2avg = 10;   
+        SO2index = 10;   
     }
 
     if (PM10avg >= 0.0 && PM10avg <= 27.0)
     { 
-        PM10avg = 4;   
+        PM10index = 4;   
     }
     if (PM10avg >= 28.0 && PM10avg <= 49.0)
     { 
-        PM10avg = 7;   
+        PM10index = 7;   
     }
     if (PM10avg >= 50)
     { 
-        PM10avg = 10;   
+        PM10index = 10;   
     }
     
-    return ((PM10avg+SO2avg+NO2avg+O3avg)/4);
+    return ((PM10index+SO2index+NO2index+O3index)/4);
 	
 }
 

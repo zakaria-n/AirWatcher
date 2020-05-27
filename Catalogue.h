@@ -5,6 +5,7 @@
 #include <vector>
 #include "Sensor.h"
 #include "Purificateur.h"
+#include "Measure.h"
 
 class Catalogue
 {
