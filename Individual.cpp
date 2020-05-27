@@ -28,3 +28,10 @@ Individual::Individual(int numMeasures, int numValidatedMeasures)
     validatedMeasures = numValidatedMeasures;
 } 
 
+Individual::Individual(string id, string password) : Utilisateurs(id, password)
+{
+#ifdef MAP
+    cout << "Appel au constructeur de <Individual>" << endl;
+#endif
+} 
+

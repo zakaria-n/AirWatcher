@@ -12,6 +12,8 @@ public:
 
     GouvernmentalAgency();
 
+    GouvernmentalAgency(string id, string password);
+
 protected:
 
 };

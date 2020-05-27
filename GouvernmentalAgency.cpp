@@ -18,3 +18,10 @@ GouvernmentalAgency::GouvernmentalAgency()
     cout << "Appel au constructeur de <GouvernmentalAgency>" << endl;
 #endif
 } 
+
+GouvernmentalAgency::GouvernmentalAgency(string id, string password) : Utilisateurs(id, password)
+{
+#ifdef MAP
+    cout << "Appel au constructeur de <GouvernmentalAgency>" << endl;
+#endif
+}

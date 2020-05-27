@@ -19,6 +19,15 @@ int main() {
     string sensorFile = "dataset/sensors.csv";
     string cleanerFile = "dataset/cleaners.csv";
     Catalogue cat = Catalogue(measureFile, sensorFile, cleanerFile);
+
+    vector<Utilisateurs*> users;
+    GouvernmentalAgency* government = new GouvernmentalAgency("one", "111");
+    vector<Purificateur> cleaners;
+    Entreprise* entre = new Entreprise("two", "222",  cleaners);
+    Individual* indiv = new Individual("three", "333");
+    users.push_back(government);
+    users.push_back(entre);
+    users.push_back(indiv);
     
     bool exit = false;
     int choice;
