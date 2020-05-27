@@ -19,9 +19,9 @@ int main() {
     string sensorFile = "dataset/sensors.csv";
     string cleanerFile = "dataset/cleaners.csv";
     Catalogue cat = Catalogue(measureFile, sensorFile, cleanerFile);
-    list<Measure> measures = cat.getMeasureList();
-    for (list<Measure>::iterator it = measures.begin(); it != measures.end(); ++it){
-        cout << it->getValue();
+    list<Sensor> sensors = cat.getSensorList();
+    for (list<Sensor>::iterator it = sensors.begin(); it != sensors.end(); ++it){
+        cout << it->getId() << endl;;
     }
 
 }
