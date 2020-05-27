@@ -6,8 +6,6 @@
 #include <list>
 #include <iostream>
 
-#include "Catalogue.h"
-
 using namespace std;
 
 typedef struct{
@@ -26,7 +24,7 @@ public:
     int getDay();
     int getMonth();
     int getYear();
-    void detectFraud(list<Sensor> sdata, list<Measure> mdata);
+   // void detectFraud(list<Sensor> sdata, list<Measure> mdata);
     Measure ( const Measure & unMeasures );
     Measure( string ts, string sID, string attID, float val, bool isF);
     Measure();
