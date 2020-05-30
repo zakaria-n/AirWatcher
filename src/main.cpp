@@ -16,9 +16,9 @@ using namespace std;
 #include "SimpleInterface.h"
 
 int main() {
-    string measureFile = "dataset/measurements.csv";
-    string sensorFile = "dataset/sensors.csv";
-    string cleanerFile = "dataset/cleaners.csv";
+    string measureFile = "../dataset/measurements.csv";
+    string sensorFile = "../dataset/sensors.csv";
+    string cleanerFile = "../dataset/cleaners.csv";
     Catalogue cat = Catalogue(measureFile, sensorFile, cleanerFile);
 
     vector<Utilisateurs*> users;
