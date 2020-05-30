@@ -199,7 +199,13 @@ float Catalogue::getAverageQuality
   return average;
 }
 
-  void Catalogue::addSensor(string id, float latitude, float longitude, string description) {
-    list<Measure> measures;
-    Sensor newSensor = Sensor(id,longitude,latitude,description, measures);
-  }
+void Catalogue::addSensor(string id, float latitude, float longitude, string description) {
+  list<Measure> measures;
+  Sensor newSensor = Sensor(id,longitude,latitude,description, measures);
+  sensorList.push_back(newSensor);
+}
+
+void Catalogue::addCleaner(string id, float latitude, float longitude, string begin, string end) {
+  Purificateur newPurificateur = Purificateur(id,longitude,latitude,begin, end);
+  cleanerList.push_back(newPurificateur);
+}

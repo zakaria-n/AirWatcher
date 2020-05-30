@@ -17,6 +17,7 @@ public:
     void addCleaner(Purificateur cleaner);
     Purificateur removeCleaner(string cleanerId);
     void addSensor(string id, float latitude, float longitude, string description);
+    void addCleaner(string id, float latitude, float longitude, string begin, string end);
 
 // constructeur - déstructeur
     Catalogue();

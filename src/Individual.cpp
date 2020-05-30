@@ -28,3 +28,7 @@ Individual::Individual(string id, string password, int numMeasures, int numValid
     validatedMeasures = numValidatedMeasures;
 } 
 
+int Individual::getPoints() {
+    return totalMeasures - validatedMeasures;
+}
+

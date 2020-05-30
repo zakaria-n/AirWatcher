@@ -64,9 +64,29 @@ int main() {
                                     if(cin >> choice) {
                                         switch(choice) {
                                             case 1: {
+                                                float lat,longi,radius; 
+                                                printf("Enter latitude:\n");
+                                                cin >> lat;
+                                                printf("Enter longitude:\n");
+                                                cin >> longi;
+                                                printf("Enter radius:\n");
+                                                cin >> radius;
+                                                // more stuff here
                                                 break;
                                             }
                                             case 2: {
+                                                float lat,longi; 
+                                                string id, description;
+                                                printf("Enter id:\n");
+                                                cin >> id;
+                                                printf("Enter latitude:\n");
+                                                cin >> lat;
+                                                printf("Enter longitude:\n");
+                                                cin >> longi;
+                                                printf("Enter description:\n");
+                                                cin >> description;
+                                                cat.addSensor(id,lat,longi, description);
+                                                printf("Sensor has been added.\n");
                                                 break;
                                             }
                                             case 3: {
@@ -92,9 +112,27 @@ int main() {
                                     if(cin >> choice) {
                                         switch(choice) {
                                             case 1: {
+                                                list<Purificateur> cleaners = cat.getCleanerList();
+                                                for (auto it=cleaners.begin(); it!=cleaners.end(); it++)
+                                                {
+                                                    cout << it->GetId() << endl;
+                                                }
                                                 break;
                                             }
                                             case 2: {
+                                                float lat,longi; 
+                                                string id, begin, end;
+                                                printf("Enter id:\n");
+                                                cin >> id;
+                                                printf("Enter latitude:\n");
+                                                cin >> lat;
+                                                printf("Enter longitude:\n");
+                                                cin >> longi;
+                                                printf("Enter begin timestamp:\n");
+                                                printf("Enter end timestamp:\n");
+                                                cin >> end;
+                                                cat.addCleaner(id,lat,longi, begin, end);
+                                                printf("Cleaner has been added.\n");
                                                 break;
                                             }
                                             case 3: {
@@ -123,12 +161,15 @@ int main() {
                                     cout << "1: Enter 1 to submit new measure." << endl;
                                     cout << "2: Enter 2 to get your current points. " << endl;
                                     cout << "3: Enter 3 to log out." << endl;
+                                    Individual* indiv = (Individual*) user;
                                     if(cin >> choice) {
                                         switch(choice) {
                                             case 1: {
+                                                // more stuff here
                                                 break;
                                             }
                                             case 2: {
+                                                cout << "Points: " << indiv->getPoints();
                                                 break;
                                             }
                                             case 3: {
