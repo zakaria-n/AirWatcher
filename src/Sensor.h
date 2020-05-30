@@ -40,7 +40,7 @@ public:
     // Constructeur par défaut
     Sensor();
     // Constructeur
-    Sensor(string id , int lat , int longi , string desc, list<Measure> mes);
+    Sensor(string id , float lat , float longi , string desc, list<Measure> mes);
     // Destructeur
     virtual ~Sensor();
 

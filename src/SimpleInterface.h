@@ -17,18 +17,19 @@ public:
     // Constructeur par défaut
     SimpleInterface();
     // Constructeur
-    SimpleInterface(vector<pair<Utilisateurs,bool>> users);
+    SimpleInterface(vector<Utilisateurs*> users);
     // Destructeur
     virtual ~SimpleInterface();
 
-    vector<pair<Utilisateurs,bool>> getUsers();
-    void addUser(Utilisateurs user);
-    bool removeUser(Utilisateurs user);
-    Utilisateurs authenticate(string id, string password);
-    void deconnexion(Utilisateurs user);
+    vector<pair<Utilisateurs*,bool>> getUsers();
+    void addUser(Utilisateurs* user);
+    bool removeUser(Utilisateurs* user);
+    Utilisateurs* authenticate(string id, string password);
+    void deconnexion(Utilisateurs* user);
+    string getUserType(Utilisateurs* user);
 
 protected:
-    vector<pair<Utilisateurs,bool>> userList;
+    vector<pair<Utilisateurs*,bool>> userList;
 };
 
 #endif // SIMPLE_INTERFACE_H

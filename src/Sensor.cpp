@@ -259,7 +259,7 @@ Sensor::Sensor()
 #endif
 } 
 
-Sensor::Sensor(string id , int lat , int longi , string desc, list<Measure> mes)
+Sensor::Sensor(string id , float lat , float longi , string desc, list<Measure> mes)
 {
     sensorID=id;
     latitude=lat;

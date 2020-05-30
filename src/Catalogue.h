@@ -11,11 +11,12 @@ class Catalogue
 
 public:
     float getAverageQuality(float latitude, float longitude, float radius, string begin, string end);
-    list<Sensor> parseSensors();
-    list<Measure> parseMeasures();
-    int identifySimilarities(list <Sensor> mySensorList);
+    //list<Sensor> parseSensors();
+    //list<Measure> parseMeasures();
+    //int identifySimilarities(list <Sensor> mySensorList);
     void addCleaner(Purificateur cleaner);
     Purificateur removeCleaner(string cleanerId);
+    void addSensor(string id, float latitude, float longitude, string description);
 
 // constructeur - déstructeur
     Catalogue();

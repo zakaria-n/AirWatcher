@@ -17,14 +17,12 @@ public:
     Entreprise (string id, string password, vector<Purificateur> cleaners);
 
     vector<Purificateur> getCleaners();
-    string getType();
 
     bool ajouterPurificateur(Purificateur cleaner);
     Purificateur supprimerPurificateur(Purificateur cleaner);
 
 protected:
     vector<Purificateur> cleaners;
-    string type;
 
 };
 

@@ -21,14 +21,14 @@ int main() {
     string cleanerFile = "../dataset/cleaners.csv";
     Catalogue cat = Catalogue(measureFile, sensorFile, cleanerFile);
 
-    vector<Utilisateurs*> users;
+    SimpleInterface users = SimpleInterface();
     GouvernmentalAgency* government = new GouvernmentalAgency("one", "111");
     vector<Purificateur> cleaners;
     Entreprise* entre = new Entreprise("two", "222",  cleaners);
-    Individual* indiv = new Individual("three", "333");
-    users.push_back(government);
-    users.push_back(entre);
-    users.push_back(indiv);
+    Individual* indiv = new Individual("three", "333",3,2);
+    users.addUser(government);
+    users.addUser(entre);
+    users.addUser(indiv);
     
     bool exit = false;
     int choice;
@@ -36,10 +36,8 @@ int main() {
         cout << "       Welcome to Sensor Inc." << endl << "What would you like to do?" << endl;
         cout << "================= MENU =================" << endl;
         cout << "1: Enter 1 to log in." << endl;
-        cout << "2: Enter 2 to bla bla. " << endl;
-        cout << "3: Enter 3 to bla bla." << endl;
-        cout << "4: Enter 4 to bla bla." << endl;
-        cout << "5: Enter 5 to exit." << endl;
+        cout << "2: Enter 2 to sign up. " << endl;
+        cout << "5: Enter 3 to exit." << endl;
         if(cin >> choice) {
             switch(choice) {
                 case 1: {
@@ -49,25 +47,138 @@ int main() {
                     cin >> username;
                     printf("Enter your password:\n");
                     cin >> password;
+                    Utilisateurs* user = users.authenticate(username, password);
+                    if(user==NULL) {
+                        printf("Authentication failed:\n");
+                    }
+                    else {
+                        cout << "Welcome, you have logged in!" << endl;
+                        bool loggedIn = true;
+                        string userType = users.getUserType(user);
+                            while(loggedIn) {
+                                if(userType=="gouvernmentalAgency") {
+                                    cout << "================= AGENCY MENU =================" << endl;
+                                    cout << "1: Enter 1 to get average quality for an area." << endl;
+                                    cout << "2: Enter 2 to add new sensor. " << endl;
+                                    cout << "3: Enter 3 to log out." << endl;
+                                    if(cin >> choice) {
+                                        switch(choice) {
+                                            case 1: {
+                                                break;
+                                            }
+                                            case 2: {
+                                                break;
+                                            }
+                                            case 3: {
+                                                users.deconnexion(user);
+                                                loggedIn = false;
+                                                break;
+                                            }
+                                            default: {
+                                                printf("Invalid input\n");
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+                                else if(userType=="entreprise") {
+                                    cout << "================= ENTREPRISE MENU =================" << endl;
+                                    cout << "1: Enter 1 to get list of cleaners." << endl;
+                                    cout << "2: Enter 2 to add cleaner. " << endl;
+                                    cout << "3: Enter 3 to get impact on air quality index of cleaner. " << endl;
+                                    cout << "4: Enter 4 to get air quality of cleaner area. " << endl;
+                                    cout << "5: Enter 5 to get calculate purified zone of cleaner. " << endl;
+                                    cout << "6: Enter 6 to log out." << endl;
+                                    if(cin >> choice) {
+                                        switch(choice) {
+                                            case 1: {
+                                                break;
+                                            }
+                                            case 2: {
+                                                break;
+                                            }
+                                            case 3: {
+                                                break;
+                                            }
+                                            case 4: {
+                                                break;
+                                            }
+                                            case 5: {
+                                                break;
+                                            }
+                                            case 6: {
+                                                users.deconnexion(user);
+                                                loggedIn = false;
+                                                break;
+                                            }
+                                            default: {
+                                                printf("Invalid input\n");
+                                                break;    
+                                            }
+                                        }
+                                    }
+                                }
+                                else {
+                                    cout << "================= INDIVIDUAL MENU =================" << endl;
+                                    cout << "1: Enter 1 to submit new measure." << endl;
+                                    cout << "2: Enter 2 to get your current points. " << endl;
+                                    cout << "3: Enter 3 to log out." << endl;
+                                    if(cin >> choice) {
+                                        switch(choice) {
+                                            case 1: {
+                                                break;
+                                            }
+                                            case 2: {
+                                                break;
+                                            }
+                                            case 3: {
+                                                users.deconnexion(user);
+                                                loggedIn = false;
+                                                break;
+                                            }
+                                            default: {
+                                                printf("Invalid input\n");
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                    }
                     break;
                 }
                 case 2: {
                     cin.ignore();
-		            string a;
-                    string b;
-                    printf("Enter a:\n");
-                    getline(cin, a);
-                    printf("Enter b:\n");
-                    getline(cin, b);
+		            string userType;
+                    printf("Are you an 'individual' or 'entreprise'?:\n");
+                    getline(cin, userType);
+                    if(userType=="individual") {
+                        string id, password;
+                        printf("Enter your username:\n");
+                        getline(cin, id); 
+                        printf("Enter your password:\n");
+                        getline(cin, password); 
+                        Individual* newUser = new Individual(id, password, 0, 0);
+                        users.addUser(newUser);
+                        printf("You have successfully signed up as an individual!:\n");
+                    }
+                    else if(userType=="entreprise") {
+                        string id, password;
+                        printf("Enter your username:\n");
+                        getline(cin, id); 
+                        printf("Enter your password:\n");
+                        getline(cin, password); 
+                        vector<Purificateur> cleaners;
+                        Entreprise* newUser = new Entreprise(id, password, cleaners);
+                        users.addUser(newUser);
+                        printf("You have successfully signed up as an entreprise!:\n");
+                    }
+                    else {
+                        printf("Sorry, that is not a valid user type:\n");
+                    }
                     break;
                 }
                 case 3: {
-                    break;
-                }
-                case 4: {
-                    break;
-                }
-                case 5: {
                     exit = true;
                     break;
                 }
@@ -83,5 +194,4 @@ int main() {
             cin.ignore(80,'\n');
         }
     }
-
 }

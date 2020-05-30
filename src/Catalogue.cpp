@@ -154,7 +154,7 @@ void Catalogue::setSensors(string fileName)
   {
     vector<string> monSensor = readLine(line);
     list<Measure> measures; // need to do smth w this
-    Sensor newSensor = Sensor(monSensor[0],stoi(monSensor[1]),stoi(monSensor[2]),monSensor[3], measures);
+    Sensor newSensor = Sensor(monSensor[0],stof(monSensor[1]),stof(monSensor[2]),monSensor[3], measures);
     sensorList.push_back(newSensor);
   }
   lect.close();
@@ -198,3 +198,8 @@ float Catalogue::getAverageQuality
   float average = curr.avgQualityOverPeriod(begin, end);
   return average;
 }
+
+  void Catalogue::addSensor(string id, float latitude, float longitude, string description) {
+    list<Measure> measures;
+    Sensor newSensor = Sensor(id,longitude,latitude,description, measures);
+  }

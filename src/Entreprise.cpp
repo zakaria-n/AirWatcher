@@ -10,7 +10,6 @@ Entreprise::Entreprise ( const Entreprise & unEntreprise ) : Utilisateurs(unEntr
    cout << "Appel au constructeur de copie de <Entreprise>" << endl;
 #endif
     cleaners = unEntreprise.cleaners;
-    type = unEntreprise.type;
 } 
 
 Entreprise::Entreprise()
@@ -26,15 +25,10 @@ Entreprise::Entreprise(string id, string password, vector<Purificateur> cleanerI
     cout << "Appel au constructeur de <Entreprise>" << endl;
 #endif
     cleaners = cleanerInput;
-    type = "Entreprise";
 } 
 
 vector<Purificateur> Entreprise::getCleaners() {
     return cleaners;
-}
-
-string Entreprise::getType() {
-    return type;
 }
 
 bool Entreprise::ajouterPurificateur(Purificateur cleaner) {

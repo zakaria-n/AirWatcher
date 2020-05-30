@@ -12,9 +12,7 @@ public:
 
     Individual();
 
-    Individual(string id, string password);
-
-    Individual(int numMeasure, int numValidatedMeasures);
+    Individual(string id, string password, int numMeasure, int numValidatedMeasures);
 
 protected:
     int totalMeasures;
