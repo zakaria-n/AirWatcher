@@ -81,8 +81,8 @@ string Purificateur::GetTimestampEnd() const {
 
 // difference in air quality before vs after cleaner added
 int Purificateur::calculateEfficiency(Catalogue* cat, float rayon) const {
-    int before = cat->getAverageQuality(latitude, longitude, rayon, timestampBegin, "default-end"); // timestampBegin
-    int after = cat->getAverageQuality(latitude, longitude, rayon, timestampBegin, "default-end"); // timestampEnd
+    int before = cat->getAverageQuality(latitude, longitude, rayon, timestampBegin); // timestampBegin
+    int after = cat->getAverageQuality(latitude, longitude, rayon, timestampBegin); // timestampEnd
     int result = after - before;
     return result;
 }

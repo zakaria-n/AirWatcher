@@ -10,7 +10,7 @@ class Catalogue
 {
 
 public:
-    float getAverageQuality(float latitude, float longitude, float radius, string begin, string end);
+    float getAverageQuality(float latitude, float longitude, float radius, string begin, string end="2021-01-01");
     //list<Sensor> parseSensors();
     //list<Measure> parseMeasures();
     //int identifySimilarities(list <Sensor> mySensorList);
