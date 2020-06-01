@@ -37,7 +37,8 @@ public:
     string getId();
     double getLatitude();
     double getLongitude();
-
+    string getDescripton();
+    list<Measure> getMeasures();
     //------------------------------------------------- Overloading
 
 	friend ostream & operator << ( ostream & out, const Sensor & unSensor );

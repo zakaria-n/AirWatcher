@@ -14,7 +14,7 @@ bool Area::contains (Sensor s)
   return contains(s.getLongitude(), s.getLatitude() );
 }
 
-void Area::fillSensors(list<Sensor> data)
+void Area::fillSensors(vector<Sensor> data)
 {
     for (auto it=data.begin(); it!=data.end(); it++)
     {

@@ -16,7 +16,7 @@ public:
 
     bool contains (Sensor s);
 
-    void fillSensors (list<Sensor> data);
+    void fillSensors (vector<Sensor> data);
 
     void displaySensors();
 
@@ -40,7 +40,7 @@ protected:
     float latitude;
     float longitude;
     int radius;
-    list <Sensor> sensors;
+    vector <Sensor> sensors;
 
 };
 

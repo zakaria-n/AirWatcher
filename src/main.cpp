@@ -20,21 +20,21 @@ int main() {
     string sensorFile = "../dataset/sensors.csv";
     string cleanerFile = "../dataset/cleaners.csv";
     Catalogue cat = Catalogue(measureFile, sensorFile, cleanerFile);
-    list<Sensor> sensorL = cat.getSensorList();
+    vector<Sensor> sensorLz = cat.getSensorList();
     /*for (auto it=sensorL.begin(); it!= sensorL.end(); it++)
     {
         cout << *it << endl;
     }*/
     list<Measure> measureL = cat.getMeasureList();
-    Area ar = Area(44.0,0.3, 5000);
-    ar.fillSensors(sensorL);
-    ar.fillSensorData(measureL);
+    Area arz = Area(44.0,0.3, 5000);
+    arz.fillSensors(sensorLz);
+    arz.fillSensorData(measureL);
     cout << "Sensors in this area:" << endl;
-    ar.displaySensors();
+    arz.displaySensors();
     cout << "Measures for this area: " << endl;
     //ar.displayAreaMeasures();
     cout << "Average air quality in this area: " << endl;
-    cout << ar.avgQualityOverPeriod("2019-01-01|","2019-04-13|");
+    cout << arz.avgQualityOverPeriod("2019-01-01|","2019-04-13|");
 
     
     /*Sensor s = sensorL.back();
@@ -46,6 +46,13 @@ int main() {
     cout << "For this sensor: " << s << " the average quality is: " << endl;
     cout << s.airQuality(measureL) << endl;*/
 
+    vector<Sensor> sensorL = cat.getSensorList();
+    for (auto it=sensorL.begin(); it!= sensorL.end(); it++)
+    {
+        cout << *it << endl;
+    }
+    list<Measure> measureList = cat.getMeasureList();
+    Area ar = Area();
     SimpleInterface users = SimpleInterface();
     GouvernmentalAgency* government = new GouvernmentalAgency("one", "111");
     vector<Purificateur> cleaners;
