@@ -26,11 +26,11 @@ int main() {
         cout << *it << endl;
     }*/
     list<Measure> measureL = cat.getMeasureList();
-    Area arz = Area(44.0,0.3, 5000);
-    arz.fillSensors(sensorLz);
-    arz.fillSensorData(measureL);
+    Area arz = Area(44.0,0.3, 5000, sensorLz);
+    //arz.fillSensors(sensorLz);
+   // arz.fillSensorData(measureL);
     cout << "Sensors in this area:" << endl;
-    arz.displaySensors();
+   // arz.displaySensors();
     cout << "Measures for this area: " << endl;
     //ar.displayAreaMeasures();
     cout << "Average air quality in this area: " << endl;

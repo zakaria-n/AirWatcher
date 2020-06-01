@@ -32,7 +32,7 @@ public:
 
     Area ();
 
-    Area (float lat, float lon, float radius);
+    Area (float lat, float lon, float radius, vector<Sensor> sensorList);
 
     virtual ~Area ();
 
