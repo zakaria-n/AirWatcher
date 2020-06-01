@@ -196,9 +196,19 @@ list<Measure> Sensor::truncateMeasuresToPeriod(string t1, string t2)
         {
             cout << "current month: " << it->getMonth() << endl;
             match = true;
-        }else if (it->getMonth()>=month1 && it->getMonth()<=month2)
+        }else if (it->getMonth()==month1 && it->getMonth()<=month2)
         {
-            if(it->getDay()>=day1 && it->getDay()<=day2)
+            if(it->getDay()>=day1)
+            {   
+                cout << "current month: " << it->getMonth() << endl;
+                cout << "days match" << endl;
+                cout << "current day: " << it->getDay() << endl;
+                match = true;
+            }
+        }
+        else if (it->getMonth()>=month1 && it->getMonth()==month2)
+        {
+            if(it->getDay()<=day2)
             {   
                 cout << "current month: " << it->getMonth() << endl;
                 cout << "days match" << endl;
