@@ -20,7 +20,13 @@ int main() {
     string sensorFile = "../dataset/sensors.csv";
     string cleanerFile = "../dataset/cleaners.csv";
     Catalogue cat = Catalogue(measureFile, sensorFile, cleanerFile);
-
+    list<Sensor> sensorL = cat.getSensorList();
+    for (auto it=sensorL.begin(); it!= sensorL.end(); it++)
+    {
+        cout << *it << endl;
+    }
+    list<Measure> measureL = cat.getMeasureList();
+    Area ar = Area();
     SimpleInterface users = SimpleInterface();
     GouvernmentalAgency* government = new GouvernmentalAgency("one", "111");
     vector<Purificateur> cleaners;
@@ -30,9 +36,10 @@ int main() {
     users.addUser(entre);
     users.addUser(indiv);
     
-    bool exit = false;
-    int choice;
-    while(!exit) {
+    //bool exit = false;
+    //int choice;
+    
+    /*while(!exit) {
         cout << "       Welcome to Sensor Inc." << endl << "What would you like to do?" << endl;
         cout << "================= MENU =================" << endl;
         cout << "1: Enter 1 to log in." << endl;
@@ -234,5 +241,5 @@ int main() {
             cin.clear();
             cin.ignore(80,'\n');
         }
-    }
+    }*/
 }

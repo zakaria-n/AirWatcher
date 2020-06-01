@@ -227,6 +227,12 @@ double Sensor::getLongitude()
     return longitude;
 }
 
+ostream & operator << ( ostream & out, const Sensor & unSensor )
+{
+    out<<unSensor.sensorID<<" (lat:"<<unSensor.latitude<<", long:"<<unSensor.longitude<<") ("<<unSensor.description<<")";
+	return out;
+}
+
 Sensor & Sensor::operator = ( const Sensor & sens )
 {
 	sensorID = sens.sensorID;

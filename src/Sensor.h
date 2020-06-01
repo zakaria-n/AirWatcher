@@ -34,7 +34,14 @@ public:
     string getId();
     double getLatitude();
     double getLongitude();
+
+    //------------------------------------------------- Overloading
+
+	friend ostream & operator << ( ostream & out, const Sensor & unSensor );
+
     Sensor& operator = ( const Sensor & sens );
+    
+    
     // Constructeur de copie
     Sensor ( const Sensor & unSensor );
     // Constructeur par défaut
