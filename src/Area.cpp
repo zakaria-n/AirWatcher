@@ -73,7 +73,7 @@ float Area::avgQualityOverPeriod (string t1, string t2){
     return (quality/nbSensor);
 }
 
-vector<Sensor> Area::getSensors()
+vector <Sensor> Area::getSensors()
 {
   return sensors;
 }
