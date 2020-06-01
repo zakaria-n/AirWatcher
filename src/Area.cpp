@@ -4,42 +4,65 @@ using namespace std;
 
 bool Area::contains (float lon, float lat)
 {
-    double dLat = (lon - latitude) * 
-                      M_PI / 180.0; 
-    double dLon = (lat - longitude) *  
-                      M_PI / 180.0; 
-    
-    double latr = (latitude) * M_PI / 180.0; 
-    double latr2 = (lat) * M_PI / 180.0; 
+    int distance = (int)(6371 * acos(sin(latitude)*sin(lat)
+		+ cos(latitude)*cos(lat)*cos(longitude - lon)));
+    return  (distance < radius);
+}
 
-    double a =  pow(sin(dLat / 2), 2) +  
-                pow(sin(dLon / 2), 2) *  
-                cos(latr) * cos(latr2); 
-    double earth_radius = 6371; 
-    double distance = 2 * asin(sqrt(a)); 
-
-    distance = distance * earth_radius;
-
-    return (radius-distance >=0);
-
+bool Area::contains (Sensor s)
+{
+  return contains(s.getLongitude(), s.getLatitude() );
 }
 
 void Area::fillSensors(list<Sensor> data)
 {
     for (auto it=data.begin(); it!=data.end(); it++)
     {
-        if (contains(it->getLongitude(),it->getLatitude()))
+        if (contains(*it))
         {
             sensors.push_back(*it);
         }
     }
 }
 
+void Area::fillSensorData(list <Measure> data)
+{
+  for (auto it=sensors.begin(); it!=sensors.end(); it++)
+  {
+      it->fillMeasures(data);
+  }
+}
+
+void Area::displaySensors()
+{
+  list<Sensor> sl = sensors;
+  if (sl.size()==0)
+  {
+    cout << "This area contains no sensors." << endl;
+  }
+  for (auto it=sl.begin(); it!=sl.end(); it++)
+  {
+    cout << *it << endl;
+  }
+}
+
+
+void Area::displayAreaMeasures()
+{
+  for (auto it=sensors.begin(); it!=sensors.end(); it++)
+  {
+    it->displayMeasures();
+  }
+}
+
+
 float Area::avgQualityOverPeriod (string t1, string t2){
+    cout << "In area rn" << endl;
     int nbSensor =0;
     float quality=0.0;
     for (auto it=sensors.begin(); it!=sensors.end(); it++)
     {
+        cout << "fetching sensors" << endl;
         int elementary = it->airQualityOverPeriod(t1,t2);
         if (elementary>=1)
         {
@@ -48,6 +71,11 @@ float Area::avgQualityOverPeriod (string t1, string t2){
         }
     }
     return (quality/nbSensor);
+}
+
+list<Sensor> Area::getSensors()
+{
+  return sensors;
 }
 
 Area::Area ( const Area & unArea )
@@ -64,7 +92,7 @@ Area::Area()
 #endif
 }
 
-Area::Area(float lat, float lon, float rayon, list <Sensor> sensorsInput)
+Area::Area(float lat, float lon, float rayon)
 {
 #ifdef MAP
   cout << "Appel au constructeur de <Area>" << endl;
@@ -72,7 +100,6 @@ Area::Area(float lat, float lon, float rayon, list <Sensor> sensorsInput)
   latitude = lat;
   longitude = lon;
   radius = rayon;
-  sensors = sensorsInput;
 }
 
 Area::~Area ( )

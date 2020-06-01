@@ -32,22 +32,41 @@ float Measure::getValue()
 
 int Measure::getDay ()
 {
-	int pos =  timestamp.find_first_of("T");
-	return stoi(timestamp.substr(pos-3,2));
+	int pos =  timestamp.find_first_of(" ");
+	return stoi(timestamp.substr(pos-2,2));
 }
 
 int Measure::getMonth ()
 {
-	int pos =  timestamp.find_first_of("T");
+	int pos =  timestamp.find_first_of(" ");
 	return stoi(timestamp.substr(pos-5,2));
 }
 
 
 int Measure::getYear ()
 {
-	int pos =  timestamp.find_first_of("T");
+	int pos =  timestamp.find_first_of(" ");
 	return stoi(timestamp.substr(pos-10,4));
 }
+
+int Measure::getDateScore()
+{
+    int year = getYear();
+    year = year * 10000000;
+    int month = getMonth();
+    month = month * 1000;
+    int day = getDay();
+    return year+month+day;
+}
+
+ostream & operator << (ostream & out, const Measure & unMeasure)
+// Algorithme :
+//
+{
+	out<<unMeasure.timestamp<<" "<<unMeasure.sensorID<<" "<< unMeasure.attributeId << " " << unMeasure.value;
+	return out;
+} //----- Fin de operator <<
+
 
 Measure::Measure ( const Measure & unMeasure )
 {

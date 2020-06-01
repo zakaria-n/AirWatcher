@@ -10,6 +10,17 @@ void Sensor::addMeasure (Measure mes)
     mesures.push_back(mes);
 }
 
+void Sensor::fillMeasures(list<Measure> data)
+{
+    for (auto it=data.begin(); it!=data.end(); it++)
+    {
+        if(it->getSensor()==sensorID)
+        {
+            addMeasure(*it);
+        }
+    }
+}
+
 vector<float> Sensor::avgMeasures(list<Measure> mesures)
 {
 	list<Measure>::iterator it;
@@ -18,24 +29,24 @@ vector<float> Sensor::avgMeasures(list<Measure> mesures)
 	float O3counter = 0.0, NO2counter = 0.0, SO2counter = 0.0, PM10counter = 0.0;
 	for (it = mesures.begin(); it != mesures.end(); ++it)
 	{
-		if (it->type.id.compare("O3") == 0)
+		if (it->attributeId.compare("O3") == 0)
 		{
 			O3total += it->value;
 			O3counter++;
 		}
 
-		if (it->type.id.compare("NO2") == 0)
+		if (it->attributeId.compare("NO2") == 0)
 		{
             NO2total += it->value;
 			NO2counter++;
 		}
-		if (it->type.id.compare("SO2") == 0)
+		if (it->attributeId.compare("SO2") == 0)
 		{
 			SO2total += it->value;
 			SO2counter++;
 
 		}
-		if (it->type.id.compare("PM10") == 0)
+		if (it->attributeId.compare("PM10") == 0)
 		{
 			PM10total += it->value;
 			PM10counter++;
@@ -67,14 +78,18 @@ vector<float> Sensor::avgMeasures(list<Measure> mesures)
 
 int Sensor::airQuality(list<Measure> data)
 {
+    cout << "Calculating air quality..." << endl;
+    
     if(data.begin() == data.end()) //vibe check
     {
+        cout << "she's empty your honour" << endl;
         return 0;
     }
     
     vector<float> averages = avgMeasures(data);
     if (averages[0]==0 && averages[1]==0 && averages[2]==0 && averages[03]==0)
     {
+        cout << "null averages your honour" << endl;
         return 0;
     }
 
@@ -87,8 +102,9 @@ int Sensor::airQuality(list<Measure> data)
 
 	if (O3avg >= 0.0 && O3avg <= 104)
     { 
-        O3index = 4;   
+        O3index = 4;
     }
+    
 	else if (O3avg >= 105.0 && O3avg < 179.0) 
     { 
         O3index = 7; 
@@ -100,24 +116,24 @@ int Sensor::airQuality(list<Measure> data)
 
     if (NO2avg >= 0.0 && NO2avg <= 159.0)
     { 
-        NO2index = 4;   
+        NO2index = 4; 
     }
     if (NO2avg >= 160.0 && NO2avg <= 299.0)
     { 
-        NO2index = 7;    
+        NO2index = 7;   
     }
     if (NO2avg >= 300.0)
     { 
-        NO2index = 10;    
+        NO2index = 10; 
     }
 
     if (SO2avg >= 0.0 && SO2avg <= 109.0)
     { 
-        SO2index = 4;   
+        SO2index = 4; 
     }
     if (SO2avg >= 110.0 && SO2avg <= 199.0)
     { 
-        SO2index = 7;   
+        SO2index = 7;  
     }
     if (SO2avg >= 200.0)
     { 
@@ -145,11 +161,54 @@ list<Measure> Sensor::truncateMeasuresToPeriod(string t1, string t2)
 {
     list<Measure>::iterator it;
 	list<Measure> overPeriod;
+    
+    //cout << "getting dates" << endl;
+    
+    int pos1 =  t1.find_first_of("|");
+    //int year1 = stoi(t1.substr(pos1-10,4));
+    int month1 = stoi(t1.substr(pos1-5,2));
+    int day1 = stoi(t1.substr(pos1-2,2));
+    
+    /*cout << year1 << endl;
+    cout << month1 << endl;
+    cout << "day1: " << day1 << endl;*/
+    
+    int pos2 =  t2.find_first_of("|");
+    //int year2 = stoi(t2.substr(pos2-10,4));
+    int month2 = stoi(t2.substr(pos2-5,2));
+    int day2 = stoi(t2.substr(pos2-2,2));
+    
+    /*cout << year2 << endl;
+    cout << month2 << endl;
+    cout << "day2: " << day2 << endl;*/
+
+
+    cout << "done getting dates" << endl;
 
 	for (it = mesures.begin(); it != mesures.end(); it++)
 	{
-		if ((it->timestamp<=t1) && (it->timestamp>=t2))
+        cout <<"sensor has measures" << endl;
+        
+        cout << "here!" << endl;
+        bool match = false;
+        cout << "in measures..." << endl;
+        if (it->getMonth()>month1 && it->getMonth()<month2)
+        {
+            cout << "current month: " << it->getMonth() << endl;
+            match = true;
+        }else if (it->getMonth()>=month1 && it->getMonth()<=month2)
+        {
+            if(it->getDay()>=day1 && it->getDay()<=day2)
+            {   
+                cout << "current month: " << it->getMonth() << endl;
+                cout << "days match" << endl;
+                cout << "current day: " << it->getDay() << endl;
+                match = true;
+            }
+        }
+		if (match)
 		{
+            cout << "date added: " << it->getYear() << " "  << it->getMonth() << " " <<  it->getDay() << " " << endl;
 			overPeriod.push_back(*it);
 		}
 	}
@@ -231,6 +290,14 @@ ostream & operator << ( ostream & out, const Sensor & unSensor )
 {
     out<<unSensor.sensorID<<" (lat:"<<unSensor.latitude<<", long:"<<unSensor.longitude<<") ("<<unSensor.description<<")";
 	return out;
+}
+
+void Sensor::displayMeasures()
+{
+    for (auto it=mesures.begin(); it!=mesures.end(); it++)
+    {
+        cout << *it << endl;
+    }
 }
 
 Sensor & Sensor::operator = ( const Sensor & sens )

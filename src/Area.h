@@ -14,15 +14,25 @@ public:
 
     bool contains (float lon, float lat);
 
+    bool contains (Sensor s);
+
     void fillSensors (list<Sensor> data);
 
+    void displaySensors();
+
+    void fillSensorData(list <Measure>);
+
+    void displayAreaMeasures();
+
     float avgQualityOverPeriod (string t1, string t2);
+    
+    list<Sensor> getSensors();
 
     Area  ( const Area  & unArea  );
 
     Area ();
 
-    Area (float lat, float lon, float radius, list <Sensor> sensors);
+    Area (float lat, float lon, float radius);
 
     virtual ~Area ();
 

@@ -24,7 +24,11 @@ public:
     int getDay();
     int getMonth();
     int getYear();
+    int getDateScore();
    // void detectFraud(list<Sensor> sdata, list<Measure> mdata);
+
+   friend ostream & operator << ( ostream & out, const Measure & unMeasure );
+
     Measure ( const Measure & unMeasures );
     Measure( string ts, string sID, string attID, float val, bool isF);
     Measure();

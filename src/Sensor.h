@@ -18,6 +18,7 @@ class Sensor
 public:
     // Adds measure to measure list of sensor
     void addMeasure (Measure);
+    void fillMeasures(list<Measure>);
     // Calculates the average measures for each measure type
     vector<float> avgMeasures(list<Measure>);
     int airQuality(list<Measure>);
@@ -30,6 +31,8 @@ public:
     float getScore(list<Measure> data);
     // Méthode pour trouver les capteurs similaires
     list<Sensor> getCluster(list<Sensor> sensorData, list<Measure> mesureData);
+
+    void displayMeasures();
     // Getters
     string getId();
     double getLatitude();
