@@ -35,7 +35,7 @@ void Area::fillSensorData(list <Measure> data)
 
 void Area::displaySensors()
 {
-  list<Sensor> sl = sensors;
+  vector<Sensor> sl = sensors;
   if (sl.size()==0)
   {
     cout << "This area contains no sensors." << endl;
@@ -73,7 +73,7 @@ float Area::avgQualityOverPeriod (string t1, string t2){
     return (quality/nbSensor);
 }
 
-list<Sensor> Area::getSensors()
+vector<Sensor> Area::getSensors()
 {
   return sensors;
 }

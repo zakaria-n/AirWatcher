@@ -26,7 +26,7 @@ public:
 
     float avgQualityOverPeriod (string t1, string t2);
     
-    list<Sensor> getSensors();
+    vector<Sensor> getSensors();
 
     Area  ( const Area  & unArea  );
 
