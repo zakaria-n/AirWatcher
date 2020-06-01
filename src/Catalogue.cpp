@@ -33,8 +33,8 @@ Catalogue::Catalogue(string measureFile, string sensorFile, string cleanerFile)
 #ifdef MAP
   cout << "Appel au constructeur de <Catalogue>" << endl;
 #endif
-  setMeasures(measureFile);
   setSensors(sensorFile);
+  setMeasures(measureFile);
   setCleaners(cleanerFile);
   nbMeasure = measureList.size();;
   nbSensor = sensorList.size();
@@ -48,7 +48,7 @@ Catalogue::~Catalogue ( )
 #endif
 }
 
-list<Sensor> Catalogue::getSensorList() {
+vector<Sensor> Catalogue::getSensorList() {
   return sensorList;
 }
 list<Measure> Catalogue::getMeasureList() {
@@ -138,7 +138,9 @@ void Catalogue::setMeasures (string fileName)
  while (getline(lect, line))
  {
    vector<string> maMeasure = readLine(line);
-   Measure newM = Measure (maMeasure[0],maMeasure[1],maMeasure[2],stof(maMeasure[3]),true);
+   Measure newM = Measure (maMeasure[0],maMeasure[1],maMeasure[2],stof(maMeasure[3]),false);
+   int sensor = stoi(maMeasure[1].substr (6));
+   sensorList.at(sensor).addMeasure(newM);
    measureList.push_back(newM);
  }
 

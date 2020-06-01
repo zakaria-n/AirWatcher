@@ -25,7 +25,7 @@ public:
     Catalogue ( const Catalogue & unCatalogue );
     virtual ~Catalogue ();
 //getter
-    list<Sensor> getSensorList();
+    vector<Sensor> getSensorList();
     list<Measure> getMeasureList();
     list<Purificateur> getCleanerList();
 
@@ -40,7 +40,7 @@ protected:
    // void setMeasureTypes(string fileName);
 
     list<Measure> measureList;
-    list<Sensor> sensorList;
+    vector<Sensor> sensorList;
     list<Purificateur> cleanerList;
     int nbMeasure;
     int nbSensor;

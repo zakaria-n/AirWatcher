@@ -24,7 +24,7 @@ bool Area::contains (float lon, float lat)
 
 }
 
-void Area::fillSensors(list<Sensor> data)
+void Area::fillSensors(vector<Sensor> data)
 {
     for (auto it=data.begin(); it!=data.end(); it++)
     {
@@ -64,7 +64,7 @@ Area::Area()
 #endif
 }
 
-Area::Area(float lat, float lon, float rayon, list <Sensor> sensorsInput)
+Area::Area(float lat, float lon, float rayon, vector <Sensor> sensorsInput)
 {
 #ifdef MAP
   cout << "Appel au constructeur de <Area>" << endl;

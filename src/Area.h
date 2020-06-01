@@ -14,7 +14,7 @@ public:
 
     bool contains (float lon, float lat);
 
-    void fillSensors (list<Sensor> data);
+    void fillSensors (vector<Sensor> data);
 
     float avgQualityOverPeriod (string t1, string t2);
 
@@ -22,7 +22,7 @@ public:
 
     Area ();
 
-    Area (float lat, float lon, float radius, list <Sensor> sensors);
+    Area (float lat, float lon, float radius, vector <Sensor> sensors);
 
     virtual ~Area ();
 
@@ -30,7 +30,7 @@ protected:
     float latitude;
     float longitude;
     int radius;
-    list <Sensor> sensors;
+    vector <Sensor> sensors;
 
 };
 

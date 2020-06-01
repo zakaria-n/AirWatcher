@@ -20,12 +20,12 @@ int main() {
     string sensorFile = "../dataset/sensors.csv";
     string cleanerFile = "../dataset/cleaners.csv";
     Catalogue cat = Catalogue(measureFile, sensorFile, cleanerFile);
-    list<Sensor> sensorL = cat.getSensorList();
+    vector<Sensor> sensorL = cat.getSensorList();
     for (auto it=sensorL.begin(); it!= sensorL.end(); it++)
     {
         cout << *it << endl;
     }
-    list<Measure> measureL = cat.getMeasureList();
+    list<Measure> measureList = cat.getMeasureList();
     Area ar = Area();
     SimpleInterface users = SimpleInterface();
     GouvernmentalAgency* government = new GouvernmentalAgency("one", "111");
