@@ -161,26 +161,34 @@ list<Measure> Sensor::truncateMeasuresToPeriod(string t1, string t2)
 {
     list<Measure>::iterator it;
 	list<Measure> overPeriod;
+
+    int year1, month1, day1, hour1, minute1, second1;
+    const char *date1 = t1.c_str();
+    sscanf(date1, "%d-%d-%d %d:%d:%d", &year1, &month1, &day1, &hour1, &minute1, &second1);
+    
+    int year2, month2, day2, hour2, minute2, second2;
+    const char *date2 = t2.c_str();
+    sscanf(date2, "%d-%d-%d %d:%d:%d", &year2, &month2, &day2, &hour2, &minute2, &second2);
     
     //cout << "getting dates" << endl;
     
-    int pos1 =  t1.find_first_of("|");
+    /*int pos1 =  t1.find_first_of("|");
     //int year1 = stoi(t1.substr(pos1-10,4));
     int month1 = stoi(t1.substr(pos1-5,2));
     int day1 = stoi(t1.substr(pos1-2,2));
     
-    /*cout << year1 << endl;
+    cout << year1 << endl;
     cout << month1 << endl;
     cout << "day1: " << day1 << endl;*/
     
-    int pos2 =  t2.find_first_of("|");
+    /*int pos2 =  t2.find_first_of("|");
     //int year2 = stoi(t2.substr(pos2-10,4));
     int month2 = stoi(t2.substr(pos2-5,2));
-    int day2 = stoi(t2.substr(pos2-2,2));
+    int day2 = stoi(t2.substr(pos2-2,2));*/
     
     /*cout << year2 << endl;
     cout << month2 << endl;
-    cout << "day2: " << day2 << endl;*/
+    cout << "day2: " << day2 << endl;*/ 
 
 
     cout << "done getting dates" << endl;

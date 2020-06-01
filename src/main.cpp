@@ -34,7 +34,7 @@ int main() {
     cout << "Measures for this area: " << endl;
     //ar.displayAreaMeasures();
     cout << "Average air quality in this area: " << endl;
-    cout << arz.avgQualityOverPeriod("2019-02-09|","2019-03-09|");
+    cout << arz.avgQualityOverPeriod("2019-11-24 12:00:00","2019-12-24 12:00:00");
 
     
     /*Sensor s = sensorL.back();
