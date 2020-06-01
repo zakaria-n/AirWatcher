@@ -196,7 +196,7 @@ void Catalogue::setCleaners(string fileName)
 
 float Catalogue::getAverageQuality
 (float latitude, float longitude, float radius, string begin, string end) {
-  Area curr = Area(latitude,longitude, radius); 
+  Area curr = Area(latitude,longitude, radius, sensorList); 
   float average = curr.avgQualityOverPeriod(begin, end);
   return average;
 }
