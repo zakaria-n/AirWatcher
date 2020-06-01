@@ -79,10 +79,10 @@ int Purificateur::calculateAirQuality(Catalogue* cat, float rayon) const {
 // area that has improved after cleaner added
 float Purificateur::calculatePurifiedZone(Catalogue* cat) const {
     int minimalChange = 1;
-    float currentRayon = 1.0;
+    float currentRayon = 170;
     int efficiency = calculateEfficiency(cat, currentRayon);
     while ( efficiency > minimalChange) {
-        currentRayon+=0.5;
+        currentRayon+=5;
         efficiency = calculateEfficiency(cat, currentRayon);
     }
     return currentRayon;
