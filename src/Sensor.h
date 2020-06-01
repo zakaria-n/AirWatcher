@@ -1,7 +1,7 @@
 /******** author Zakaria *********/
 #if ! defined ( SENSOR_H )
 #define SENSOR_H
-
+#include <ctime>
 #include <string>
 #include <list>
 #include <vector>
