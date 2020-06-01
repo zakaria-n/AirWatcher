@@ -45,6 +45,7 @@ int main() {
     
     cout << "For this sensor: " << s << " the average quality is: " << endl;
     cout << s.airQuality(measureL) << endl;*/
+    cout << "-----------------sopi-----------" << endl;
 
     vector<Sensor> sensorL = cat.getSensorList();
     for (auto it=sensorL.begin(); it!= sensorL.end(); it++)
