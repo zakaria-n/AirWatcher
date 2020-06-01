@@ -22,8 +22,8 @@ public:
     string GetId() const;
     float GetLatitude() const;
     float GetLongitude() const;   
-    time_t GetTimestampBegin() const;
-    time_t GetTimestampEnd() const;
+    string GetTimestampBegin() const;
+    string GetTimestampEnd() const;
 
     int calculateEfficiency(Catalogue *cat, float rayon) const;
     int calculateAirQuality(Catalogue* cat, float rayon) const;
@@ -36,10 +36,8 @@ protected:
     string id;
     float latitude;
     float longitude;
-    time_t timestampBegin;
-    time_t timestampEnd;
-
-    time_t processTimestampString(string time) const;
+    string timestampBegin;
+    string timestampEnd;
 
 };
 

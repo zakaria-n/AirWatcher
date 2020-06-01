@@ -31,14 +31,14 @@ Purificateur::Purificateur(string idInput, float latitudeInput, float longitudeI
     id = idInput;
     latitude = latitudeInput;
     longitude = longitudeInput;
-    timestampBegin = processTimestampString(begin);
-    timestampEnd = processTimestampString(end);   
+    timestampBegin = begin.substr(0,10);
+    timestampEnd = end.substr(0,10);
 }
 
-time_t Purificateur::processTimestampString(string time) const {
+/*time_t Purificateur::processTimestampString(string time) const {
     int year, month, day, hour, minute, second;
     const char *zStart = time.c_str();
-    sscanf(zStart, "%d-%d-%d %d:%d:%d", &year, &month, &day, &hour, &minute, &second);
+    sscanf(zStart, "%d-%d-%d %d:%d:%d", &year, &month, &day);
     struct tm timeStruct;
     timeStruct.tm_year = year - 1900;
     timeStruct.tm_mon = month - 1;
@@ -50,7 +50,7 @@ time_t Purificateur::processTimestampString(string time) const {
     time_t result = mktime(&timeStruct);
     return result;
 
-}
+}*/
 
 Purificateur::~Purificateur ( )
 {
@@ -71,25 +71,25 @@ float Purificateur::GetLongitude() const {
     return longitude;
 }
 
-time_t Purificateur::GetTimestampBegin() const {
+string Purificateur::GetTimestampBegin() const {
     return timestampBegin;
 }
 
-time_t Purificateur::GetTimestampEnd() const {
+string Purificateur::GetTimestampEnd() const {
     return timestampEnd;
 }
 
 // difference in air quality before vs after cleaner added
 int Purificateur::calculateEfficiency(Catalogue* cat, float rayon) const {
-    int before = cat->getAverageQuality(latitude, longitude, rayon, "begin", "default-end"); // timestampBegin
-    int after = cat->getAverageQuality(latitude, longitude, rayon, "begin", "default-end"); // timestampEnd
+    int before = cat->getAverageQuality(latitude, longitude, rayon, timestampBegin, "default-end"); // timestampBegin
+    int after = cat->getAverageQuality(latitude, longitude, rayon, timestampBegin, "default-end"); // timestampEnd
     int result = after - before;
     return result;
 }
 
 // appeler la méthode getAverageQuality de 'Catalogue'
 int Purificateur::calculateAirQuality(Catalogue* cat, float rayon) const {
-    int quality = cat->getAverageQuality(latitude, longitude, rayon, "timestampBegin", "timestampEnd");
+    int quality = cat->getAverageQuality(latitude, longitude, rayon, timestampBegin, timestampEnd);
     return quality;
 }
 

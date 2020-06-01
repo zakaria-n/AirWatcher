@@ -161,26 +161,15 @@ list<Measure> Sensor::truncateMeasuresToPeriod(string t1, string t2)
 {
     list<Measure>::iterator it;
 	list<Measure> overPeriod;
-    
-    //cout << "getting dates" << endl;
-    
-    int pos1 =  t1.find_first_of("|");
-    //int year1 = stoi(t1.substr(pos1-10,4));
-    int month1 = stoi(t1.substr(pos1-5,2));
-    int day1 = stoi(t1.substr(pos1-2,2));
-    
-    /*cout << year1 << endl;
-    cout << month1 << endl;
-    cout << "day1: " << day1 << endl;*/
-    
-    int pos2 =  t2.find_first_of("|");
-    //int year2 = stoi(t2.substr(pos2-10,4));
-    int month2 = stoi(t2.substr(pos2-5,2));
-    int day2 = stoi(t2.substr(pos2-2,2));
-    
-    /*cout << year2 << endl;
-    cout << month2 << endl;
-    cout << "day2: " << day2 << endl;*/
+    int year1, month1, day1, year2, month2, day2;
+    const char *time1 = t1.c_str();
+    const char *time2 = t2.c_str();
+
+    cout << "getting dates" << endl;
+
+    sscanf(time1, "%d-%d-%d", &year1, &month1, &day1);
+    sscanf(time2, "%d-%d-%d", &year2, &month2, &day2);
+
 
 
     cout << "done getting dates" << endl;
