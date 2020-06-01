@@ -57,12 +57,12 @@ void Area::displayAreaMeasures()
 
 
 float Area::avgQualityOverPeriod (string t1, string t2){
-    cout << "In area rn" << endl;
+    cout << "In are\n" << endl;
     int nbSensor =0;
     float quality=0.0;
     for (auto it=sensors.begin(); it!=sensors.end(); it++)
     {
-        cout << "fetching sensors" << endl;
+        cout << "fetching sensors\n" << endl;
         int elementary = it->airQualityOverPeriod(t1,t2);
         if (elementary>=1)
         {

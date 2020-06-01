@@ -2,6 +2,8 @@
 #include <fstream>
 #include <string>
 
+#define PI 3.141592
+
 using namespace std;
 
 #include "Measure.h"
@@ -12,7 +14,7 @@ using namespace std;
 #include "Area.h"
 #include "Catalogue.h"
 #include "Sensor.h"
-#include "Purificateur.h"
+#include "Cleaner.h"
 #include "SimpleInterface.h"
 
 int main() {
@@ -20,53 +22,53 @@ int main() {
     string sensorFile = "../dataset/sensors.csv";
     string cleanerFile = "../dataset/cleaners.csv";
     Catalogue cat = Catalogue(measureFile, sensorFile, cleanerFile);
-    vector<Sensor> sensorLz = cat.getSensorList();
+    //vector<Sensor> sensorLz = cat.getSensorList();
     /*for (auto it=sensorL.begin(); it!= sensorL.end(); it++)
     {
         cout << *it << endl;
     }*/
-    list<Measure> measureL = cat.getMeasureList();
-    Area arz = Area(44.0,0.3, 5000, sensorLz);
+    //list<Measure> measureL = cat.getMeasureList();
+    //Area arz = Area(44.0,0.3, 5000, sensorLz);
     //arz.fillSensors(sensorLz);
    // arz.fillSensorData(measureL);
-    cout << "Sensors in this area:" << endl;
+    //cout << "Sensors in this area:" << endl;
    // arz.displaySensors();
-    cout << "Measures for this area: " << endl;
+    //cout << "Measures for this area: " << endl;
     //ar.displayAreaMeasures();
-    cout << "Average air quality in this area: " << endl;
-    cout << arz.avgQualityOverPeriod("2019-02-09","2019-03-09");
+    //cout << "Average air quality in this area: " << endl;
+  //  cout << arz.avgQualityOverPeriod("2019-02-09","2019-03-09");
 
-    
+
     /*Sensor s = sensorL.back();
-    
+
     s.fillMeasures(measureL);
     cout << "The measures recorded by this sensor are: " << endl;
     s.displayMeasures();
-    
+
     cout << "For this sensor: " << s << " the average quality is: " << endl;
     cout << s.airQuality(measureL) << endl;*/
-    cout << "-----------------sopi-----------" << endl;
+    //cout << "-----------------sopi-----------" << endl;
 
-    vector<Sensor> sensorL = cat.getSensorList();
-    for (auto it=sensorL.begin(); it!= sensorL.end(); it++)
-    {
-        cout << *it << endl;
-    }
+    //vector<Sensor> sensorL = cat.getSensorList();
+    //for (auto it=sensorL.begin(); it!= sensorL.end(); it++)
+    //{
+    //    cout << *it << endl;
+  //  }
     list<Measure> measureList = cat.getMeasureList();
     Area ar = Area();
     SimpleInterface users = SimpleInterface();
     GouvernmentalAgency* government = new GouvernmentalAgency("one", "111");
-    vector<Purificateur> cleaners;
+    list<Cleaner> cleaners = cat.getCleanerList();
     Entreprise* entre = new Entreprise("two", "222",  cleaners);
     Individual* indiv = new Individual("three", "333",3,2);
     users.addUser(government);
     users.addUser(entre);
     users.addUser(indiv);
-    
-    //bool exit = false;
-    //int choice;
-    
-    /*while(!exit) {
+
+    bool exit = false;
+    int choice;
+
+    while(!exit) {
         cout << "       Welcome to Sensor Inc." << endl << "What would you like to do?" << endl;
         cout << "================= MENU =================" << endl;
         cout << "1: Enter 1 to log in." << endl;
@@ -97,19 +99,23 @@ int main() {
                                     cout << "3: Enter 3 to log out." << endl;
                                     if(cin >> choice) {
                                         switch(choice) {
-                                            case 1: {
-                                                float lat,longi,radius; 
+                                            case 1: { //  NE FONCTIONNE PAS
+                                                float lat,longi,radius;
+                                                string dateBegin;
                                                 printf("Enter latitude:\n");
                                                 cin >> lat;
                                                 printf("Enter longitude:\n");
                                                 cin >> longi;
                                                 printf("Enter radius:\n");
                                                 cin >> radius;
-                                                // more stuff here
+                                                printf("Enter Begin date: (YYYY-MM-DD)\n");
+                                                cin >> dateBegin;
+                                                float avgQua = cat.getAverageQuality(lat,longi,radius,dateBegin);
+                                                printf("The average air quality in your area : %f\n",avgQua );
                                                 break;
                                             }
-                                            case 2: {
-                                                float lat,longi; 
+                                            case 2: {  //TESTER L'AFFICHAGE
+                                                float lat,longi;
                                                 string id, description;
                                                 printf("Enter id:\n");
                                                 cin >> id;
@@ -146,15 +152,16 @@ int main() {
                                     if(cin >> choice) {
                                         switch(choice) {
                                             case 1: {
-                                                list<Purificateur> cleaners = cat.getCleanerList();
+                                                list<Cleaner> cleaners = cat.getCleanerList();
                                                 for (auto it=cleaners.begin(); it!=cleaners.end(); it++)
                                                 {
-                                                    cout << it->GetId() << endl;
+                                                  string id = it->GetId();
+                                                    cout <<"Cleaner ID :"<< id << endl; //NE S'AFFICHE PAS
                                                 }
                                                 break;
                                             }
                                             case 2: {
-                                                float lat,longi; 
+                                                float lat,longi;
                                                 string id, begin, end;
                                                 printf("Enter id:\n");
                                                 cin >> id;
@@ -163,6 +170,7 @@ int main() {
                                                 printf("Enter longitude:\n");
                                                 cin >> longi;
                                                 printf("Enter begin timestamp:\n");
+                                                cin>>begin;
                                                 printf("Enter end timestamp:\n");
                                                 cin >> end;
                                                 cat.addCleaner(id,lat,longi, begin, end);
@@ -170,9 +178,21 @@ int main() {
                                                 break;
                                             }
                                             case 3: {
+                                              Cleaner unCleaner;
+                                              string CleanerId;
+                                              float purifiedRadius, purifiedZone;
+                                              printf("Enter cleaner iD:\n");
+                                              cin >> CleanerId;
+                                              unCleaner = cat.GetCleanerById(CleanerId);
+                                              purifiedRadius = unCleaner.calculatePurifiedZone(&cat);
+                                              purifiedZone = PI*pow(purifiedRadius,2);
+                                              //purifiedZone = purifiedRadius;
+                                              printf("Here is the surface of the purified zone : %f\n",purifiedZone);
+
                                                 break;
                                             }
                                             case 4: {
+
                                                 break;
                                             }
                                             case 5: {
@@ -185,12 +205,12 @@ int main() {
                                             }
                                             default: {
                                                 printf("Invalid input\n");
-                                                break;    
+                                                break;
                                             }
                                         }
                                     }
                                 }
-                                else {
+                                else {//AJOUTER DES POINTS A CHAQUE NOUVELLE MEASURE
                                     cout << "================= INDIVIDUAL MENU =================" << endl;
                                     cout << "1: Enter 1 to submit new measure." << endl;
                                     cout << "2: Enter 2 to get your current points. " << endl;
@@ -199,11 +219,20 @@ int main() {
                                     if(cin >> choice) {
                                         switch(choice) {
                                             case 1: {
-                                                // more stuff here
+                                                string attributeId, ts;
+                                                float value;
+                                                printf("What is your measure type ? O3,SO2,NO2,PM10 ? \n" );
+                                                cin>>attributeId;
+                                                printf("What is the date today? (YYYY-MM-DD) \n" );
+                                                cin>>ts;
+                                                printf("The value ? \n");
+                                                cin>>value;
+                                                Measure maMeasure =  Measure (ts,indiv->getId(), attributeId, value, false);
+                                                cat.addMeasure(maMeasure);
                                                 break;
                                             }
                                             case 2: {
-                                                cout << "Points: " << indiv->getPoints();
+                                                cout << "Points: " << indiv->getPoints()<<"\n";
                                                 break;
                                             }
                                             case 3: {
@@ -230,9 +259,9 @@ int main() {
                     if(userType=="individual") {
                         string id, password;
                         printf("Enter your username:\n");
-                        getline(cin, id); 
+                        getline(cin, id);
                         printf("Enter your password:\n");
-                        getline(cin, password); 
+                        getline(cin, password);
                         Individual* newUser = new Individual(id, password, 0, 0);
                         users.addUser(newUser);
                         printf("You have successfully signed up as an individual!:\n");
@@ -240,10 +269,10 @@ int main() {
                     else if(userType=="entreprise") {
                         string id, password;
                         printf("Enter your username:\n");
-                        getline(cin, id); 
+                        getline(cin, id);
                         printf("Enter your password:\n");
-                        getline(cin, password); 
-                        vector<Purificateur> cleaners;
+                        getline(cin, password);
+                        list<Cleaner> cleaners;
                         Entreprise* newUser = new Entreprise(id, password, cleaners);
                         users.addUser(newUser);
                         printf("You have successfully signed up as an entreprise!:\n");
@@ -268,5 +297,5 @@ int main() {
             cin.clear();
             cin.ignore(80,'\n');
         }
-    }*/
+    }
 }

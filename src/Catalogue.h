@@ -4,20 +4,18 @@
 
 #include <vector>
 #include "Sensor.h"
-#include "Purificateur.h"
+#include "Cleaner.h"
 
 class Catalogue
 {
 
 public:
     float getAverageQuality(float latitude, float longitude, float radius, string begin, string end="2021-01-01");
-    //list<Sensor> parseSensors();
-    //list<Measure> parseMeasures();
-    //int identifySimilarities(list <Sensor> mySensorList);
-    void addCleaner(Purificateur cleaner);
-    Purificateur removeCleaner(string cleanerId);
+    void addCleaner(Cleaner cleaner);
+    Cleaner removeCleaner(string cleanerId);
     void addSensor(string id, float latitude, float longitude, string description);
     void addCleaner(string id, float latitude, float longitude, string begin, string end);
+    void addMeasure(Measure uneMeasure);
 
 // constructeur - déstructeur
     Catalogue();
@@ -27,7 +25,8 @@ public:
 //getter
     vector<Sensor> getSensorList();
     list<Measure> getMeasureList();
-    list<Purificateur> getCleanerList();
+    list<Cleaner> getCleanerList();
+    Cleaner GetCleanerById(string id);
 
 
 protected:
@@ -37,11 +36,10 @@ protected:
     void setSensors (string fileName);
     void setCleaners (string fileName);
     list<Measure> setIndividualMeasures(string fileName);
-   // void setMeasureTypes(string fileName);
 
     list<Measure> measureList;
     vector<Sensor> sensorList;
-    list<Purificateur> cleanerList;
+    list<Cleaner> cleanerList;
     int nbMeasure;
     int nbSensor;
     int nbCleaner;

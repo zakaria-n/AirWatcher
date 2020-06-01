@@ -1,11 +1,11 @@
 .PHONY: all, clean
 
 CPP = g++
-CFLAGS = -ansi -pedantic -Wall -Werror -std=c++11 -g 
+CFLAGS = -ansi -pedantic -Wall -Werror -std=c++11 -g
 
 LIBS += -lpthread
 
-PROGS = main.o Measure.o Utilisateurs.o Entreprise.o GouvernmentalAgency.o Individual.o Sensor.o Area.o Catalogue.o Purificateur.o SimpleInterface.o 
+PROGS = main.o Measure.o Utilisateurs.o Entreprise.o GouvernmentalAgency.o Individual.o Sensor.o Area.o Catalogue.o Cleaner.o SimpleInterface.o
 
 Final : $(PROGS)
 	$(CPP) -o $@ $^

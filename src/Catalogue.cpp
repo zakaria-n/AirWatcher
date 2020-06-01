@@ -55,16 +55,33 @@ list<Measure> Catalogue::getMeasureList() {
   return measureList;
 }
 
-list<Purificateur> Catalogue::getCleanerList() {
+list<Cleaner> Catalogue::getCleanerList() {
   return cleanerList;
 }
 
-void Catalogue::addCleaner(Purificateur cleaner) {
+Cleaner Catalogue::GetCleanerById(string id){
+  list<Cleaner> unCleanerList = cleanerList;
+  Cleaner monCleaner;
+  for (auto it=cleanerList.begin(); it!=cleanerList.end(); it++)
+  {
+    if (it->GetId()==id){
+      monCleaner = *it;
+    }
+  }
+  return monCleaner;
+}
+
+void Catalogue::addMeasure(Measure uneMeasure){
+  measureList.push_back(uneMeasure);
+}
+
+
+void Catalogue::addCleaner(Cleaner cleaner) {
   cleanerList.push_back(cleaner);
 }
 
-Purificateur Catalogue::removeCleaner(string cleanerId) {
-  Purificateur removed;
+Cleaner Catalogue::removeCleaner(string cleanerId) {
+  Cleaner removed;
     for (auto it=cleanerList.begin(); it!=cleanerList.end(); it++)
     {
       if(it->GetId()==cleanerId) {
@@ -73,7 +90,7 @@ Purificateur Catalogue::removeCleaner(string cleanerId) {
         break;
       }
     }
-  return removed;    
+  return removed;
 }
 
 vector<string> readLine (string line)
@@ -167,36 +184,21 @@ void Catalogue::setCleaners(string fileName)
   ifstream lect;
   lect.open(fileName.c_str());
   string line;
+  int id = 0;
   while (getline(lect, line))
   {
     vector<string> monCleaner = readCleanerLine(line);
-    Purificateur newCleaner = Purificateur(monCleaner[0],stof(monCleaner[1]),stof(monCleaner[2]),monCleaner[3], monCleaner[4]);
+    Cleaner newCleaner = Cleaner(to_string(id),stof(monCleaner[1]),stof(monCleaner[2]),monCleaner[3], monCleaner[4]);
+    //printf("Le cleaner : %s ajouté ",newCleaner.GetId());
     cleanerList.push_back(newCleaner);
+    id++;
   }
   lect.close();
 }
 
-/*void Catalogue::setMeasureTypes(string fileName)
-{
-  ifstream lect;
-
-  string attributeID;
-  string unit;
-  string description;
-
-  lect.open(fileName);
-  lect.getline(a;100; ';');
-  lect.getline(latitude;100; ':');
-  lect.getline(longitude;100; ';');
-  lect.getline();
-
-  return 0;
-
-}*/
-
 float Catalogue::getAverageQuality
 (float latitude, float longitude, float radius, string begin, string end) {
-  Area curr = Area(latitude,longitude, radius, sensorList); 
+  Area curr = Area(latitude,longitude, radius, sensorList);
   float average = curr.avgQualityOverPeriod(begin, end);
   return average;
 }
@@ -208,6 +210,6 @@ void Catalogue::addSensor(string id, float latitude, float longitude, string des
 }
 
 void Catalogue::addCleaner(string id, float latitude, float longitude, string begin, string end) {
-  Purificateur newPurificateur = Purificateur(id,longitude,latitude,begin, end);
-  cleanerList.push_back(newPurificateur);
+  Cleaner newCleaner = Cleaner(id,longitude,latitude,begin, end);
+  cleanerList.push_back(newCleaner);
 }

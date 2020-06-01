@@ -2,10 +2,10 @@
 #define ENTREPRISE_H
 
 #include <string>
-#include <vector>
+#include <list>
 
 #include "Utilisateurs.h"
-#include "Purificateur.h"
+#include "Cleaner.h"
 
 class Entreprise : public Utilisateurs
 {
@@ -14,15 +14,15 @@ public:
 
     Entreprise ( const Entreprise & unEntreprise );
     Entreprise();
-    Entreprise (string id, string password, vector<Purificateur> cleaners);
+    Entreprise (string id, string password, list<Cleaner> cleaners);
 
-    vector<Purificateur> getCleaners();
+    list<Cleaner> getCleaners();
 
-    bool ajouterPurificateur(Purificateur cleaner);
-    Purificateur supprimerPurificateur(Purificateur cleaner);
+    bool ajouterCleaner(Cleaner cleaner);
+    Cleaner supprimerCleaner(Cleaner cleaner);
 
 protected:
-    vector<Purificateur> cleaners;
+    list<Cleaner> cleaners;
 
 };
 
