@@ -188,9 +188,9 @@ int main() {
                                               Cleaner unCleaner = cleaners[0];
                                               int efficiency;
                                               float rad;
-                                              printf("Enter cleaner ID:\n");
+                                              cout << "Enter cleaner ID" << endl;
                                               cin >> CleanerId;
-                                              printf("Enter radius :\n");
+                                              cout << "Enter radius " << endl;
                                               cin >> rad;
                                               //unCleaner = cat.GetCleanerById(CleanerId);
                                               efficiency = unCleaner.calculateEfficiency(&cat,rad);
@@ -202,9 +202,9 @@ int main() {
                                               string CleanerId;
                                               int qua;
                                               float rad;
-                                              printf("Enter cleaner ID:\n");
+                                              cout << "Enter cleaner ID" << endl;
                                               cin >> CleanerId;
-                                              printf("Enter radius :\n");
+                                              cout << "Enter radius " << endl;
                                               cin >> rad;
                                               //unCleaner = cat.GetCleanerById(CleanerId);
                                               qua = cleaners[0].calculateAirQuality(&cat,rad);
