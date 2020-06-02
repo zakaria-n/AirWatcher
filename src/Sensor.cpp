@@ -222,22 +222,25 @@ float Sensor::getScore(list<Measure> data)
     return s/4;
 }
 
-list<Sensor> Sensor::getCluster(list<Sensor> sensorData)
+list<Sensor> Sensor::getCluster(vector<Sensor> sensorData)
 {
     list<Sensor> cluster;
+
+    cout << "this: " << airQuality(mesures) << endl;
     for (auto it=sensorData.begin(); it!=sensorData.end(); it++)
     {
-        if(abs(airQuality(mesures)-it->airQuality(it->getMeasures())) <= 1)
+        if(abs(airQuality(mesures)-it->airQuality(it->getMeasures())) <= 0.05)
         {
+            cout << "that: " << it->airQuality(it->getMeasures()) << endl;
             cluster.push_front(*it);
         }
     }
     return cluster;
 }
 
-void Sensor::displayCluster()
+void Sensor::displayCluster(vector<Sensor> sensorData)
 {
-    list<Sensor> cluster = getCluster();
+    list <Sensor> cluster = getCluster(sensorData);
     for (auto it=cluster.begin(); it!=cluster.end(); it++)
     {
         cout << *it;
@@ -269,7 +272,7 @@ list<Measure> Sensor::getMeasures() {
 
 ostream & operator << ( ostream & out, const Sensor & unSensor )
 {
-    out<<unSensor.sensorID<<" (lat:"<<unSensor.latitude<<", long:"<<unSensor.longitude<<") ("<<unSensor.description<<")";
+    out<<unSensor.sensorID<<" (lat:"<<unSensor.latitude<<", long:"<<unSensor.longitude<<") ("<<unSensor.description<<")" << endl;;
 	return out;
 }
 

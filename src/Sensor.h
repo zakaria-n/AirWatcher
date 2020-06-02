@@ -28,8 +28,8 @@ public:
     // Méthode pour attribuer à un capteur un score synthétisant ses propriétés
     float getScore(list<Measure> data);
     // Méthode pour trouver les capteurs similaires
-    list<Sensor> getCluster(list<Sensor> sensorData);
-    void displayCluster();
+    list<Sensor> getCluster(vector<Sensor> sensorData);
+    void displayCluster(vector<Sensor> sensorData);
 
     void displayMeasures();
     // Getters

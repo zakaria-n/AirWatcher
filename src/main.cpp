@@ -68,7 +68,8 @@ int main() {
                                     cout << "1: Enter 1 to get average quality for an area." << endl;
                                     cout << "2: Enter 2 to add new sensor. " << endl;
                                     cout << "2: Enter 3 to display sensors. " << endl;
-                                    cout << "4: Enter 4 to log out." << endl;
+                                    cout << "4: Enter 4 to display cluster of a sensor. " << endl;
+                                    cout << "5: Enter 5 to log out." << endl;
                                     if(cin >> choice) {
                                         switch(choice) {
                                             case 1: { //  NE FONCTIONNE PAS
@@ -118,6 +119,13 @@ int main() {
                                                 break;
                                             }
                                             case 4: {
+                                                cout << "Enter sensor ID..." << endl;
+                                                string id;
+                                                cin >> id;
+                                                Sensor s = cat.GetSensorById(id);
+                                                s.displayCluster(cat.getSensorList());
+                                            }
+                                            case 5: {
                                                 users.deconnexion(user);
                                                 loggedIn = false;
                                                 break;

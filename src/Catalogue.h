@@ -27,6 +27,7 @@ public:
     list<Measure> getMeasureList();
     vector<Cleaner> getCleanerList();
     Cleaner GetCleanerById(string id);
+    Sensor GetSensorById(string id);
 
 
 protected:

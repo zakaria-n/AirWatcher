@@ -70,6 +70,19 @@ Cleaner Catalogue::GetCleanerById(string id){
   return monCleaner;
 }
 
+Sensor Catalogue::GetSensorById(string id)
+{
+    Sensor mySensor;
+    for (auto it=sensorList.begin(); it!= sensorList.end(); it++)
+    {
+        if(it->getId()==id)
+        {
+          mySensor = *it;
+        }
+    }
+    return mySensor;
+}
+
 void Catalogue::addMeasure(Measure uneMeasure){
   measureList.push_back(uneMeasure);
 }
