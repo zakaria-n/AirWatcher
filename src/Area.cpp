@@ -71,8 +71,8 @@ float Area::avgQualityOverPeriod (string t1, string t2){
     //cout << "In are\n" << endl;
     int nbSensor =0;
     float quality=0.0;
-    cout << t1 << endl;
-    cout << t2 << endl;
+    //cout << t1 << endl;
+    //cout << t2 << endl;
     for (auto it=sensors.begin(); it!=sensors.end(); it++)
     {
         //cout << "fetching sensors\n" << endl;
@@ -115,7 +115,7 @@ Area::Area(float lat, float lon, int rayon, vector<Sensor> sensorList)
   longitude = lon;
   radius = rayon;
   fillSensors(sensorList);
-  cout << sensors.size() << endl;
+  //cout << sensors.size() << endl;
 }
 
 Area::~Area ( )
