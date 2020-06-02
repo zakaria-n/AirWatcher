@@ -10,6 +10,7 @@ Cleaner::Cleaner ( const Cleaner & unCleaner )
 #ifdef MAP
    cout << "Appel au constructeur de copie de <Cleaner>" << endl;
 #endif
+    id = unCleaner.id;
     latitude = unCleaner.latitude;
     longitude = unCleaner.longitude;
     timestampBegin = unCleaner.timestampBegin;
