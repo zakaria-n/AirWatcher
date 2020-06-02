@@ -14,7 +14,7 @@ bool Area::contains (Sensor s)
   return contains(s.getLongitude(), s.getLatitude() );
 }
 
-void Area::fillSensors(vector<Sensor> data)
+void Area::fillSensors(vector<Sensor> data, list<Measure> mdata)
 {
     for (auto it=data.begin(); it!=data.end(); it++)
     {
@@ -23,7 +23,8 @@ void Area::fillSensors(vector<Sensor> data)
             sensors.push_back(*it);
         }
     }
-}
+    fillSensorData(mdata)
+;}
 
 void Area::fillSensorData(list <Measure> data)
 {
@@ -92,7 +93,7 @@ Area::Area()
 #endif
 }
 
-Area::Area(float lat, float lon, float rayon, vector<Sensor> sensorList)
+Area::Area(float lat, float lon, float rayon, vector<Sensor> sensorList, list<Measure> mdata)
 {
 #ifdef MAP
   cout << "Appel au constructeur de <Area>" << endl;
@@ -100,7 +101,7 @@ Area::Area(float lat, float lon, float rayon, vector<Sensor> sensorList)
   latitude = lat;
   longitude = lon;
   radius = rayon;
-  fillSensors(sensorList);
+  fillSensors(sensorList, mdata);
 }
 
 Area::~Area ( )
