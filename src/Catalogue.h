@@ -10,7 +10,7 @@ class Catalogue
 {
 
 public:
-    float getAverageQuality(float latitude, float longitude, float radius, string begin, string end="2021-01-01");
+    float getAverageQuality(float latitude, float longitude, int radius, string begin, string end="2019-12-31");
     void addCleaner(Cleaner cleaner);
     Cleaner removeCleaner(string cleanerId);
     void addSensor(string id, float latitude, float longitude, string description);

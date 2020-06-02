@@ -25,8 +25,8 @@ public:
     string GetTimestampBegin() const;
     string GetTimestampEnd() const;
 
-    int calculateEfficiency(Catalogue *cat, float rayon) const;
-    int calculateAirQuality(Catalogue* cat, float rayon) const;
+    float calculateEfficiency(Catalogue *cat, int rayon) const;
+    float calculateAirQuality(Catalogue* cat, int rayon) const;
     float calculatePurifiedZone(Catalogue* cat) const;
 
     bool operator==(Cleaner const&) const;
