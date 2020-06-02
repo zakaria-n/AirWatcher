@@ -181,10 +181,13 @@ int main() {
                                             }
                                             case 5: {
                                               string CleanerId;
+                                              Cleaner unCleaner;
                                               int purifiedRadius, purifiedZone;
                                               cout << "Enter cleaner id" << endl;
                                               cin >> CleanerId;
-                                              Cleaner unCleaner = cat.GetCleanerById(CleanerId);
+                                              //unCleaner = cat.GetCleanerById(CleanerId);
+                                              //purifiedRadius = unCleaner.calculatePurifiedZone(&cat);
+                                              unCleaner = cat.GetCleanerById(CleanerId);
                                               purifiedRadius = unCleaner.calculatePurifiedZone(&cat);
                                               purifiedZone = PI*pow(purifiedRadius,2);
                                               cout<< "Here is the surface of the purified zone : " << purifiedZone << endl;
