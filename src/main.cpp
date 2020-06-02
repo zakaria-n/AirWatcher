@@ -190,7 +190,9 @@ int main() {
                                               unCleaner = cat.GetCleanerById(CleanerId);
                                               purifiedRadius = unCleaner.calculatePurifiedZone(&cat);
                                               purifiedZone = PI*pow(purifiedRadius,2);
-                                              cout<< "Here is the surface of the purified zone : " << purifiedZone << endl;
+                                              cout<< "Radius of the purified zone : " << purifiedRadius << endl;
+                                              cout<< "Srface of the purified zone : " << purifiedZone << endl;
+
                                                 break;
                                             }
                                             case 6: {

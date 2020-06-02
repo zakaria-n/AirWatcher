@@ -87,13 +87,13 @@ float Cleaner::calculateAirQuality(Catalogue* cat, int rayon) const {
 
 // area that has improved after cleaner added
 float Cleaner::calculatePurifiedZone(Catalogue* cat) const {
-    float minimalChange = 0;
+    float minimalChange = -0.2;
     int purifiedRadius = 0;
-    int currentRayon = 50;
+    int currentRayon = 80;
     float efficiency = calculateEfficiency(cat, currentRayon);
     cout <<"efficiency: " << efficiency << endl;
-    while ( efficiency < minimalChange) {
-        cout << "efficiency: " << efficiency << endl;
+    while ( efficiency < minimalChange && currentRayon <= 200) {
+        //cout << "efficiency: " << efficiency << endl;
         purifiedRadius = currentRayon;
         currentRayon+=5;
         efficiency = calculateEfficiency(cat, currentRayon);
