@@ -194,7 +194,6 @@ int main() {
                                               cin >> rad;
                                               //unCleaner = cat.GetCleanerById(CleanerId);
                                               efficiency = unCleaner.calculateEfficiency(&cat,rad);
-
                                               cout<<"Here is the efficiency of the cleaner ... : "<<efficiency<<endl;
                                               break;
                                             }
