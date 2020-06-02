@@ -22,8 +22,8 @@ int main() {
     string sensorFile = "../dataset/sensors.csv";
     string cleanerFile = "../dataset/cleaners.csv";
     Catalogue cat = Catalogue(measureFile, sensorFile, cleanerFile);
-
-
+    
+    
     //vector<Sensor> sensorLz = cat.getSensorList();
     /*for (auto it=sensorLz.begin(); it!= sensorLz.end(); it++)
     {
@@ -31,8 +31,14 @@ int main() {
     }*/
     /*
     list<Measure> measureL = cat.getMeasureList();
+<<<<<<< HEAD
+    /*Area arz = Area(44.0,0.3, 5000, sensorLz);
+    arz.fillSensors(sensorLz);
+    arz.fillSensorData(measureL);
+=======
     Area arz = Area(44.0,0.3, 170,sensorLz,measureL);
     //arz.fillSensors(sensorLz, measureL);
+>>>>>>> eb32b02df003a1c0b8808b9fca28750645bf7d70
     cout << "Sensors in this area:" << endl;
     arz.displaySensors();
     cout << "Measures for this area: " << endl;
@@ -51,7 +57,7 @@ int main() {
     cout << s.airQuality(measureL) << endl;
     cout << "-----------------sopi-----------" << endl;
 
-    */
+    */ 
     /*vector<Sensor> sensorL = cat.getSensorList();
     for (auto it=sensorL.begin(); it!= sensorL.end(); it++)
     {
@@ -214,7 +220,10 @@ int main() {
                                                 break;
                                             }
                                             case 5: {
+<<<<<<< HEAD
+=======
                                               vector<Cleaner> unCleaner;
+>>>>>>> eb32b02df003a1c0b8808b9fca28750645bf7d70
                                               string CleanerId;
                                               float purifiedRadius, purifiedZone;
                                               printf("Enter cleaner ID:\n");
