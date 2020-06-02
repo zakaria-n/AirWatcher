@@ -12,13 +12,14 @@ public:
 
     Individual();
 
-    Individual(string id, string password, int numMeasure, int numValidatedMeasures);
+    Individual(string id, string password, int numMeasure, int numValidatedMeasures, string sensor);
 
     int getPoints();
 
 protected:
     int totalMeasures;
     int validatedMeasures;
+    string sensorId;
 
 };
 

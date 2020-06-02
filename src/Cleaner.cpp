@@ -90,7 +90,6 @@ float Cleaner::calculatePurifiedZone(Catalogue* cat) const {
     int currentRayon = 110;
     float efficiency = calculateEfficiency(cat, currentRayon);
     while ( efficiency <= minimalChange && currentRayon < 400) {
-        cout << efficiency << endl;
         purifiedRadius = currentRayon;
         currentRayon+=10;
         efficiency = calculateEfficiency(cat, currentRayon);

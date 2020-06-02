@@ -19,11 +19,12 @@ Individual::Individual()
 #endif
 } 
 
-Individual::Individual(string id, string password, int numMeasures, int numValidatedMeasures) : Utilisateurs(id, password)
+Individual::Individual(string id, string password, int numMeasures, int numValidatedMeasures, string sensor) : Utilisateurs(id, password)
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Individual>" << endl;
 #endif
+    sensorId = sensor;
     totalMeasures = numMeasures;
     validatedMeasures = numValidatedMeasures;
 } 

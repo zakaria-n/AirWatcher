@@ -85,6 +85,10 @@ void Catalogue::addSensor(string id, float latitude, float longitude, string des
   sensorList.push_back(newSensor);
 }
 
+void Catalogue::addSensor(Sensor s) {
+  sensorList.push_back(s);
+}
+
 Cleaner Catalogue::removeCleaner(string cleanerId) {
   Cleaner removed;
     for (auto it=cleanerList.begin(); it!=cleanerList.end(); it++)
