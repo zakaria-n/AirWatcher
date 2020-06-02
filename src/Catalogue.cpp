@@ -55,12 +55,12 @@ list<Measure> Catalogue::getMeasureList() {
   return measureList;
 }
 
-list<Cleaner> Catalogue::getCleanerList() {
+vector <Cleaner> Catalogue::getCleanerList() {
   return cleanerList;
 }
 
 Cleaner Catalogue::GetCleanerById(string id){
-  list<Cleaner> unCleanerList = cleanerList;
+  vector<Cleaner> unCleanerList = cleanerList;
   Cleaner monCleaner;
   for (auto it=cleanerList.begin(); it!=cleanerList.end(); it++)
   {
@@ -86,7 +86,7 @@ Cleaner Catalogue::removeCleaner(string cleanerId) {
     {
       if(it->GetId()==cleanerId) {
         removed = *it;
-        cleanerList.remove(*it);
+        cleanerList.erase(it);
         break;
       }
     }

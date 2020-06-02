@@ -76,7 +76,7 @@ vector<float> Sensor::avgMeasures(list<Measure> mesures)
 	return avg;
 }
 
-int Sensor::airQuality(list<Measure> data)
+float Sensor::airQuality(list<Measure> data)
 {
     cout << "Calculating air quality..." << endl;
     
@@ -214,7 +214,7 @@ list<Measure> Sensor::truncateMeasuresToPeriod(string t1, string t2)
 	return overPeriod;
 }
 
-int Sensor::airQualityOverPeriod(string t1, string t2)
+float Sensor::airQualityOverPeriod(string t1, string t2)
 {
     list<Measure> period = truncateMeasuresToPeriod(t1,t2);
     return airQuality(period);

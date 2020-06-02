@@ -19,7 +19,7 @@ Entreprise::Entreprise()
 #endif
 }
 
-Entreprise::Entreprise(string id, string password, list<Cleaner> cleanerInput) : Utilisateurs(id, password)
+Entreprise::Entreprise(string id, string password, vector<Cleaner> cleanerInput) : Utilisateurs(id, password)
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Entreprise>" << endl;
@@ -27,7 +27,7 @@ Entreprise::Entreprise(string id, string password, list<Cleaner> cleanerInput) :
     cleaners = cleanerInput;
 }
 
-list<Cleaner> Entreprise::getCleaners() {
+vector <Cleaner> Entreprise::getCleaners() {
     return cleaners;
 }
 

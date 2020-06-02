@@ -21,9 +21,9 @@ public:
     void fillMeasures(list<Measure>);
     // Calculates the average measures for each measure type
     vector<float> avgMeasures(list<Measure>);
-    int airQuality(list<Measure>);
+    float airQuality(list<Measure>);
     list<Measure> truncateMeasuresToPeriod(string, string);
-    int airQualityOverPeriod(string, string);
+    float airQualityOverPeriod(string, string);
     list<Measure> mostRecentMeasure();
     // Méthode pour calculter la distance sphérique entre deux capteurs
     int getDistance(const Sensor other);

@@ -25,7 +25,7 @@ public:
 //getter
     vector<Sensor> getSensorList();
     list<Measure> getMeasureList();
-    list<Cleaner> getCleanerList();
+    vector<Cleaner> getCleanerList();
     Cleaner GetCleanerById(string id);
 
 
@@ -39,7 +39,7 @@ protected:
 
     list<Measure> measureList;
     vector<Sensor> sensorList;
-    list<Cleaner> cleanerList;
+    vector<Cleaner> cleanerList;
     int nbMeasure;
     int nbSensor;
     int nbCleaner;

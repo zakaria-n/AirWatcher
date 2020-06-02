@@ -3,6 +3,7 @@
 
 #include <string>
 #include <list>
+#include <vector>
 
 #include "Utilisateurs.h"
 #include "Cleaner.h"
@@ -14,15 +15,15 @@ public:
 
     Entreprise ( const Entreprise & unEntreprise );
     Entreprise();
-    Entreprise (string id, string password, list<Cleaner> cleaners);
+    Entreprise (string id, string password, vector <Cleaner> cleaners);
 
-    list<Cleaner> getCleaners();
+    vector <Cleaner> getCleaners();
 
     bool ajouterCleaner(Cleaner cleaner);
     Cleaner supprimerCleaner(Cleaner cleaner);
 
 protected:
-    list<Cleaner> cleaners;
+    vector <Cleaner> cleaners;
 
 };
 

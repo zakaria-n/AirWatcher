@@ -22,43 +22,43 @@ int main() {
     string sensorFile = "../dataset/sensors.csv";
     string cleanerFile = "../dataset/cleaners.csv";
     Catalogue cat = Catalogue(measureFile, sensorFile, cleanerFile);
-    //vector<Sensor> sensorLz = cat.getSensorList();
-    /*for (auto it=sensorL.begin(); it!= sensorL.end(); it++)
+    vector<Sensor> sensorLz = cat.getSensorList();
+    /*for (auto it=sensorLz.begin(); it!= sensorLz.end(); it++)
     {
         cout << *it << endl;
     }*/
-    //list<Measure> measureL = cat.getMeasureList();
-    //Area arz = Area(44.0,0.3, 5000, sensorLz);
-    //arz.fillSensors(sensorLz);
-   // arz.fillSensorData(measureL);
-    //cout << "Sensors in this area:" << endl;
-   // arz.displaySensors();
-    //cout << "Measures for this area: " << endl;
-    //ar.displayAreaMeasures();
-    //cout << "Average air quality in this area: " << endl;
-  //  cout << arz.avgQualityOverPeriod("2019-02-09","2019-03-09");
+    list<Measure> measureL = cat.getMeasureList();
+    Area arz = Area(44.0,0.3, 5000, sensorLz);
+    arz.fillSensors(sensorLz);
+    arz.fillSensorData(measureL);
+    cout << "Sensors in this area:" << endl;
+    arz.displaySensors();
+    cout << "Measures for this area: " << endl;
+    arz.displayAreaMeasures();
+    cout << "Average air quality in this area: " << endl;
+    cout << arz.avgQualityOverPeriod("2019-02-09","2019-03-09");
 
 
-    /*Sensor s = sensorL.back();
+    Sensor s = sensorLz.back();
 
     s.fillMeasures(measureL);
     cout << "The measures recorded by this sensor are: " << endl;
     s.displayMeasures();
 
     cout << "For this sensor: " << s << " the average quality is: " << endl;
-    cout << s.airQuality(measureL) << endl;*/
-    //cout << "-----------------sopi-----------" << endl;
+    cout << s.airQuality(measureL) << endl;
+    cout << "-----------------sopi-----------" << endl;
 
-    //vector<Sensor> sensorL = cat.getSensorList();
-    //for (auto it=sensorL.begin(); it!= sensorL.end(); it++)
-    //{
-    //    cout << *it << endl;
-  //  }
+    vector<Sensor> sensorL = cat.getSensorList();
+    for (auto it=sensorL.begin(); it!= sensorL.end(); it++)
+    {
+        cout << *it << endl;
+    }
     list<Measure> measureList = cat.getMeasureList();
     Area ar = Area();
     SimpleInterface users = SimpleInterface();
     GouvernmentalAgency* government = new GouvernmentalAgency("one", "111");
-    list<Cleaner> cleaners = cat.getCleanerList();
+    vector <Cleaner> cleaners = cat.getCleanerList();
     Entreprise* entre = new Entreprise("two", "222",  cleaners);
     Individual* indiv = new Individual("three", "333",3,2);
     users.addUser(government);
@@ -152,7 +152,7 @@ int main() {
                                     if(cin >> choice) {
                                         switch(choice) {
                                             case 1: {
-                                                list<Cleaner> cleaners = cat.getCleanerList();
+                                                vector<Cleaner> cleaners = cat.getCleanerList();
                                                 for (auto it=cleaners.begin(); it!=cleaners.end(); it++)
                                                 {
                                                   string id = it->GetId();
@@ -272,7 +272,7 @@ int main() {
                         getline(cin, id);
                         printf("Enter your password:\n");
                         getline(cin, password);
-                        list<Cleaner> cleaners;
+                        vector<Cleaner> cleaners;
                         Entreprise* newUser = new Entreprise(id, password, cleaners);
                         users.addUser(newUser);
                         printf("You have successfully signed up as an entreprise!:\n");
