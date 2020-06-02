@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <chrono> 
 
 #define PI 3.141592
 
@@ -85,8 +86,12 @@ int main() {
                                                 cin >> dateBegin;
                                                 cout << "Enter End date: (YYYY-MM-DD):" << endl;
                                                 cin >> dateEnd;
+                                                auto start = chrono::high_resolution_clock::now();
                                                 float avgQua = cat.getAverageQuality(lat,longi,radius,dateBegin, dateEnd);
+                                                auto stop = chrono::high_resolution_clock::now(); 
+                                                auto duration = std::chrono::duration_cast<chrono::milliseconds>(stop - start);
                                                 printf("The average air quality in your area : %f\n",avgQua );
+                                                cout << "Elapsed time: " << duration.count() << " milliseconds" << endl;
                                                 break;
                                             }
                                             case 2: {  //TESTER L'AFFICHAGE
@@ -108,7 +113,7 @@ int main() {
                                                 cout << "Sensors:" << endl;
                                                 vector<Sensor> sensors = cat.getSensorList();
                                                 for(int i=0; i < sensors.size(); i++) {
-                                                    cout << sensors.at(i).getId() << endl;
+                                                    cout << sensors.at(i) << endl;
                                                 }
                                                 break;
                                             }
@@ -176,33 +181,37 @@ int main() {
                                               break;
                                             }
                                             case 4: {
-                                              string CleanerId;
-                                              int qua;
-                                              int rad;
-                                              cout << "Enter cleaner ID" << endl;
-                                              cin >> CleanerId;
-                                              cout << "Enter radius " << endl;
-                                              cin >> rad;
-                                              Cleaner unCleaner = cat.GetCleanerById(CleanerId);
-                                              qua = unCleaner.calculateAirQuality(&cat,rad);
+                                                string CleanerId;
+                                                int qua;
+                                                int rad;
+                                                cout << "Enter cleaner ID" << endl;
+                                                cin >> CleanerId;
+                                                cout << "Enter radius " << endl;
+                                                cin >> rad;
+                                                Cleaner unCleaner = cat.GetCleanerById(CleanerId);
+                                                qua = unCleaner.calculateAirQuality(&cat,rad);
 
-                                              cout<<"Here is the air quality of the cleaner ... area  : "<<qua<<endl;
+                                                cout<<"Here is the air quality of the cleaner ... area  : "<<qua<<endl;
 
                                                 break;
                                             }
                                             case 5: {
-                                              string CleanerId;
-                                              Cleaner unCleaner;
-                                              int purifiedRadius, purifiedZone;
-                                              cout << "Enter cleaner id" << endl;
-                                              cin >> CleanerId;
-                                              //unCleaner = cat.GetCleanerById(CleanerId);
-                                              //purifiedRadius = unCleaner.calculatePurifiedZone(&cat);
-                                              unCleaner = cat.GetCleanerById(CleanerId);
-                                              purifiedRadius = unCleaner.calculatePurifiedZone(&cat);
-                                              purifiedZone = PI*pow(purifiedRadius,2);
-                                              cout<< "Radius of the purified zone : " << purifiedRadius << endl;
-                                              cout<< "Srface of the purified zone : " << purifiedZone << endl;
+                                                string CleanerId;
+                                                Cleaner unCleaner;
+                                                int purifiedRadius, purifiedZone;
+                                                cout << "Enter cleaner id" << endl;
+                                                cin >> CleanerId;
+                                                //unCleaner = cat.GetCleanerById(CleanerId);
+                                                //purifiedRadius = unCleaner.calculatePurifiedZone(&cat);
+                                                unCleaner = cat.GetCleanerById(CleanerId);
+                                                auto start = chrono::high_resolution_clock::now();
+                                                purifiedRadius = unCleaner.calculatePurifiedZone(&cat);
+                                                auto stop = chrono::high_resolution_clock::now(); 
+                                                auto duration = std::chrono::duration_cast<chrono::milliseconds>(stop - start);
+                                                purifiedZone = PI*pow(purifiedRadius,2);
+                                                cout<< "Radius of the purified zone : " << purifiedRadius << endl;
+                                                cout<< "Srface of the purified zone : " << purifiedZone << endl;
+                                                cout << "Elapsed time: " << duration.count() << " milliseconds" << endl;
 
                                                 break;
                                             }
