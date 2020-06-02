@@ -38,7 +38,7 @@ void Area::fillSensors(vector<Sensor> data, list<Measure> mdata)
             sensors.push_back(*it);
         }
     }
-    //fillSensorData(mdata);
+    fillSensorData(mdata);
 }
 
 void Area::fillSensorData(list <Measure> data)

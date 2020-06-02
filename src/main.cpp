@@ -70,6 +70,7 @@ int main() {
 
     bool exit = false;
     int choice;
+
     while(!exit) {
         cout << "       Welcome to Sensor Inc." << endl << "What would you like to do?" << endl;
         cout << "================= MENU =================" << endl;
