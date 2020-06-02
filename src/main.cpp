@@ -196,6 +196,20 @@ int main() {
                                                 break;
                                             }
                                             case 5: {
+                                              list<Cleaner> unCleaner;
+                                              string CleanerId;
+                                              float purifiedRadius, purifiedZone;
+                                              printf("Enter cleaner ID:\n");
+                                              cin >> CleanerId;
+                                              //unCleaner = cat.GetCleanerById(CleanerId);
+                                              unCleaner = cat.getCleanerList();
+                                              auto it = unCleaner.begin();
+                                              //purifiedRadius = unCleaner.calculatePurifiedZone(&cat);
+                                              purifiedRadius = it->calculatePurifiedZone(&cat);
+                                              purifiedZone = PI*pow(purifiedRadius,2);
+                                              //purifiedZone = purifiedRadius;
+                                              cout<<"Here is the surface of the purified zone : "<<purifiedZone<<endl;
+                                              //printf("Here is the surface of the purified zone : %f\n",purifiedZone);
                                                 break;
                                             }
                                             case 6: {
