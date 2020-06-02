@@ -78,18 +78,18 @@ vector<float> Sensor::avgMeasures(list<Measure> mesures)
 
 float Sensor::airQuality(list<Measure> data)
 {
-    //cout << "Calculating air quality..." << endl;
+   // cout << "Calculating air quality..." << endl;
     
     if(data.begin() == data.end()) //vibe check
     {
-        //cout << "she's empty your honour" << endl;
+       // cout << "she's empty your honour" << endl;
         return 0;
     }
     
     vector<float> averages = avgMeasures(data);
     if (averages[0]==0 && averages[1]==0 && averages[2]==0 && averages[03]==0)
     {
-        //cout << "null averages your honour" << endl;
+       // cout << "null averages your honour" << endl;
         return 0;
     }
 
@@ -169,7 +169,8 @@ list<Measure> Sensor::truncateMeasuresToPeriod(string t1, string t2)
 
     sscanf(time1, "%d-%d-%d", &year1, &month1, &day1);
     sscanf(time2, "%d-%d-%d", &year2, &month2, &day2);
-
+    //cout << time1 << endl;
+    //cout << time2 << endl;
 
 
     //cout << "done getting dates" << endl;
@@ -183,15 +184,15 @@ list<Measure> Sensor::truncateMeasuresToPeriod(string t1, string t2)
         //cout << "in measures..." << endl;
         if (it->getMonth()>month1 && it->getMonth()<month2)
         {
-            //cout << "current month: " << it->getMonth() << endl;
+          //  cout << "current month: " << it->getMonth() << endl;
             match = true;
         }else if (it->getMonth()==month1 && it->getMonth()<=month2)
         {
             if(it->getDay()>=day1)
             {   
-                //cout << "current month: " << it->getMonth() << endl;
-                //cout << "days match" << endl;
-                //cout << "current day: " << it->getDay() << endl;
+               // cout << "current month: " << it->getMonth() << endl;
+               // cout << "days match" << endl;
+               // cout << "current day: " << it->getDay() << endl;
                 match = true;
             }
         }
@@ -199,15 +200,15 @@ list<Measure> Sensor::truncateMeasuresToPeriod(string t1, string t2)
         {
             if(it->getDay()<=day2)
             {   
-                //cout << "current month: " << it->getMonth() << endl;
-                //cout << "days match" << endl;
-                //cout << "current day: " << it->getDay() << endl;
+              //  cout << "current month: " << it->getMonth() << endl;
+              //  cout << "days match" << endl;
+              //  cout << "current day: " << it->getDay() << endl;
                 match = true;
             }
         }
 		if (match)
 		{
-            //cout << "date added: " << it->getYear() << " "  << it->getMonth() << " " <<  it->getDay() << " " << endl;
+          //  cout << "date added: " << it->getYear() << " "  << it->getMonth() << " " <<  it->getDay() << " " << endl;
 			overPeriod.push_back(*it);
 		}
 	}

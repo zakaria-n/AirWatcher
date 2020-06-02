@@ -66,31 +66,31 @@ string Cleaner::GetTimestampEnd() const {
 }
 
 // difference in air quality before vs after cleaner added
-int Cleaner::calculateEfficiency(Catalogue* cat, float rayon) const {
+float Cleaner::calculateEfficiency(Catalogue* cat, int rayon) const {
     cout << "latitude " << latitude << endl;
     cout << "longitude " << longitude << endl;
     cout << "timestampBegin " << timestampBegin << endl;
     cout << "timestampEnd " << timestampEnd << endl;
-    int before = cat->getAverageQuality(latitude, longitude, rayon, timestampBegin);
+    float before = cat->getAverageQuality(latitude, longitude, rayon, timestampBegin);
     cout << "before " << before << endl;
-    int after = cat->getAverageQuality(latitude, longitude, rayon, timestampEnd);
+    float after = cat->getAverageQuality(latitude, longitude, rayon, timestampEnd);
         cout << "after " << after << endl;
-    int result = after - before;
+    float result = after - before;
     return result;
 }
 
 // appeler la méthode getAverageQuality de 'Catalogue'
-int Cleaner::calculateAirQuality(Catalogue* cat, float rayon) const {
-    int quality = cat->getAverageQuality(latitude, longitude, rayon, timestampBegin, timestampEnd);
+float Cleaner::calculateAirQuality(Catalogue* cat, int rayon) const {
+    float quality = cat->getAverageQuality(latitude, longitude, rayon, timestampBegin, timestampEnd);
     return quality;
 }
 
 // area that has improved after cleaner added
 float Cleaner::calculatePurifiedZone(Catalogue* cat) const {
-    int minimalChange = 0;
-    float purifiedRadius = 0;
-    float currentRayon = 5;
-    int efficiency = calculateEfficiency(cat, currentRayon);
+    float minimalChange = 0;
+    int purifiedRadius = 0;
+    int currentRayon = 170;
+    float efficiency = calculateEfficiency(cat, currentRayon);
     while ( efficiency > minimalChange) {
         purifiedRadius = currentRayon;
         currentRayon+=5;

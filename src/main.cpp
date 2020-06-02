@@ -103,7 +103,8 @@ int main() {
                                     if(cin >> choice) {
                                         switch(choice) {
                                             case 1: { //  NE FONCTIONNE PAS
-                                                float lat,longi,radius;
+                                                float lat,longi;
+                                                int radius;
                                                 string dateBegin;
                                                 string dateEnd;
                                                 cout << "Enter latitude:" << endl;
@@ -186,8 +187,8 @@ int main() {
                                             case 3: {
                                               string CleanerId;
                                               Cleaner unCleaner = cleaners[0];
-                                              int efficiency;
-                                              float rad;
+                                              float efficiency;
+                                              int rad;
                                               cout << "Enter cleaner ID" << endl;
                                               cin >> CleanerId;
                                               cout << "Enter radius " << endl;
@@ -201,7 +202,7 @@ int main() {
                                             case 4: {
                                               string CleanerId;
                                               int qua;
-                                              float rad;
+                                              int rad;
                                               cout << "Enter cleaner ID" << endl;
                                               cin >> CleanerId;
                                               cout << "Enter radius " << endl;
@@ -215,7 +216,7 @@ int main() {
                                             }
                                             case 5: {
                                               string CleanerId;
-                                              float purifiedRadius, purifiedZone;
+                                              int purifiedRadius, purifiedZone;
                                               cout << "Enter cleaner id" << endl;
                                               cin >> CleanerId;
                                               //unCleaner = cat.GetCleanerById(CleanerId);
