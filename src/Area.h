@@ -16,7 +16,7 @@ public:
 
     bool contains (Sensor s);
 
-    void fillSensors (vector<Sensor> data, list<Measure> mdata);
+    void fillSensors (vector<Sensor> data);
 
     void displaySensors();
 
@@ -32,7 +32,7 @@ public:
 
     Area ();
 
-    Area (float lat, float lon, float radius, vector<Sensor> sensorList, list<Measure> mdata);
+    Area (float lat, float lon, float radius, vector<Sensor> sensorList);
 
     virtual ~Area ();
 
