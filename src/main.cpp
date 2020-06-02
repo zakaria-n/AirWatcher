@@ -81,13 +81,13 @@ int main() {
                 case 1: {
                     string username;
                     string password;
-                    printf("Enter your username:\n");
+                    cout << "Enter your username:" << endl;
                     cin >> username;
-                    printf("Enter your password:\n");
+                    cout << "Enter your password:" << endl;
                     cin >> password;
                     Utilisateurs* user = users.authenticate(username, password);
                     if(user==NULL) {
-                        printf("Authentication failed:\n");
+                    cout << "Authentication failed" << endl;
                     }
                     else {
                         cout << "Welcome, you have logged in!" << endl;
@@ -105,15 +105,15 @@ int main() {
                                                 float lat,longi,radius;
                                                 string dateBegin;
                                                 string dateEnd;
-                                                printf("Enter latitude:\n");
+                                                cout << "Enter latitude:" << endl;
                                                 cin >> lat;
-                                                printf("Enter longitude:\n");
+                                                cout << "Enter longitude:" << endl;
                                                 cin >> longi;
-                                                printf("Enter radius:\n");
+                                                cout << "Enter radius" << endl;
                                                 cin >> radius;
-                                                printf("Enter Begin date: (YYYY-MM-DD)\n");
+                                                cout << "Enter Begin date: (YYYY-MM-DD):" << endl;
                                                 cin >> dateBegin;
-                                                printf("Enter End date: (YYYY-MM-DD)\n");
+                                                cout << "Enter End date: (YYYY-MM-DD):" << endl;
                                                 cin >> dateEnd;
                                                 float avgQua = cat.getAverageQuality(lat,longi,radius,dateBegin, dateEnd);
                                                 printf("The average air quality in your area : %f\n",avgQua );
@@ -122,16 +122,16 @@ int main() {
                                             case 2: {  //TESTER L'AFFICHAGE
                                                 float lat,longi;
                                                 string id, description;
-                                                printf("Enter id:\n");
+                                                cout << "Enter id" << endl;
                                                 cin >> id;
-                                                printf("Enter latitude:\n");
+                                                cout << "Enter latitude" << endl;
                                                 cin >> lat;
-                                                printf("Enter longitude:\n");
+                                                cout << "Enter longitude" << endl;
                                                 cin >> longi;
-                                                printf("Enter description:\n");
+                                                cout << "Enter description" << endl;
                                                 cin >> description;
                                                 cat.addSensor(id,lat,longi, description);
-                                                printf("Sensor has been added.\n");
+                                                cout << "Sensor has been added" << endl;
                                                 break;
                                             }
                                             case 3: {
@@ -140,7 +140,7 @@ int main() {
                                                 break;
                                             }
                                             default: {
-                                                printf("Invalid input\n");
+                                                cout << "Invalid input" << endl;
                                                 break;
                                             }
                                         }
@@ -168,25 +168,25 @@ int main() {
                                             case 2: {
                                                 float lat,longi;
                                                 string id, begin, end;
-                                                printf("Enter id:\n");
+                                                cout << "Enter id" << endl;
                                                 cin >> id;
-                                                printf("Enter latitude:\n");
+                                                cout << "Enter latitude" << endl;
                                                 cin >> lat;
-                                                printf("Enter longitude:\n");
+                                                cout << "Enter longitude" << endl;
                                                 cin >> longi;
-                                                printf("Enter begin timestamp:\n");
+                                                cout << "Enter begin timestamp" << endl;
                                                 cin>>begin;
-                                                printf("Enter end timestamp:\n");
+                                                cout << "Enter end timestamp" << endl;
                                                 cin >> end;
                                                 cat.addCleaner(id,lat,longi, begin, end);
-                                                printf("Cleaner has been added.\n");
+                                                cout << "Cleaner has been added" << endl;
                                                 break;
                                             }
                                             case 3: {
                                               Cleaner unCleaner;
                                               string CleanerId;
                                               float purifiedRadius, purifiedZone;
-                                              printf("Enter cleaner iD:\n");
+                                              cout << "Enter cleaner id" << endl;
                                               cin >> CleanerId;
                                               unCleaner = cat.GetCleanerById(CleanerId);
                                               purifiedRadius = unCleaner.calculatePurifiedZone(&cat);
@@ -204,7 +204,7 @@ int main() {
                                               vector<Cleaner> unCleaner;
                                               string CleanerId;
                                               float purifiedRadius, purifiedZone;
-                                              printf("Enter cleaner ID:\n");
+                                              cout << "Enter cleaner id" << endl;
                                               cin >> CleanerId;
                                               //unCleaner = cat.GetCleanerById(CleanerId);
                                               unCleaner = cat.getCleanerList();
@@ -213,8 +213,7 @@ int main() {
                                               purifiedRadius = it->calculatePurifiedZone(&cat);
                                               purifiedZone = PI*pow(purifiedRadius,2);
                                               //purifiedZone = purifiedRadius;
-                                              cout<<"Here is the surface of the purified zone : "<<purifiedZone<<endl;
-                                              //printf("Here is the surface of the purified zone : %f\n",purifiedZone);
+                                              cout<< "Here is the surface of the purified zone : " << purifiedZone << endl;
                                                 break;
                                             }
                                             case 6: {
@@ -223,7 +222,7 @@ int main() {
                                                 break;
                                             }
                                             default: {
-                                                printf("Invalid input\n");
+                                                cout << "Invalid input" << endl;
                                                 break;
                                             }
                                         }
@@ -240,11 +239,11 @@ int main() {
                                             case 1: {
                                                 string attributeId, ts;
                                                 float value;
-                                                printf("What is your measure type ? O3,SO2,NO2,PM10 ? \n" );
+                                                cout << "What is your measure type ? O3,SO2,NO2,PM10 ?" << endl;
                                                 cin>>attributeId;
-                                                printf("What is the date today? (YYYY-MM-DD) \n" );
+                                                cout << "What is the date today? (YYYY-MM-DD)" << endl;
                                                 cin>>ts;
-                                                printf("The value ? \n");
+                                                cout << "The value?" << endl;
                                                 cin>>value;
                                                 Measure maMeasure =  Measure (ts,indiv->getId(), attributeId, value, false);
                                                 cat.addMeasure(maMeasure);
@@ -260,7 +259,7 @@ int main() {
                                                 break;
                                             }
                                             default: {
-                                                printf("Invalid input\n");
+                                                cout << "Invalid input" << endl;
                                                 break;
                                             }
                                         }
@@ -273,31 +272,31 @@ int main() {
                 case 2: {
                     cin.ignore();
 		            string userType;
-                    printf("Are you an 'individual' or 'entreprise'?:\n");
+                    cout << "Are you an 'individual' or 'entreprise'?:" << endl;
                     getline(cin, userType);
                     if(userType=="individual") {
                         string id, password;
-                        printf("Enter your username:\n");
+                        cout << "Enter your username" << endl;
                         getline(cin, id);
-                        printf("Enter your password:\n");
+                        cout << "Enter your password" << endl;
                         getline(cin, password);
                         Individual* newUser = new Individual(id, password, 0, 0);
                         users.addUser(newUser);
-                        printf("You have successfully signed up as an individual!:\n");
+                        cout << "You have successfully signed up as an individual!" << endl;
                     }
                     else if(userType=="entreprise") {
                         string id, password;
-                        printf("Enter your username:\n");
+                        cout << "Enter your username" << endl;
                         getline(cin, id);
-                        printf("Enter your password:\n");
+                        cout << "Enter your password" << endl;
                         getline(cin, password);
                         vector<Cleaner> cleaners;
                         Entreprise* newUser = new Entreprise(id, password, cleaners);
                         users.addUser(newUser);
-                        printf("You have successfully signed up as an entreprise!:\n");
+                        cout << "You have successfully signed up as an entreprise!" << endl;
                     }
                     else {
-                        printf("Sorry, that is not a valid user type:\n");
+                        cout << "Sorry, that is not a valid user type" << endl;
                     }
                     break;
                 }
@@ -306,7 +305,7 @@ int main() {
                     break;
                 }
                 default: {
-                    printf("Invalid input\n");
+                    cout << "Invalid input" << endl;
                     break;
                 }
             }
