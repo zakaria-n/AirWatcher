@@ -87,6 +87,15 @@ void Catalogue::addMeasure(Measure uneMeasure){
   measureList.push_back(uneMeasure);
 }
 
+bool Catalogue::addIndivMeasure(Measure uneMeasure,string id){ 
+    Sensor s = GetSensorById(id);                               
+    s.detectFraud(uneMeasure);                       //Verification avant l'ajout dans la liste
+    if(!uneMeasure.getIsFake()){                   
+      measureList.push_back(uneMeasure);
+    }
+    return (!uneMeasure.getIsFake());                //fake data => false; good data => true
+}
+
 
 void Catalogue::addCleaner(Cleaner cleaner) {
   cleanerList.push_back(cleaner);

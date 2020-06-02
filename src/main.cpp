@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <chrono> 
+#include <assert.h>
 
 #define PI 3.141592
 
@@ -252,10 +253,16 @@ int main() {
                                                 cin>>ts;
                                                 cout << "The value?" << endl;
                                                 cin>>value;
+                                                assert(value>=0);
                                                 Measure maMeasure =  Measure (ts,indiv->getId(), attributeId, value, false);
-                                                cat.addMeasure(maMeasure);
-                                                indiv->addPoint();
-                                                cout << "Measure has been added and you have gained a point!" << endl;
+                                                if(cat.addIndivMeasure(maMeasure,indiv->getId())){
+                                                    indiv->addPoint();
+                                                    cout << "good data! ";
+                                                    cout << "Measure has been added and you have gained a point!" << endl;
+                                                } else {
+                                                    indiv->addTotalMeasures();
+                                                    cout << "bad data!" << endl;
+                                                }
                                                 break;
                                             }
                                             case 2: {

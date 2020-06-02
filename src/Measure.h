@@ -18,6 +18,7 @@ public:
     int getMonth();
     int getYear();
     int getDateScore();
+    bool getIsFake();
    // void detectFraud(list<Sensor> sdata, list<Measure> mdata);
 
    friend ostream & operator << ( ostream & out, const Measure & unMeasure );

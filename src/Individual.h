@@ -8,6 +8,7 @@ class Individual : public Utilisateurs
 
 public:
 
+
     Individual ( const Individual & unIndividual );
 
     Individual();
@@ -17,6 +18,8 @@ public:
     int getPoints();
 
     void addPoint();
+
+    void addTotalMeasures();
 
 protected:
     int totalMeasures;

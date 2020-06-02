@@ -30,11 +30,15 @@ Individual::Individual(string id, string password, int numMeasures, int numValid
 } 
 
 int Individual::getPoints() {
-    return totalMeasures - validatedMeasures;
+    return validatedMeasures;
 }
 
 void Individual::addPoint() {
     totalMeasures++;
     validatedMeasures++;
+}
+
+void Individual::addTotalMeasures(){
+    totalMeasures++;
 }
 

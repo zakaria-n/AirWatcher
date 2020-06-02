@@ -43,6 +43,10 @@ int Measure::getMonth ()
 	return stoi(timestamp.substr(pos-5,2));
 }
 
+bool Measure::getIsFake ()
+{
+    return isFake;
+}
 
 int Measure::getYear ()
 {

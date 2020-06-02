@@ -16,6 +16,7 @@ public:
     void addSensor(string id, float latitude, float longitude, string description);
     void addSensor(Sensor s);
     void addMeasure(Measure uneMeasure);
+    bool addIndivMeasure(Measure uneMeasure,string id);
 
 // constructeur - déstructeur
     Catalogue();
