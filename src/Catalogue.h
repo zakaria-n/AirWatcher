@@ -14,7 +14,6 @@ public:
     void addCleaner(Cleaner cleaner);
     Cleaner removeCleaner(string cleanerId);
     void addSensor(string id, float latitude, float longitude, string description);
-    void addCleaner(string id, float latitude, float longitude, string begin, string end);
     void addMeasure(Measure uneMeasure);
 
 // constructeur - déstructeur

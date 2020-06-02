@@ -1,5 +1,5 @@
-#if ! defined ( SIMPLE_INTERFACE_H )
-#define SIMPLE_INTERFACE_H
+#if ! defined ( USER_BASE_H )
+#define USER_BASE_H
 
 #include <vector>
 #include <string>
@@ -7,19 +7,19 @@
 
 using namespace std;
 
-class SimpleInterface 
+class UserBase 
 {
 
 public:
 
     // Constructeur de copie
-    SimpleInterface ( const SimpleInterface & unSimpleInterface );
+    UserBase ( const UserBase & unUserBase );
     // Constructeur par défaut
-    SimpleInterface();
+    UserBase();
     // Constructeur
-    SimpleInterface(vector<Utilisateurs*> users);
+    UserBase(vector<Utilisateurs*> users);
     // Destructeur
-    virtual ~SimpleInterface();
+    virtual ~UserBase();
 
     vector<pair<Utilisateurs*,bool>> getUsers();
     void addUser(Utilisateurs* user);
@@ -32,4 +32,4 @@ protected:
     vector<pair<Utilisateurs*,bool>> userList;
 };
 
-#endif // SIMPLE_INTERFACE_H
+#endif // USER_BASE_H

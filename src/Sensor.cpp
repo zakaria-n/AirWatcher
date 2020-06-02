@@ -1,25 +1,8 @@
-/******** author Zakaria *********/
 #include <iostream>
 #include <cmath> 
 #include "Sensor.h"
 
 using namespace std;
-
-void Sensor::addMeasure (Measure mes)
-{
-    mesures.push_back(mes);
-}
-
-void Sensor::fillMeasures(list<Measure> data)
-{
-    for (auto it=data.begin(); it!=data.end(); it++)
-    {
-        if(it->getSensor()==sensorID)
-        {
-            addMeasure(*it);
-        }
-    }
-}
 
 vector<float> Sensor::avgMeasures(list<Measure> mesures)
 {
@@ -165,34 +148,20 @@ list<Measure> Sensor::truncateMeasuresToPeriod(string t1, string t2)
     const char *time1 = t1.c_str();
     const char *time2 = t2.c_str();
 
-    //cout << "getting dates" << endl;
-
     sscanf(time1, "%d-%d-%d", &year1, &month1, &day1);
     sscanf(time2, "%d-%d-%d", &year2, &month2, &day2);
-    //cout << time1 << endl;
-    //cout << time2 << endl;
-
-
-    //cout << "done getting dates" << endl;
 
 	for (it = mesures.begin(); it != mesures.end(); it++)
 	{
-        //cout <<"sensor has measures" << endl;
-        
-        //cout << "here!" << endl;
         bool match = false;
-        //cout << "in measures..." << endl;
         if (it->getMonth()>month1 && it->getMonth()<month2)
         {
-          //  cout << "current month: " << it->getMonth() << endl;
             match = true;
-        }else if (it->getMonth()==month1 && it->getMonth()<=month2)
+        }
+        else if (it->getMonth()==month1 && it->getMonth()<=month2)
         {
             if(it->getDay()>=day1)
             {   
-               // cout << "current month: " << it->getMonth() << endl;
-               // cout << "days match" << endl;
-               // cout << "current day: " << it->getDay() << endl;
                 match = true;
             }
         }
@@ -200,15 +169,11 @@ list<Measure> Sensor::truncateMeasuresToPeriod(string t1, string t2)
         {
             if(it->getDay()<=day2)
             {   
-              //  cout << "current month: " << it->getMonth() << endl;
-              //  cout << "days match" << endl;
-              //  cout << "current day: " << it->getDay() << endl;
                 match = true;
             }
         }
 		if (match)
 		{
-          //  cout << "date added: " << it->getYear() << " "  << it->getMonth() << " " <<  it->getDay() << " " << endl;
 			overPeriod.push_back(*it);
 		}
 	}
@@ -298,6 +263,11 @@ ostream & operator << ( ostream & out, const Sensor & unSensor )
 {
     out<<unSensor.sensorID<<" (lat:"<<unSensor.latitude<<", long:"<<unSensor.longitude<<") ("<<unSensor.description<<")";
 	return out;
+}
+
+void Sensor::addMeasure (Measure mes)
+{
+    mesures.push_back(mes);
 }
 
 void Sensor::displayMeasures()

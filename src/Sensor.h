@@ -1,4 +1,3 @@
-/******** author Zakaria *********/
 #if ! defined ( SENSOR_H )
 #define SENSOR_H
 #include <ctime>
@@ -18,7 +17,6 @@ class Sensor
 public:
     // Adds measure to measure list of sensor
     void addMeasure (Measure);
-    void fillMeasures(list<Measure>);
     // Calculates the average measures for each measure type
     vector<float> avgMeasures(list<Measure>);
     float airQuality(list<Measure>);

@@ -79,6 +79,12 @@ void Catalogue::addCleaner(Cleaner cleaner) {
   cleanerList.push_back(cleaner);
 }
 
+void Catalogue::addSensor(string id, float latitude, float longitude, string description) {
+  list<Measure> measures;
+  Sensor newSensor = Sensor(id,longitude,latitude,description, measures);
+  sensorList.push_back(newSensor);
+}
+
 Cleaner Catalogue::removeCleaner(string cleanerId) {
   Cleaner removed;
     for (auto it=cleanerList.begin(); it!=cleanerList.end(); it++)
@@ -198,15 +204,4 @@ float Catalogue::getAverageQuality
   Area curr = Area(latitude,longitude, radius, sensorList);
   float average = curr.avgQualityOverPeriod(begin, end);
   return average;
-}
-
-void Catalogue::addSensor(string id, float latitude, float longitude, string description) {
-  list<Measure> measures;
-  Sensor newSensor = Sensor(id,longitude,latitude,description, measures);
-  sensorList.push_back(newSensor);
-}
-
-void Catalogue::addCleaner(string id, float latitude, float longitude, string begin, string end) {
-  Cleaner newCleaner = Cleaner(id,longitude,latitude,begin, end);
-  cleanerList.push_back(newCleaner);
 }
