@@ -181,7 +181,6 @@ int main() {
                                                 break;
                                             }
                                             case 3: {
-                                              list<Cleaner> unCleaner;
                                               string CleanerId;
                                               int efficiency;
                                               float rad;
@@ -190,15 +189,12 @@ int main() {
                                               printf("Enter radius :\n");
                                               cin >> radius;
                                               //unCleaner = cat.GetCleanerById(CleanerId);
-                                              unCleaner = cat.getCleanerList();
-                                              auto it = unCleaner.begin();
-                                              efficiency = it->calculateEfficiency(&cat,radius);
+                                              efficiency = cleaners[0].calculateEfficiency(&cat,radius);
 
                                               cout<<"Here is the efficiency of the cleaner ... : "<<efficiency<<endl;
                                               break;
                                             }
                                             case 4: {
-                                              list<Cleaner> unCleaner;
                                               string CleanerId;
                                               int qua;
                                               float rad;
@@ -207,25 +203,20 @@ int main() {
                                               printf("Enter radius :\n");
                                               cin >> radius;
                                               //unCleaner = cat.GetCleanerById(CleanerId);
-                                              unCleaner = cat.getCleanerList();
-                                              auto it = unCleaner.begin();
-                                              qua = it->calculateAirQuality(&cat,radius);
+                                              qua = cleaners[0].calculateAirQuality(&cat,radius);
 
                                               cout<<"Here is the air quality of the cleaner ... area  : "<<qua<<endl;
 
                                                 break;
                                             }
                                             case 5: {
-                                              list<Cleaner> unCleaner;
                                               string CleanerId;
                                               float purifiedRadius, purifiedZone;
                                               printf("Enter cleaner ID:\n");
                                               cin >> CleanerId;
                                               //unCleaner = cat.GetCleanerById(CleanerId);
-                                              unCleaner = cat.getCleanerList();
-                                              auto it = unCleaner.begin();
                                               //purifiedRadius = unCleaner.calculatePurifiedZone(&cat);
-                                              purifiedRadius = it->calculatePurifiedZone(&cat);
+                                              purifiedRadius = cleaners[0].calculatePurifiedZone(&cat);
                                               purifiedZone = PI*pow(purifiedRadius,2);
                                               //purifiedZone = purifiedRadius;
                                               cout<<"Here is the surface of the purified zone : "<<purifiedZone<<endl;
