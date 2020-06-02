@@ -29,7 +29,7 @@ bool Area::contains (Sensor s)
   return contains(s.getLongitude(), s.getLatitude() );
 }
 
-void Area::fillSensors(vector<Sensor> data, list<Measure> mdata)
+void Area::fillSensors(vector<Sensor> data)
 {
     for (auto it=data.begin(); it!=data.end(); it++)
     {
@@ -38,7 +38,6 @@ void Area::fillSensors(vector<Sensor> data, list<Measure> mdata)
             sensors.push_back(*it);
         }
     }
-    //fillSensorData(mdata);
 }
 
 void Area::fillSensorData(list <Measure> data)
@@ -76,10 +75,13 @@ float Area::avgQualityOverPeriod (string t1, string t2){
     //cout << "In are\n" << endl;
     int nbSensor =0;
     float quality=0.0;
+    cout << t1 << endl;
+    cout << t2 << endl;
     for (auto it=sensors.begin(); it!=sensors.end(); it++)
     {
         //cout << "fetching sensors\n" << endl;
-        int elementary = it->airQualityOverPeriod(t1,t2);
+        float elementary = it->airQualityOverPeriod(t1,t2);
+        //cout << "elementary" << elementary << endl;
         if (elementary>=1)
         {
             quality+=elementary;
@@ -108,7 +110,7 @@ Area::Area()
 #endif
 }
 
-Area::Area(float lat, float lon, float rayon, vector<Sensor> sensorList)
+Area::Area(float lat, float lon, int rayon, vector<Sensor> sensorList)
 {
 #ifdef MAP
   cout << "Appel au constructeur de <Area>" << endl;
@@ -116,8 +118,7 @@ Area::Area(float lat, float lon, float rayon, vector<Sensor> sensorList)
   latitude = lat;
   longitude = lon;
   radius = rayon;
-  //fillSensors(sensorList, mdata);
-  sensors = sensorList;
+  fillSensors(sensorList);
 }
 
 Area::~Area ( )

@@ -16,7 +16,7 @@ public:
 
     bool contains (Sensor s);
 
-    void fillSensors (vector<Sensor> data, list<Measure> mdata);
+    void fillSensors (vector<Sensor> data);
 
     void displaySensors();
 
