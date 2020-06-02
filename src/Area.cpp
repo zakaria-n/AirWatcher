@@ -7,19 +7,19 @@ bool Area::contains (float lon, float lat)
     /*int distance = (int)(6371 * acos(sin(latitude)*sin(lat)
 		+ cos(latitude)*cos(lat)*cos(longitude - lon)));
     return  (distance < radius);*/
-    double dLat = (lat - latitude) * 
-                      M_PI / 180.0; 
-    double dLon = (lon - longitude) *  
-                      M_PI / 180.0; 
-    double latr = (latitude) * M_PI / 180.0; 
-    double latr2 = (lat) * M_PI / 180.0; 
-  
-    // apply formulae 
-    double a =  pow(sin(dLat / 2), 2) +  
-                pow(sin(dLon / 2), 2) *  
-                cos(latr) * cos(latr2); 
-    double rad = 6371; 
-    double c = 2 * asin(sqrt(a)); 
+    double dLat = (lat - latitude) *
+                      M_PI / 180.0;
+    double dLon = (lon - longitude) *
+                      M_PI / 180.0;
+    double latr = (latitude) * M_PI / 180.0;
+    double latr2 = (lat) * M_PI / 180.0;
+
+    // apply formulae
+    double a =  pow(sin(dLat / 2), 2) +
+                pow(sin(dLon / 2), 2) *
+                cos(latr) * cos(latr2);
+    double rad = 6371;
+    double c = 2 * asin(sqrt(a));
     double distance = rad * c;
     return (distance<=radius);
 }
@@ -38,13 +38,8 @@ void Area::fillSensors(vector<Sensor> data, list<Measure> mdata)
             sensors.push_back(*it);
         }
     }
-<<<<<<< HEAD
-    fillSensorData(mdata)
-;}
-=======
     fillSensorData(mdata);
 }
->>>>>>> eb32b02df003a1c0b8808b9fca28750645bf7d70
 
 void Area::fillSensorData(list <Measure> data)
 {
