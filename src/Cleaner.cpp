@@ -72,9 +72,7 @@ float Cleaner::calculateEfficiency(Catalogue* cat, int rayon) const {
     cout << "timestampBegin " << timestampBegin << endl;
     cout << "timestampEnd " << timestampEnd << endl;*/
     float before = cat->getAverageQuality(latitude, longitude, rayon, "2019-01-01", timestampBegin);
-    //cout << "before " << before << endl;
     float after = cat->getAverageQuality(latitude, longitude, rayon, timestampBegin, timestampEnd);
-    //cout << "after " << after << endl;
     float result = after - before;
     return result;
 }
@@ -87,15 +85,14 @@ float Cleaner::calculateAirQuality(Catalogue* cat, int rayon) const {
 
 // area that has improved after cleaner added
 float Cleaner::calculatePurifiedZone(Catalogue* cat) const {
-    float minimalChange = -0.2;
+    float minimalChange = -0.5;
     int purifiedRadius = 0;
-    int currentRayon = 80;
+    int currentRayon = 110;
     float efficiency = calculateEfficiency(cat, currentRayon);
-    cout <<"efficiency: " << efficiency << endl;
-    while ( efficiency < minimalChange && currentRayon <= 200) {
-        //cout << "efficiency: " << efficiency << endl;
+    while ( efficiency <= minimalChange && currentRayon < 400) {
+        cout << efficiency << endl;
         purifiedRadius = currentRayon;
-        currentRayon+=5;
+        currentRayon+=10;
         efficiency = calculateEfficiency(cat, currentRayon);
     }
     return purifiedRadius;
