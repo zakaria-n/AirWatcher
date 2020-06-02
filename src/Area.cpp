@@ -4,9 +4,24 @@ using namespace std;
 
 bool Area::contains (float lon, float lat)
 {
-    int distance = (int)(6371 * acos(sin(latitude)*sin(lat)
+    /*int distance = (int)(6371 * acos(sin(latitude)*sin(lat)
 		+ cos(latitude)*cos(lat)*cos(longitude - lon)));
-    return  (distance < radius);
+    return  (distance < radius);*/
+    double dLat = (lat - latitude) * 
+                      M_PI / 180.0; 
+    double dLon = (lon - longitude) *  
+                      M_PI / 180.0; 
+    double latr = (latitude) * M_PI / 180.0; 
+    double latr2 = (lat) * M_PI / 180.0; 
+  
+    // apply formulae 
+    double a =  pow(sin(dLat / 2), 2) +  
+                pow(sin(dLon / 2), 2) *  
+                cos(latr) * cos(latr2); 
+    double rad = 6371; 
+    double c = 2 * asin(sqrt(a)); 
+    double distance = rad * c;
+    return (distance<=radius);
 }
 
 bool Area::contains (Sensor s)
@@ -23,8 +38,8 @@ void Area::fillSensors(vector<Sensor> data, list<Measure> mdata)
             sensors.push_back(*it);
         }
     }
-    fillSensorData(mdata)
-;}
+    fillSensorData(mdata);
+}
 
 void Area::fillSensorData(list <Measure> data)
 {
@@ -58,12 +73,12 @@ void Area::displayAreaMeasures()
 
 
 float Area::avgQualityOverPeriod (string t1, string t2){
-    cout << "In are\n" << endl;
+    //cout << "In are\n" << endl;
     int nbSensor =0;
     float quality=0.0;
     for (auto it=sensors.begin(); it!=sensors.end(); it++)
     {
-        cout << "fetching sensors\n" << endl;
+        //cout << "fetching sensors\n" << endl;
         int elementary = it->airQualityOverPeriod(t1,t2);
         if (elementary>=1)
         {
