@@ -71,9 +71,9 @@ float Cleaner::calculateEfficiency(Catalogue* cat, int rayon) const {
     cout << "longitude " << longitude << endl;
     cout << "timestampBegin " << timestampBegin << endl;
     cout << "timestampEnd " << timestampEnd << endl;
-    float before = cat->getAverageQuality(latitude, longitude, rayon, timestampBegin);
+    float before = cat->getAverageQuality(latitude, longitude, rayon, "2019-01-01", timestampBegin);
     cout << "before " << before << endl;
-    float after = cat->getAverageQuality(latitude, longitude, rayon, timestampEnd);
+    float after = cat->getAverageQuality(latitude, longitude, rayon, timestampBegin, timestampEnd);
         cout << "after " << after << endl;
     float result = after - before;
     return result;
