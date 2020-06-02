@@ -1,4 +1,3 @@
-/******** author Zakaria *********/
 #include <iostream>
 #include <cmath>
 

@@ -15,7 +15,7 @@ using namespace std;
 #include "Catalogue.h"
 #include "Sensor.h"
 #include "Cleaner.h"
-#include "SimpleInterface.h"
+#include "UserBase.h"
 
 int main() {
     string measureFile = "../dataset/measurements.csv";
@@ -23,44 +23,9 @@ int main() {
     string cleanerFile = "../dataset/cleaners.csv";
     Catalogue cat = Catalogue(measureFile, sensorFile, cleanerFile);
     
-    
-    //vector<Sensor> sensorLz = cat.getSensorList();
-    /*for (auto it=sensorLz.begin(); it!= sensorLz.end(); it++)
-    {
-        cout << *it << endl;
-    }*/
-    /*
-    list<Measure> measureL = cat.getMeasureList();
-    Area arz = Area(44.0,0.3, 5000, sensorLz);
-    arz.fillSensors(sensorLz);
-    arz.fillSensorData(measureL);
-    cout << "Sensors in this area:" << endl;
-    arz.displaySensors();
-    cout << "Measures for this area: " << endl;
-    arz.displayAreaMeasures();
-    cout << "Average air quality in this area: " << endl;
-    cout << arz.avgQualityOverPeriod("2019-02-09","2019-03-09");
-
-
-    Sensor s = sensorLz.back();
-
-    s.fillMeasures(measureL);
-    cout << "The measures recorded by this sensor are: " << endl;
-    s.displayMeasures();*/
-
-    /*cout << "For this sensor: " << s << " the average quality is: " << endl;
-    cout << s.airQuality(measureL) << endl;
-    cout << "-----------------sopi-----------" << endl;
-
-    */ 
-    /*vector<Sensor> sensorL = cat.getSensorList();
-    for (auto it=sensorL.begin(); it!= sensorL.end(); it++)
-    {
-        cout << *it << endl;
-    }*/
     list<Measure> measureList = cat.getMeasureList();
     Area ar = Area();
-    SimpleInterface users = SimpleInterface();
+    UserBase users = UserBase();
     GouvernmentalAgency* government = new GouvernmentalAgency("one", "111");
     vector <Cleaner> cleaners = cat.getCleanerList();
     Entreprise* entre = new Entreprise("two", "222",  cleaners);
@@ -180,7 +145,8 @@ int main() {
                                                 cin>>begin;
                                                 cout << "Enter end timestamp" << endl;
                                                 cin >> end;
-                                                cat.addCleaner(id,lat,longi, begin, end);
+                                                Cleaner newCleaner = Cleaner(id, lat, longi, begin, end);
+                                                cat.addCleaner(newCleaner);
                                                 cout << "Cleaner has been added" << endl;
                                                 break;
                                             }
@@ -206,8 +172,8 @@ int main() {
                                               cin >> CleanerId;
                                               cout << "Enter radius " << endl;
                                               cin >> rad;
-                                              //unCleaner = cat.GetCleanerById(CleanerId);
-                                              qua = cleaners[0].calculateAirQuality(&cat,rad);
+                                              Cleaner unCleaner = cat.GetCleanerById(CleanerId);
+                                              qua = unCleaner.calculateAirQuality(&cat,rad);
 
                                               cout<<"Here is the air quality of the cleaner ... area  : "<<qua<<endl;
 
@@ -218,11 +184,9 @@ int main() {
                                               int purifiedRadius, purifiedZone;
                                               cout << "Enter cleaner id" << endl;
                                               cin >> CleanerId;
-                                              //unCleaner = cat.GetCleanerById(CleanerId);
-                                              //purifiedRadius = unCleaner.calculatePurifiedZone(&cat);
-                                              purifiedRadius = cleaners[0].calculatePurifiedZone(&cat);
+                                              Cleaner unCleaner = cat.GetCleanerById(CleanerId);
+                                              purifiedRadius = unCleaner.calculatePurifiedZone(&cat);
                                               purifiedZone = PI*pow(purifiedRadius,2);
-                                              //purifiedZone = purifiedRadius;
                                               cout<< "Here is the surface of the purified zone : " << purifiedZone << endl;
                                                 break;
                                             }

@@ -25,54 +25,10 @@ bool Area::contains (Sensor s)
   return contains(s.getLongitude(), s.getLatitude() );
 }
 
-void Area::fillSensors(vector<Sensor> data)
-{
-    for (auto it=data.begin(); it!=data.end(); it++)
-    {
-        if (contains(*it))
-        {
-            sensors.push_back(*it);
-        }
-    }
-}
-
-void Area::fillSensorData(list <Measure> data)
-{
-  for (auto it=sensors.begin(); it!=sensors.end(); it++)
-  {
-      it->fillMeasures(data);
-  }
-}
-
-void Area::displaySensors()
-{
-  vector<Sensor> sl = sensors;
-  if (sl.size()==0)
-  {
-    cout << "This area contains no sensors." << endl;
-  }
-  for (auto it=sl.begin(); it!=sl.end(); it++)
-  {
-    cout << *it << endl;
-  }
-}
-
-
-void Area::displayAreaMeasures()
-{
-  for (auto it=sensors.begin(); it!=sensors.end(); it++)
-  {
-    it->displayMeasures();
-  }
-}
-
-
 float Area::avgQualityOverPeriod (string t1, string t2){
     //cout << "In are\n" << endl;
     int nbSensor =0;
     float quality=0.0;
-    cout << t1 << endl;
-    cout << t2 << endl;
     for (auto it=sensors.begin(); it!=sensors.end(); it++)
     {
         //cout << "fetching sensors\n" << endl;
@@ -85,6 +41,17 @@ float Area::avgQualityOverPeriod (string t1, string t2){
         }
     }
     return (quality/nbSensor);
+}
+
+void Area::fillSensors(vector<Sensor> data)
+{
+    for (auto it=data.begin(); it!=data.end(); it++)
+    {
+        if (contains(*it))
+        {
+            sensors.push_back(*it);
+        }
+    }
 }
 
 vector <Sensor> Area::getSensors()
@@ -115,7 +82,6 @@ Area::Area(float lat, float lon, int rayon, vector<Sensor> sensorList)
   longitude = lon;
   radius = rayon;
   fillSensors(sensorList);
-  cout << sensors.size() << endl;
 }
 
 Area::~Area ( )

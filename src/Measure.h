@@ -1,4 +1,3 @@
-/******** author Zakaria *********/
 #if ! defined ( MEASURE_H )
 #define MEASURE_H
 
@@ -7,12 +6,6 @@
 #include <iostream>
 
 using namespace std;
-
-typedef struct{
-    string id;
-    string unit;
-    string description;
-} MeasureType; 
 
 class Measure
 {
@@ -41,7 +34,6 @@ protected:
     string attributeId;
     float value;
     bool isFake;
-    MeasureType type;
     
      
 

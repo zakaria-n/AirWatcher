@@ -18,12 +18,6 @@ public:
 
     void fillSensors (vector<Sensor> data);
 
-    void displaySensors();
-
-    void fillSensorData(list <Measure>);
-
-    void displayAreaMeasures();
-
     float avgQualityOverPeriod (string t1, string t2);
     
     vector<Sensor> getSensors();
