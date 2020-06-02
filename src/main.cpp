@@ -29,10 +29,12 @@ int main() {
     GouvernmentalAgency* government = new GouvernmentalAgency("one", "111");
     vector <Cleaner> cleaners = cat.getCleanerList();
     Entreprise* entre = new Entreprise("two", "222",  cleaners);
-    Individual* indiv = new Individual("three", "333",3,2);
+    Individual* indiv = new Individual("three", "333",3,2, "Sensor70");
+    Individual* indiv2 = new Individual("four", "444",3,3, "Sensor36");
     users.addUser(government);
     users.addUser(entre);
     users.addUser(indiv);
+    users.addUser(indiv2);
 
     bool exit = false;
     int choice;
@@ -64,7 +66,8 @@ int main() {
                                     cout << "================= AGENCY MENU =================" << endl;
                                     cout << "1: Enter 1 to get average quality for an area." << endl;
                                     cout << "2: Enter 2 to add new sensor. " << endl;
-                                    cout << "3: Enter 3 to log out." << endl;
+                                    cout << "2: Enter 3 to display sensors. " << endl;
+                                    cout << "4: Enter 4 to log out." << endl;
                                     if(cin >> choice) {
                                         switch(choice) {
                                             case 1: { //  NE FONCTIONNE PAS
@@ -102,6 +105,14 @@ int main() {
                                                 break;
                                             }
                                             case 3: {
+                                                cout << "Sensors:" << endl;
+                                                vector<Sensor> sensors = cat.getSensorList();
+                                                for(int i=0; i < sensors.size(); i++) {
+                                                    cout << sensors.at(i).getId() << endl;
+                                                }
+                                                break;
+                                            }
+                                            case 4: {
                                                 users.deconnexion(user);
                                                 loggedIn = false;
                                                 break;
@@ -257,7 +268,21 @@ int main() {
                         getline(cin, id);
                         cout << "Enter your password" << endl;
                         getline(cin, password);
-                        Individual* newUser = new Individual(id, password, 0, 0);
+                        string sensorId = "Sensor";
+                        float latitude, longitude;
+                        string desc;
+                        int nbSensors = cat.getSensorList().size();
+                        cout << "Enter latitude" << endl;
+                        cin >> latitude;
+                        cout << "Enter longitude" << endl;
+                        cin >> longitude;
+                        cout << "Enter description" << endl;
+                        cin >> desc;
+                        sensorId += nbSensors;
+                        list<Measure> measures;
+                        Sensor newIndivSensor = Sensor(sensorId, latitude, longitude, desc, measures);
+                        cat.addSensor(newIndivSensor);
+                        Individual* newUser = new Individual(id, password, 0, 0, sensorId);
                         users.addUser(newUser);
                         cout << "You have successfully signed up as an individual!" << endl;
                     }
