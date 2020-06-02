@@ -186,14 +186,14 @@ int main() {
                                             }
                                             case 3: {
                                               string CleanerId;
-                                              Cleaner unCleaner = cleaners[0];
+                                              Cleaner unCleaner;
                                               float efficiency;
                                               int rad;
                                               cout << "Enter cleaner ID" << endl;
                                               cin >> CleanerId;
                                               cout << "Enter radius " << endl;
                                               cin >> rad;
-                                              //unCleaner = cat.GetCleanerById(CleanerId);
+                                              unCleaner = cat.GetCleanerById(CleanerId);
                                               efficiency = unCleaner.calculateEfficiency(&cat,rad);
 
                                               cout<<"Here is the efficiency of the cleaner ... : "<<efficiency<<endl;

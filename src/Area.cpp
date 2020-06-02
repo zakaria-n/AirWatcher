@@ -7,17 +7,13 @@ bool Area::contains (float lon, float lat)
     /*int distance = (int)(6371 * acos(sin(latitude)*sin(lat)
 		+ cos(latitude)*cos(lat)*cos(longitude - lon)));
     return  (distance < radius);*/
-    double dLat = (lat - latitude) * 
-                      M_PI / 180.0; 
-    double dLon = (lon - longitude) *  
-                      M_PI / 180.0; 
+    double dLat = (lat - latitude) * M_PI / 180.0; 
+    double dLon = (lon - longitude) *  M_PI / 180.0; 
     double latr = (latitude) * M_PI / 180.0; 
     double latr2 = (lat) * M_PI / 180.0; 
   
     // apply formulae 
-    double a =  pow(sin(dLat / 2), 2) +  
-                pow(sin(dLon / 2), 2) *  
-                cos(latr) * cos(latr2); 
+    double a =  pow(sin(dLat / 2), 2) +  pow(sin(dLon / 2), 2) *  cos(latr) * cos(latr2); 
     double rad = 6371; 
     double c = 2 * asin(sqrt(a)); 
     double distance = rad * c;
@@ -119,6 +115,7 @@ Area::Area(float lat, float lon, int rayon, vector<Sensor> sensorList)
   longitude = lon;
   radius = rayon;
   fillSensors(sensorList);
+  cout << sensors.size() << endl;
 }
 
 Area::~Area ( )
