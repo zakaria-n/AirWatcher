@@ -222,18 +222,26 @@ float Sensor::getScore(list<Measure> data)
     return s/4;
 }
 
-list<Sensor> Sensor::getCluster(list<Sensor> sensorData, list<Measure> mesureData)
+list<Sensor> Sensor::getCluster(list<Sensor> sensorData)
 {
     list<Sensor> cluster;
-    float N=getScore(mesureData);
     for (auto it=sensorData.begin(); it!=sensorData.end(); it++)
     {
-        if(getDistance(*it)<=10 && abs(N-it->getScore(mesureData))<10)
+        if(abs(airQuality(mesures)-it->airQuality(it->getMeasures())) <= 1)
         {
             cluster.push_front(*it);
         }
     }
     return cluster;
+}
+
+void Sensor::displayCluster()
+{
+    list<Sensor> cluster = getCluster();
+    for (auto it=cluster.begin(); it!=cluster.end(); it++)
+    {
+        cout << *it;
+    }
 }
 
 string Sensor::getId()
@@ -275,6 +283,30 @@ void Sensor::displayMeasures()
     for (auto it=mesures.begin(); it!=mesures.end(); it++)
     {
         cout << *it << endl;
+    }
+}
+
+void Sensor::detectFraud(Measure m)
+{
+    
+    vector<float> avgVec = avgMeasures(mesures); //prend toutes les donnees disponibles puis calcule les moyennes
+    float avg;
+	if (m.attributeId.compare("O3") == 0){
+		avg = avgVec[0];
+	}
+	if (m.attributeId.compare("NO2") == 0){
+        avg = avgVec[1];
+	}
+	if (m.attributeId.compare("SO2") == 0){
+		avg = avgVec[2];
+	}
+	if (m.attributeId.compare("PM10") == 0){
+		avg = avgVec[3];
+	}
+	
+	if(abs(m.value-avg)>10.0)
+    {
+        m.isFake=true;
     }
 }
 

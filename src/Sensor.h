@@ -28,7 +28,8 @@ public:
     // Méthode pour attribuer à un capteur un score synthétisant ses propriétés
     float getScore(list<Measure> data);
     // Méthode pour trouver les capteurs similaires
-    list<Sensor> getCluster(list<Sensor> sensorData, list<Measure> mesureData);
+    list<Sensor> getCluster(list<Sensor> sensorData);
+    void displayCluster();
 
     void displayMeasures();
     // Getters
@@ -37,6 +38,7 @@ public:
     double getLongitude();
     string getDescripton();
     list<Measure> getMeasures();
+    void detectFraud(Measure m);
     //------------------------------------------------- Overloading
 
 	friend ostream & operator << ( ostream & out, const Sensor & unSensor );

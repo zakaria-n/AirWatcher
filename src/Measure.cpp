@@ -24,6 +24,8 @@ string Measure::getSensor()
 }*/
 
 
+
+
 float Measure::getValue()
 {
     return value;
