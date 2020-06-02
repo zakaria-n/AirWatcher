@@ -16,6 +16,8 @@ public:
 
     int getPoints();
 
+    void addPoint();
+
 protected:
     int totalMeasures;
     int validatedMeasures;

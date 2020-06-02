@@ -246,6 +246,8 @@ int main() {
                                                 cin>>value;
                                                 Measure maMeasure =  Measure (ts,indiv->getId(), attributeId, value, false);
                                                 cat.addMeasure(maMeasure);
+                                                indiv->addPoint();
+                                                cout << "Measure has been added and you have gained a point!" << endl;
                                                 break;
                                             }
                                             case 2: {

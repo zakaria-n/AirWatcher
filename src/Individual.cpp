@@ -33,3 +33,8 @@ int Individual::getPoints() {
     return totalMeasures - validatedMeasures;
 }
 
+void Individual::addPoint() {
+    totalMeasures++;
+    validatedMeasures++;
+}
+
