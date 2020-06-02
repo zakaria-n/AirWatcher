@@ -60,7 +60,6 @@ vector <Cleaner> Catalogue::getCleanerList() {
 }
 
 Cleaner Catalogue::GetCleanerById(string id){
-  vector<Cleaner> unCleanerList = cleanerList;
   Cleaner monCleaner;
   for (auto it=cleanerList.begin(); it!=cleanerList.end(); it++)
   {
@@ -184,14 +183,12 @@ void Catalogue::setCleaners(string fileName)
   ifstream lect;
   lect.open(fileName.c_str());
   string line;
-  int id = 0;
   while (getline(lect, line))
   {
     vector<string> monCleaner = readCleanerLine(line);
-    Cleaner newCleaner = Cleaner(to_string(id),stof(monCleaner[1]),stof(monCleaner[2]),monCleaner[3], monCleaner[4]);
+    Cleaner newCleaner = Cleaner(monCleaner[0],stof(monCleaner[1]),stof(monCleaner[2]),monCleaner[3], monCleaner[4]);
     //printf("Le cleaner : %s ajouté ",newCleaner.GetId());
     cleanerList.push_back(newCleaner);
-    id++;
   }
   lect.close();
 }

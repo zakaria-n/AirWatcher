@@ -202,7 +202,7 @@ int main() {
                                                 break;
                                             }
                                             case 5: {
-                                              list<Cleaner> unCleaner;
+                                              vector<Cleaner> unCleaner;
                                               string CleanerId;
                                               float purifiedRadius, purifiedZone;
                                               printf("Enter cleaner ID:\n");
