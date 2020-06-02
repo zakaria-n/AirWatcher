@@ -108,7 +108,7 @@ Area::Area()
 #endif
 }
 
-Area::Area(float lat, float lon, float rayon, vector<Sensor> sensorList, list<Measure> mdata)
+Area::Area(float lat, float lon, float rayon, vector<Sensor> sensorList)
 {
 #ifdef MAP
   cout << "Appel au constructeur de <Area>" << endl;
@@ -116,7 +116,8 @@ Area::Area(float lat, float lon, float rayon, vector<Sensor> sensorList, list<Me
   latitude = lat;
   longitude = lon;
   radius = rayon;
-  fillSensors(sensorList, mdata);
+  //fillSensors(sensorList, mdata);
+  sensors = sensorList;
 }
 
 Area::~Area ( )

@@ -67,8 +67,14 @@ string Cleaner::GetTimestampEnd() const {
 
 // difference in air quality before vs after cleaner added
 int Cleaner::calculateEfficiency(Catalogue* cat, float rayon) const {
+    cout << "latitude " << latitude << endl;
+    cout << "longitude " << longitude << endl;
+    cout << "timestampBegin " << timestampBegin << endl;
+    cout << "timestampEnd " << timestampEnd << endl;
     int before = cat->getAverageQuality(latitude, longitude, rayon, timestampBegin);
+    cout << "before " << before << endl;
     int after = cat->getAverageQuality(latitude, longitude, rayon, timestampEnd);
+        cout << "after " << after << endl;
     int result = after - before;
     return result;
 }
