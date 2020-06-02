@@ -28,7 +28,7 @@ int main() {
         cout << *it << endl;
     }*/
     list<Measure> measureL = cat.getMeasureList();
-    Area arz = Area(44.0,0.3, 5000, sensorLz);
+    /*Area arz = Area(44.0,0.3, 5000, sensorLz);
     arz.fillSensors(sensorLz);
     arz.fillSensorData(measureL);
     cout << "Sensors in this area:" << endl;
@@ -43,9 +43,9 @@ int main() {
 
     s.fillMeasures(measureL);
     cout << "The measures recorded by this sensor are: " << endl;
-    s.displayMeasures();
+    s.displayMeasures();*/
 
-    cout << "For this sensor: " << s << " the average quality is: " << endl;
+    /*cout << "For this sensor: " << s << " the average quality is: " << endl;
     cout << s.airQuality(measureL) << endl;
     cout << "-----------------sopi-----------" << endl;
 
@@ -53,7 +53,7 @@ int main() {
     for (auto it=sensorL.begin(); it!= sensorL.end(); it++)
     {
         cout << *it << endl;
-    }
+    }*/
     list<Measure> measureList = cat.getMeasureList();
     Area ar = Area();
     SimpleInterface users = SimpleInterface();
@@ -102,6 +102,7 @@ int main() {
                                             case 1: { //  NE FONCTIONNE PAS
                                                 float lat,longi,radius;
                                                 string dateBegin;
+                                                string dateEnd;
                                                 printf("Enter latitude:\n");
                                                 cin >> lat;
                                                 printf("Enter longitude:\n");
@@ -110,7 +111,9 @@ int main() {
                                                 cin >> radius;
                                                 printf("Enter Begin date: (YYYY-MM-DD)\n");
                                                 cin >> dateBegin;
-                                                float avgQua = cat.getAverageQuality(lat,longi,radius,dateBegin);
+                                                printf("Enter End date: (YYYY-MM-DD)\n");
+                                                cin >> dateEnd;
+                                                float avgQua = cat.getAverageQuality(lat,longi,radius,dateBegin, dateEnd);
                                                 printf("The average air quality in your area : %f\n",avgQua );
                                                 break;
                                             }
