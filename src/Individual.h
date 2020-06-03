@@ -14,11 +14,11 @@ public:
     Individual();
 
     Individual(string id, string password, int numMeasure, int numValidatedMeasures, string sensor);
-
+    // Returns the score the user
     int getPoints();
-
+    // Increments user score
     void addPoint();
-
+    // Increments total measures
     void addTotalMeasures();
 
 protected:

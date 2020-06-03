@@ -19,18 +19,23 @@ public:
     void addMeasure (Measure);
     // Calculates the average measures for each measure type
     vector<float> avgMeasures(list<Measure>);
+    // Calculates air quality based on the different measures.
     float airQuality(list<Measure>);
+    // Restricts measures to a given period.
     list<Measure> truncateMeasuresToPeriod(string, string);
+    // Outputs air quality for a given period.
     float airQualityOverPeriod(string, string);
+    // Returns most recent measures recorded by Sensor
     list<Measure> mostRecentMeasure();
-    // Méthode pour calculter la distance sphérique entre deux capteurs
+    // Calculates distances between two sensors based on their coordinates
     int getDistance(const Sensor other);
-    // Méthode pour attribuer à un capteur un score synthétisant ses propriétés
+    // Assigns a score to a sensor based on its properties. Method discarded.
     float getScore(list<Measure> data);
-    // Méthode pour trouver les capteurs similaires
+    // Returns cluster of sensor, i.e other sensors with similar properties (geographical setting and recorded data).
     list<Sensor> getCluster(vector<Sensor> sensorData);
+    // Displays cluster of sensor.
     void displayCluster(vector<Sensor> sensorData);
-
+    // Displays measures embedded in sensor.
     void displayMeasures();
     // Getters
     string getId();

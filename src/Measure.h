@@ -12,6 +12,7 @@ class Measure
     friend class Sensor;
 
 public:
+    // Getters and setters. Quite self explanatory.
     string getSensor();
     float getValue();
     int getDay();
@@ -21,7 +22,7 @@ public:
     string getAttributeID();
     bool getIsFake();
     void setIsFake(bool);
-   // void detectFraud(list<Sensor> sdata, list<Measure> mdata);
+    // void detectFraud(list<Sensor> sdata, list<Measure> mdata);
 
    friend ostream & operator << ( ostream & out, const Measure & unMeasure );
 

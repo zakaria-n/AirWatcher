@@ -10,7 +10,7 @@ class Utilisateurs
 {
 
 public:
-
+    // Constructors - Destructor
     Utilisateurs ( const Utilisateurs & unUtilisateurs );
 
     Utilisateurs();
@@ -18,7 +18,8 @@ public:
     Utilisateurs(string id, string password);
 
     virtual ~Utilisateurs();
-
+    
+    // Getters
     string getId();
     string getPassword();
 

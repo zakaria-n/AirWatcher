@@ -18,7 +18,7 @@ public:
     Entreprise (string id, string password, vector <Cleaner> cleaners);
 
     vector <Cleaner> getCleaners();
-
+    // Self explanatory
     bool ajouterCleaner(Cleaner cleaner);
     Cleaner supprimerCleaner(Cleaner cleaner);
 

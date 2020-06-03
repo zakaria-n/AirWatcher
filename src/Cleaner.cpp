@@ -77,7 +77,7 @@ float Cleaner::calculateEfficiency(Catalogue* cat, int rayon) const {
     return result;
 }
 
-// appeler la méthode getAverageQuality de 'Catalogue'
+// calls getAverageQuality of 'Catalogue'
 float Cleaner::calculateAirQuality(Catalogue* cat, int rayon) const {
     float quality = cat->getAverageQuality(latitude, longitude, rayon, timestampBegin, timestampEnd);
     return quality;

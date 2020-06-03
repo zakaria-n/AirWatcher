@@ -12,20 +12,23 @@ class UserBase
 
 public:
 
-    // Constructeur de copie
+    // Contructors - Destructor
     UserBase ( const UserBase & unUserBase );
-    // Constructeur par défaut
     UserBase();
-    // Constructeur
     UserBase(vector<Utilisateurs*> users);
-    // Destructeur
     virtual ~UserBase();
 
+    // Returns list of users
     vector<pair<Utilisateurs*,bool>> getUsers();
+    // Adds user to collection.
     void addUser(Utilisateurs* user);
+    // Removes user from collection.
     bool removeUser(Utilisateurs* user);
+    // Authenticates user
     Utilisateurs* authenticate(string id, string password);
+    // Ends user session
     void deconnexion(Utilisateurs* user);
+    // Returns user type (individual or corporation)
     string getUserType(Utilisateurs* user);
 
 protected:
