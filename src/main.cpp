@@ -91,6 +91,14 @@ int main(int argc, char** argv) {
                 cout<< "Radius of the purified zone : " << purifiedRadius << endl;
             }
             break;
+
+            case 6: // testing individual score
+            {
+                Utilisateurs* user = users.authenticate(argv[2], argv[3]);
+                Individual* indiv = (Individual*) user;
+                cout << "Points: " << indiv->getPoints()<<"\n";
+            }
+            break;
             
             
         }
