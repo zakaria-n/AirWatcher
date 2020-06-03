@@ -18,10 +18,11 @@ public:
     // Adds measure to measure list of sensor
     void addMeasure (Measure);
     // Calculates the average measures for each measure type
+    //after looping through measure list embedded in sensor.
     vector<float> avgMeasures(list<Measure>);
     // Calculates air quality based on the different measures.
     float airQuality(list<Measure>);
-    // Restricts measures to a given period.
+    // Restricts measure list to a given period.
     list<Measure> truncateMeasuresToPeriod(string, string);
     // Outputs air quality for a given period.
     float airQualityOverPeriod(string, string);
