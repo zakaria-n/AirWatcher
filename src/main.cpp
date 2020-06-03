@@ -114,6 +114,7 @@ int main(int argc, char** argv) {
                     cout << "bad data!" << endl;
                 }
             }
+            break;
 
             case 8: // testing cleaner display
             {
@@ -124,7 +125,6 @@ int main(int argc, char** argv) {
                     cout <<"Cleaner ID: "<< id << endl; //NE S'AFFICHE PAS
                 }
             }
-
             break;
             
         }
