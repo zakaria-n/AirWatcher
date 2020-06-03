@@ -17,6 +17,7 @@ public:
     void addSensor(Sensor s);
     void addMeasure(Measure uneMeasure);
     bool addIndivMeasure(Measure uneMeasure,string id);
+    void detectFraud(Measure* m);
 
 // constructeur - déstructeur
     Catalogue();

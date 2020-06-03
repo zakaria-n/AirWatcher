@@ -48,6 +48,11 @@ bool Measure::getIsFake ()
     return isFake;
 }
 
+void Measure::setIsFake(bool state)
+{
+    isFake = state;
+}
+
 int Measure::getYear ()
 {
 	int pos =  timestamp.find_first_of(" ");
@@ -62,6 +67,11 @@ int Measure::getDateScore()
     month = month * 1000;
     int day = getDay();
     return year+month+day;
+}
+
+string Measure::getAttributeID()
+{
+    return attributeId;
 }
 
 ostream & operator << (ostream & out, const Measure & unMeasure)

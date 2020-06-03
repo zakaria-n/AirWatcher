@@ -83,60 +83,51 @@ float Sensor::airQuality(list<Measure> data)
 
 	int O3index = 0, NO2index = 0, SO2index = 0, PM10index = 0;
 
-	if (O3avg >= 0.0 && O3avg <= 104)
-    { 
-        O3index = 4;
-    }
+	if (O3avg >= 0.0 && O3avg < 30) { O3index = 1; }
+	else if (O3avg >= 30 && O3avg < 55) { O3index = 2; }
+	else if (O3avg >= 55 && O3avg < 80) { O3index = 3; }
+	else if (O3avg >= 80 && O3avg < 105) { O3index = 4; }
+	else if (O3avg >= 105 && O3avg < 130) { O3index = 5; }
+	else if (O3avg >= 130 && O3avg < 150) { O3index = 6; }
+	else if (O3avg >= 150 && O3avg < 180) { O3index = 7; }
+	else if (O3avg >= 180 && O3avg < 210) { O3index = 8; }
+	else if (O3avg >= 210 && O3avg < 240) { O3index = 9; }
+	else if (O3avg >= 240) { O3index = 10; }
+
+    if (NO2avg >= 0.0 && NO2avg < 40) { NO2index = 1; }
+	else if (NO2avg >= 40 && NO2avg < 80) { NO2index = 2; }
+	else if (NO2avg >= 80 && NO2avg < 120) { NO2index = 3; }
+	else if (NO2avg >= 120 && NO2avg < 160) { NO2index = 4; }
+	else if (NO2avg >= 160 && NO2avg < 200) { NO2index = 5; }
+	else if (NO2avg >= 200 && NO2avg < 250) { NO2index = 6; }
+	else if (NO2avg >= 250 && NO2avg < 300) { NO2index = 7; }
+	else if (NO2avg >= 300 && NO2avg < 400) { NO2index = 8; }
+	else if (NO2avg >= 400 && NO2avg <500) { NO2index = 9; }
+	else if (NO2avg >= 500) { NO2index = 10; }
+
+    if (SO2avg >= 0.0 && SO2avg <30) { SO2index = 1; }
+	else if (SO2avg >= 30 && SO2avg < 55) { SO2index = 2; }
+	else if (SO2avg >= 55 && SO2avg < 85) { SO2index = 3; }
+	else if (SO2avg >= 85 && SO2avg < 110) { SO2index = 4; }
+	else if (SO2avg >= 110 && SO2avg < 135) { SO2index = 5; }
+	else if (SO2avg >= 135 && SO2avg < 165) { SO2index = 6; }
+	else if (SO2avg >= 165 && SO2avg < 200) { SO2index = 7; }
+	else if (SO2avg >= 200 && SO2avg < 275) { SO2index = 8; }
+	else if (SO2avg >= 275 && SO2avg < 400) { SO2index = 9; }
+	else if (SO2avg >= 400) { SO2index = 10; }
+
+    if (PM10avg >= 0.0 && PM10avg < 7) { PM10index = 1; }
+	else if (PM10avg >= 7 && PM10avg < 14) { PM10index = 2; }
+	else if (PM10avg >= 14 && PM10avg < 21) { PM10index = 3; }
+	else if (PM10avg >= 21 && PM10avg < 28) { PM10index = 4; }
+	else if (PM10avg >= 28 && PM10avg < 35) { PM10index = 5; }
+	else if (PM10avg >= 35 && PM10avg < 42) { PM10index = 6; }
+	else if (PM10avg >= 42 && PM10avg < 50) { PM10index = 7; }
+	else if (PM10avg >= 50 && PM10avg < 65) { PM10index = 8; }
+	else if (PM10avg >= 65 && PM10avg < 80) { PM10index = 9; }
+	else if (PM10avg >= 80) { PM10index = 10; }
     
-	else if (O3avg >= 105.0 && O3avg < 179.0) 
-    { 
-        O3index = 7; 
-    }
-	else if (O3avg >= 180.0) 
-    { 
-        O3index = 10; 
-    }
-
-    if (NO2avg >= 0.0 && NO2avg <= 159.0)
-    { 
-        NO2index = 4; 
-    }
-    if (NO2avg >= 160.0 && NO2avg <= 299.0)
-    { 
-        NO2index = 7;   
-    }
-    if (NO2avg >= 300.0)
-    { 
-        NO2index = 10; 
-    }
-
-    if (SO2avg >= 0.0 && SO2avg <= 109.0)
-    { 
-        SO2index = 4; 
-    }
-    if (SO2avg >= 110.0 && SO2avg <= 199.0)
-    { 
-        SO2index = 7;  
-    }
-    if (SO2avg >= 200.0)
-    { 
-        SO2index = 10;   
-    }
-
-    if (PM10avg >= 0.0 && PM10avg <= 27.0)
-    { 
-        PM10index = 4;   
-    }
-    if (PM10avg >= 28.0 && PM10avg <= 49.0)
-    { 
-        PM10index = 7;   
-    }
-    if (PM10avg >= 50)
-    { 
-        PM10index = 10;   
-    }
-    
-    return ((PM10index+SO2index+NO2index+O3index)/4);
+    return max(max(PM10index, SO2index), max(NO2index,O3index));
 	
 }
 
@@ -226,13 +217,16 @@ list<Sensor> Sensor::getCluster(vector<Sensor> sensorData)
 {
     list<Sensor> cluster;
 
-    cout << "this: " << airQuality(mesures) << endl;
+    //cout << "this: " << airQuality(mesures) << endl;
     for (auto it=sensorData.begin(); it!=sensorData.end(); it++)
     {
-        if(abs(airQuality(mesures)-it->airQuality(it->getMeasures())) <= 0.05)
+        if(abs(airQuality(mesures)-it->airQuality(it->getMeasures())) <= 0.05) // if similar stats
         {
-            cout << "that: " << it->airQuality(it->getMeasures()) << endl;
-            cluster.push_front(*it);
+            if(getDistance(*it)<=150) // AND geographically clustered
+            {
+                cluster.push_front(*it);
+            }
+            //cout << "that: " << it->airQuality(it->getMeasures()) << endl;           
         }
     }
     return cluster;
@@ -289,7 +283,7 @@ void Sensor::displayMeasures()
     }
 }
 
-void Sensor::detectFraud(Measure m)
+/*void Sensor::detectFraud(Measure m)
 {
     
     vector<float> avgVec = avgMeasures(mesures); //prend toutes les donnees disponibles puis calcule les moyennes
@@ -309,9 +303,10 @@ void Sensor::detectFraud(Measure m)
 	
 	if(abs(m.value-avg)>10.0)
     {
+        cout << "avg: " << avg << endl;
         m.isFake=true;
     }
-}
+}*/
 
 Sensor & Sensor::operator = ( const Sensor & sens )
 {

@@ -38,7 +38,7 @@ public:
     double getLongitude();
     string getDescripton();
     list<Measure> getMeasures();
-    void detectFraud(Measure m);
+    //void detectFraud(Measure m);
     //------------------------------------------------- Overloading
 
 	friend ostream & operator << ( ostream & out, const Sensor & unSensor );

@@ -88,8 +88,7 @@ void Catalogue::addMeasure(Measure uneMeasure){
 }
 
 bool Catalogue::addIndivMeasure(Measure uneMeasure,string id){ 
-    Sensor s = GetSensorById(id);                               
-    s.detectFraud(uneMeasure);                       //Verification avant l'ajout dans la liste
+    detectFraud(&uneMeasure);                       //Verification avant l'ajout dans la liste
     if(!uneMeasure.getIsFake()){                   
       measureList.push_back(uneMeasure);
     }
@@ -230,4 +229,30 @@ float Catalogue::getAverageQuality
   Area curr = Area(latitude,longitude, radius, sensorList);
   float average = curr.avgQualityOverPeriod(begin, end);
   return average;
+}
+
+
+void Catalogue::detectFraud(Measure* m)
+{
+    Sensor s;
+    vector<float> avgVec = s.avgMeasures(measureList); //prend toutes les donnees disponibles puis calcule les moyennes
+    float avg;
+    if (m->getAttributeID().compare("O3") == 0){
+      avg = avgVec[0];
+    }
+    if (m->getAttributeID().compare("NO2") == 0){
+          avg = avgVec[1];
+    }
+    if (m->getAttributeID().compare("SO2") == 0){
+      avg = avgVec[2];
+    }
+    if (m->getAttributeID().compare("PM10") == 0){
+      avg = avgVec[3];
+    }
+    
+    if(abs(m->getValue()-avg)>10.0)
+    {
+        cout << "avg: " << avg << endl;
+        m->setIsFake(true);
+    }
 }
