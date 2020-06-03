@@ -192,6 +192,26 @@ int main(int argc, char** argv) {
                                                 auto stop = chrono::high_resolution_clock::now(); 
                                                 auto duration = std::chrono::duration_cast<chrono::milliseconds>(stop - start);
                                                 printf("The average air quality in your area : %f\n",avgQua );
+                                                if(avgQua <3 && avgQua >=1)
+                                                {
+                                                    cout << "Excellent quality." << endl;
+                                                }else if(avgQua >=2 && avgQua <5)
+                                                {
+                                                    cout << "Good quality." << endl;
+                                                }else if(avgQua >=5 && avgQua <6)
+                                                {
+                                                    cout << "Decent quality." << endl;
+                                                }
+                                                else if(avgQua >=6 && avgQua <=8)
+                                                {
+                                                    cout << "Medicore quality." << endl;
+                                                }else if(avgQua >=8 && avgQua <10)
+                                                {
+                                                    cout << "Medicore quality." << endl;
+                                                }else if(avgQua >=10)
+                                                {
+                                                    cout << "Extremely bad quality." << endl;
+                                                }
                                                 cout << "Elapsed time: " << duration.count() << " milliseconds" << endl;
                                                 break;
                                             }
