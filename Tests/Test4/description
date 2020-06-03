@@ -1,1 +1,2 @@
-Ce teste vérifie l'affichage des capteurs.
+Ce teste vérifie le bon affichage de l'impact d'un purificateur sur une zone donnée. L'identifiant du purificateur 
+ainsi que le rayon de la zone sont saisis en ligne de commande.
