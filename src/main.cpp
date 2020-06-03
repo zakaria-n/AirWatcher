@@ -114,6 +114,17 @@ int main(int argc, char** argv) {
                     cout << "bad data!" << endl;
                 }
             }
+
+            case 8: // testing cleaner display
+            {
+                vector<Cleaner> cleaners = cat.getCleanerList();
+                for (auto it=cleaners.begin(); it!=cleaners.end(); it++)
+                {
+                    string id = it->GetId();
+                    cout <<"Cleaner ID: "<< id << endl; //NE S'AFFICHE PAS
+                }
+            }
+
             break;
             
         }
