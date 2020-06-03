@@ -218,7 +218,7 @@ int main(int argc, char** argv) {
                                                 for (auto it=cleaners.begin(); it!=cleaners.end(); it++)
                                                 {
                                                   string id = it->GetId();
-                                                    cout <<"Cleaner ID :"<< id << endl; //NE S'AFFICHE PAS
+                                                    cout <<"Cleaner ID: "<< id << endl; //NE S'AFFICHE PAS
                                                 }
                                                 break;
                                             }
@@ -251,7 +251,7 @@ int main(int argc, char** argv) {
                                               cin >> rad;
                                               unCleaner = cat.GetCleanerById(CleanerId);
                                               efficiency = unCleaner.calculateEfficiency(&cat,rad);
-                                              cout<<"Here is the efficiency of the cleaner ... : "<<efficiency<<endl;
+                                              cout<<"Here is the efficiency of the cleaner: "<<efficiency<<endl;
                                               break;
                                             }
                                             case 4: {
@@ -265,7 +265,7 @@ int main(int argc, char** argv) {
                                                 Cleaner unCleaner = cat.GetCleanerById(CleanerId);
                                                 qua = unCleaner.calculateAirQuality(&cat,rad);
 
-                                                cout<<"Here is the air quality of the cleaner ... area  : "<<qua<<endl;
+                                                cout<<"Here is the air quality of the cleaner: "<<qua<<endl;
 
                                                 break;
                                             }
