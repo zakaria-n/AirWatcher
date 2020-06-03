@@ -19,7 +19,7 @@ using namespace std;
 #include "Cleaner.h"
 #include "UserBase.h"
 
-int main() {
+int main(int argc, char** argv) {
     string measureFile = "../dataset/measurements.csv";
     string sensorFile = "../dataset/sensors.csv";
     string cleanerFile = "../dataset/cleaners.csv";
@@ -37,15 +37,80 @@ int main() {
     users.addUser(entre);
     users.addUser(indiv);
     users.addUser(indiv2);
+    
+    // Tests from CLI arguments
+    
+    if (argc >1)
+    {
+        switch(stoi(argv[1]))
+        {
+            case 1: // displaying sensors
+            {
+                cout << "Sensors:" << endl;
+                vector<Sensor> sensors = cat.getSensorList();
+                for(int i=0; i < sensors.size(); i++) {
+                    cout << sensors.at(i) << endl;
+                } 
+            }
+            break;
 
-    bool exit = false;
+            case 2: // testing air quality
+            {
+                Area ar = Area(stoi(argv[2]), stoi(argv[3]), stoi(argv[4]), cat.getSensorList());
+                cout << "Average air quality in this area: " << endl;
+                cout << ar.avgQualityOverPeriod(argv[5],argv[6]) << endl;
+            }
+            break;
+
+            case 3: // testing sensor cluster
+            {
+                cout << "Cluster of " << argv[2] << endl;
+                Sensor s = cat.GetSensorById(argv[2]);
+                s.displayCluster(cat.getSensorList());
+            }
+            break;
+
+            case 4: // testing cleaner impact
+            {
+                Cleaner unCleaner;
+                float efficiency;
+                unCleaner = cat.GetCleanerById(argv[2]);
+                efficiency = unCleaner.calculateEfficiency(&cat,stoi(argv[3]));
+                cout<<"Here is the efficiency of the cleaner ... : "<<efficiency<<endl;
+            }
+            break;
+
+            case 5: // testing purified radius
+            {
+                string CleanerId;
+                Cleaner unCleaner;
+                int purifiedRadius, purifiedZone;
+                unCleaner = cat.GetCleanerById(argv[2]);
+                purifiedRadius = unCleaner.calculatePurifiedZone(&cat);
+                purifiedZone = PI*pow(purifiedRadius,2);
+                cout<< "Radius of the purified zone : " << purifiedRadius << endl;
+            }
+            break;
+            
+            
+        }
+    }
+   
+    // If no argument, display UI to let user interact more intuitively with app
+
+    bool exit = true;
+    if(argc==1)
+    {
+        exit = false;
+    }
+
     int choice;
     while(!exit) {
         cout << "       Welcome to Sensor Inc." << endl << "What would you like to do?" << endl;
         cout << "================= MENU =================" << endl;
         cout << "1: Enter 1 to log in." << endl;
         cout << "2: Enter 2 to sign up. " << endl;
-        cout << "5: Enter 3 to exit." << endl;
+        cout << "3: Enter 3 to exit." << endl;
         if(cin >> choice) {
             switch(choice) {
                 case 1: {
@@ -68,12 +133,12 @@ int main() {
                                     cout << "================= AGENCY MENU =================" << endl;
                                     cout << "1: Enter 1 to get average quality for an area." << endl;
                                     cout << "2: Enter 2 to add new sensor. " << endl;
-                                    cout << "2: Enter 3 to display sensors. " << endl;
+                                    cout << "3: Enter 3 to display sensors. " << endl;
                                     cout << "4: Enter 4 to display cluster of a sensor. " << endl;
                                     cout << "5: Enter 5 to log out." << endl;
                                     if(cin >> choice) {
                                         switch(choice) {
-                                            case 1: { //  NE FONCTIONNE PAS
+                                            case 1: {
                                                 float lat,longi;
                                                 int radius;
                                                 string dateBegin;
@@ -96,7 +161,7 @@ int main() {
                                                 cout << "Elapsed time: " << duration.count() << " milliseconds" << endl;
                                                 break;
                                             }
-                                            case 2: {  //TESTER L'AFFICHAGE
+                                            case 2: {
                                                 float lat,longi;
                                                 string id, description;
                                                 cout << "Enter id" << endl;
@@ -246,15 +311,19 @@ int main() {
                                         switch(choice) {
                                             case 1: {
                                                 string attributeId, ts;
-                                                float value;
+                                                string value;
                                                 cout << "What is your measure type ? O3,SO2,NO2,PM10 ?" << endl;
                                                 cin>>attributeId;
                                                 cout << "What is the date today? (YYYY-MM-DD)" << endl;
                                                 cin>>ts;
                                                 cout << "The value?" << endl;
                                                 cin>>value;
-                                                assert(value>=0);
-                                                Measure maMeasure =  Measure (ts,indiv->getId(), attributeId, value, false);
+                                                if(value.find_first_not_of("1234567890.-") != string::npos)
+                                                {
+                                                    cout << "Invalid input. " << endl;
+                                                    break;
+                                                }
+                                                Measure maMeasure =  Measure (ts,indiv->getId(), attributeId, stof(value), false);
                                                 if(cat.addIndivMeasure(maMeasure,indiv->getId())){
                                                     indiv->addPoint();
                                                     cout << "good data! ";

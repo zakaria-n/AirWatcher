@@ -252,7 +252,7 @@ void Catalogue::detectFraud(Measure* m)
     
     if(abs(m->getValue()-avg)>10.0)
     {
-        cout << "avg: " << avg << endl;
+        //cout << "avg: " << avg << endl;
         m->setIsFake(true);
     }
 }
