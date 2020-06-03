@@ -100,6 +100,21 @@ int main(int argc, char** argv) {
             }
             break;
             
+            case 7: // testing individual data input
+            {
+                Utilisateurs* user = users.authenticate(argv[2], argv[3]);
+                Individual* indiv = (Individual*) user;
+                Measure maMeasure =  Measure (argv[6],indiv->getId(), argv[4], stof(argv[5]), false);
+                if(cat.addIndivMeasure(maMeasure,indiv->getId())){
+                    indiv->addPoint();
+                    cout << "good data! ";
+                    cout << "Measure has been added and you have gained a point!" << endl;
+                } else {
+                    indiv->addTotalMeasures();
+                    cout << "bad data!" << endl;
+                }
+            }
+            break;
             
         }
     }
@@ -309,7 +324,7 @@ int main(int argc, char** argv) {
                                         }
                                     }
                                 }
-                                else {//AJOUTER DES POINTS A CHAQUE NOUVELLE MEASURE
+                                else {// Incrementing score if data is deemed valid.
                                     cout << "================= INDIVIDUAL MENU =================" << endl;
                                     cout << "1: Enter 1 to submit new measure." << endl;
                                     cout << "2: Enter 2 to get your current points. " << endl;
