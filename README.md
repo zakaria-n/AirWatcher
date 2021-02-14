@@ -1,2 +1,2 @@
-# Projet-UML
-Génie logiciel et modélisation UML: 'Air Quality' SWE project
+# Air Watcher
+Desktop application in C++ to monitor air quality sensors.
